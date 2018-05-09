@@ -23,7 +23,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 public class MySpringBootApplication extends WebMvcConfigurerAdapter implements EmbeddedServletContainerCustomizer {
     @RequestMapping(value = "/two", produces = "text/plain;charset=UTF-8")
     public String index(@PathVariable String name) {
-
         return "Hello Spring Boot" + name;
     }
 
