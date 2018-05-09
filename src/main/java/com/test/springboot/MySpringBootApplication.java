@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 @EnableAutoConfiguration
 public class MySpringBootApplication implements EmbeddedServletContainerCustomizer {
-    @RequestMapping(value="/ni",produces = "text/plain;charset=UTF-8")
+    @RequestMapping(value="/",produces = "text/plain;charset=UTF-8")
     public String index() {
         return "Hello Spring Boot";
     }
