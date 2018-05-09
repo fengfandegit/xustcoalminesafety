@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="TestTenchat:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="com.xust.api.war">
+      <element id="artifact" artifact-name="TestTenchat:war exploded" />
+    </root>
+  </artifact>
+</component>
