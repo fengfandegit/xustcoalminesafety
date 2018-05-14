@@ -21,8 +21,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  * Created by lenovo on 2018/5/9.
  */
 @RestController
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
-@EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class})
+@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class}) @EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class})
 @RequestMapping(value = "/hello")
 @MapperScan("com.xust.dao")
 public class MySpringBootApplication extends WebMvcConfigurerAdapter implements EmbeddedServletContainerCustomizer {
