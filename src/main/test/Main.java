@@ -11,13 +11,13 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) {
         // 短信应用SDK AppID
-        int appid = 1400009099; // 1400开头
+        int appid = 1400091265; // 1400开头
 
         // 短信应用SDK AppKey
-        String appkey = "9ff91d87c2cd7cd0ea762f141975d1df37481d48700d70ac37470aefc60f9bad";
+        String appkey = "0dd73e5f58c0ec62e2ba6926fd49b8a2";
 
         // 需要发送短信的手机号码
-        String[] phoneNumbers = {"21212313123", "12345678902", "12345678903"};
+        String[] phoneNumbers = {"13319193336"};
 
         // 短信模板ID，需要在短信应用中申请
         int templateId = 7839; // NOTE: 这里的模板ID`7839`只是一个示例，真实的模板ID需要在短信控制台中申请
