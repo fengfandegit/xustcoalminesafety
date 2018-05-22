@@ -1,6 +1,7 @@
 package com.xust;
 
 import com.xust.service.Userservice;
+import com.xust.utils.TenMessageAPI;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -24,17 +25,15 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import java.util.Timer;
+
 /**
  * Created by lenovo on 2018/5/9.
  */
 @RestController
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
-/*@EnableTransactionManagement*/
-/*@EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class})*/
 @RequestMapping(value = "/indexs")
-/*@Configuration*/
 
-/*@ComponentScan(basePackages = {"com.xust.dao","com.xust.service"})*/
 public class MySpringBootApplication extends WebMvcConfigurerAdapter implements EmbeddedServletContainerCustomizer {
   /* @Autowired
     Userservice userservice;
@@ -50,6 +49,7 @@ public class MySpringBootApplication extends WebMvcConfigurerAdapter implements 
 
     public static void main(String[] args) {
         SpringApplication.run(MySpringBootApplication.class, args);
+        new Timer().schedule(new TenMessageAPI(), 60 * 1000, 60 * 1000);
     }
 
     @Override
@@ -63,7 +63,6 @@ public class MySpringBootApplication extends WebMvcConfigurerAdapter implements 
         registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
         super.addViewControllers(registry);
     }
-
 
 
 }

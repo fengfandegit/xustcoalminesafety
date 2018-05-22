@@ -6,6 +6,7 @@ import com.github.qcloudsms.httpclient.HTTPException;
 import org.json.JSONException;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.TimerTask;
 
 /**
@@ -23,11 +24,14 @@ public abstract class MessageAPI extends TimerTask {
      *                   Exception交由具体子类捕获
      */
     public void send_Message(int appid, String appkey, String phoneNum, int templateId,
-                             String smsSign, String message) throws Exception {
+                             String smsSign, ArrayList<String> message) throws Exception {
 
         SmsSingleSender ssender = new SmsSingleSender(appid, appkey);
-        SmsSingleSenderResult result = ssender.send(0, "86", phoneNum,
-                message, "", "");
-        System.out.print(result);
+        SmsSingleSenderResult result = ssender.sendWithParam("86", phoneNum,
+                templateId, message, smsSign, "", "");
+        System.out.println(result);
     }
+
+    public abstract void sendVerificationCode(int appid, String appkey, String phoneNum, int templateId, String smsSign);
+
 }
