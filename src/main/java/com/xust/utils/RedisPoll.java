@@ -1,6 +1,7 @@
 package com.xust.utils;
 
 import org.apache.log4j.Logger;
+import org.springframework.context.annotation.Bean;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
@@ -15,6 +16,7 @@ import java.util.Random;
  * Created by lenovo on 2018/5/16.
  * @Author by fengfan
  */
+
 public class RedisPoll {
     public static List<JedisPool> pools;
     public static int redis_batch_read_num;
@@ -24,16 +26,15 @@ public class RedisPoll {
     /**
      * 构建redis连接池
      */
-    public static void initPools() {
-
+    static {
         try {
             pools = new ArrayList<>();
             String path = System.getProperty("user.dir");
-            String logConf = path + "/conf/redis.properties";
+            String logConf = path + "/config/redis.properties";
             Properties redis_config = new Properties();
             redis_config.load(new FileInputStream(logConf));
-            redis_batch_read_num = Integer.parseInt(redis_config.getProperty("redis.batch_read_num"));
-            redis_batch_write_num = Integer.parseInt(redis_config.getProperty("redis_batch_write_num"));
+            //redis_batch_read_num = Integer.parseInt(redis_config.getProperty("redis.batch_read_num"));
+            //redis_batch_write_num = Integer.parseInt(redis_config.getProperty("redis_batch_write_num"));
             String ip_ports = redis_config.getProperty("redis.addr");
             String[] addrs = ip_ports.split(";");
             for (String addr : addrs) {
