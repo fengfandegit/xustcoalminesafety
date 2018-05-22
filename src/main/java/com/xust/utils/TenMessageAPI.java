@@ -2,6 +2,8 @@ package com.xust.utils;
 
 import com.xust.utils.message.api.MessageAPI;
 import org.apache.log4j.Logger;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Service;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -11,7 +13,9 @@ import java.util.concurrent.ConcurrentHashMap;
  *
  * @Author fengfan
  */
+
 public class TenMessageAPI extends MessageAPI {
+
     private static final Logger logger = Logger.getLogger(TenMessageAPI.class);
     //key :phonenum,value:Verification Code_System.currentTimeMillis(超过定时销毁,定时任务来做)
     private static final ConcurrentHashMap<String, String> PHONE_NUMS = new ConcurrentHashMap<>();
@@ -25,7 +29,7 @@ public class TenMessageAPI extends MessageAPI {
 
     private static String get_Random_Verification_Code() {
         StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 6; i++) {
             stringBuilder.append(random.nextInt(10));
         }
         return stringBuilder.toString();
@@ -34,8 +38,11 @@ public class TenMessageAPI extends MessageAPI {
     public void sendVerificationCode(int appid, String appkey, String phoneNum, int templateId, String smsSign) {
         String Code = get_Random_Verification_Code();
         PHONE_NUMS.put(phoneNum, Code + "_" + System.currentTimeMillis());
+        ArrayList<String> messages = new ArrayList<>();
+        messages.add(Code);
+       // messages.add("1");
         try {
-            super.send_Message(appid, appkey, phoneNum, templateId, smsSign, Code);
+            super.send_Message(appid, appkey, phoneNum, templateId, smsSign, messages);
             logger.debug("Phone:" + phoneNum + "_Code:" + Code);
         } catch (Exception e) {
             e.printStackTrace();
@@ -52,9 +59,11 @@ public class TenMessageAPI extends MessageAPI {
                 long now_time = System.currentTimeMillis();
                 Iterator<String> it = sets.iterator();
                 while (it.hasNext()) {
-                    String[] values = PHONE_NUMS.get(it).split("_");
+                    String next = it.next();
+                    String[] values = PHONE_NUMS.get(next).split("_");
                     if (now_time - Long.parseLong(values[1]) > 60 * 1000) {
-                        PHONE_NUMS.remove(it);
+                        System.out.println(next);
+                        PHONE_NUMS.remove(next);
                     }
                 }
             }
