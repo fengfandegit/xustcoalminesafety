@@ -11,14 +11,16 @@ import org.springframework.stereotype.Service;
 
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
+import java.util.Random;
+import java.util.UUID;
 
 /**
  * Created by lenovo on 2018/5/16.
  */
 @Service
 @MapperScan("com.xust.dao")
-@ComponentScan(basePackages={"com.xust.dao"})
-public class Userservice{
+@ComponentScan(basePackages = {"com.xust.dao"})
+public class Userservice {
     @Autowired
     UserMapper userMapper;
 
@@ -54,4 +56,24 @@ public class Userservice{
         }
     }
 
+    public String getSalt() {
+        Random random = new Random();
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < 4; i++) {
+            stringBuilder.append(random.nextInt(10));
+        }
+        return stringBuilder.toString();
+    }
+
+    public void insertInfo(String realname, String password, String phonenum) {
+        String salt = this.getSalt();
+        try {
+            userMapper.insertInfo(UUID.randomUUID().toString(), phonenum,
+                    MD5Util.EncoderByMd5(password + "/" + salt), realname, "test", 0, "test", salt);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+    }
 }

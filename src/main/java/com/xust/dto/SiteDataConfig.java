@@ -46,11 +46,9 @@ public class SiteDataConfig {
         config.setAutoCommit(autoCommit);
         config.setMinimumIdle(minimumIdle);
         config.setMaximumPoolSize(maximumPoolSize);
-        config.setMaxLifetime(maxLifeTime);/*
-        config.setAllowPoolSuspension(allowPoolSuspension);*/
+        config.setMaxLifetime(maxLifeTime);
         config.setReadOnly(readOnly);
-        config.setRegisterMbeans(registerMbeans);/*
-        config.setInitializationFailTimeout(initializationFailTimeout);*/
+        config.setRegisterMbeans(registerMbeans);
         config.setDriverClassName(driverClassName);
 
         if (StringUtils.hasText(isolationLevel)) {

@@ -1,0 +1,235 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>采空区卸压瓦斯抽采评判系统</title>
+    <link href="assets/css/style1.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="assets/js/jquery-1.8.3.min.js"></script>
+    <style type="text/css">
+        .m-2-2 input {
+            margin-bottom: 15px;
+        }
+
+        #code {
+            width: 130px;
+        }
+
+        #fasong {
+            width: 150px;
+            margin-left: 20px;
+            border: none;
+            background-color: #dc9616;
+            box-shadow: 2px 2px 1px #c3beb6;
+        }
+
+        #submit {
+            width: 110px;
+            border: none;
+            background-color: #3f89ca;
+            margin-right: 10px;
+            box-shadow: 2px 2px 1px #c3beb6;
+
+        }
+
+        #reset {
+            width: 110px;
+            border: none;
+            background-color: #d9544f;
+            margin-left: 63px;
+            box-shadow: 2px 2px 1px #c3beb6;
+
+        }
+    </style>
+</head>
+<body onLoad="sendRequest()">
+
+<div class="videozz"></div>
+<video autoplay muted loop poster="assets/images/fallba1ck.jpg">
+    <source src="assets/images/mov.mp4">
+    你的游览器不支持video支持
+</video>
+
+<div class="box">
+    <div class="box-a">
+        <div class="m-2">
+            <div class="m-2-1">
+                    <div class="m-2-2">
+                        <input type="text" placeholder="请输入姓名" id="realname"/><br/>
+                        <input type="text" placeholder="请输入手机号" id="phonenum"/><br/>
+                        <input type="password" placeholder="请输入密码" id="password"/><br/>
+                        <input type="password" placeholder="请再次确认密码" id="repassword"/><br/>
+                        <input type="text" placeholder="验证码" id="code"/>
+                        <input type="button" value="获取短信验证码" id="fasong"/><br/>
+                        <input type="button" value="提交" id="submit"/>
+                        <input type="reset" value="重置" id="reset"/>
+                    </div>
+            </div>
+        </div>
+        <div class="m-5">
+            <div id="m-5-id-1">
+                <div id="m-5-2">
+                    <div id="m-5-id-2">
+                    </div>
+                    <div id="m-5-id-3"></div>
+                </div>
+            </div>
+        </div>
+        <div class="m-10"></div>
+        <div class="m-xz7"></div>
+        <div class="m-xz8 xzleft"></div>
+        <div class="m-xz9"></div>
+        <div class="m-xz9-1"></div>
+        <div class="m-x17 xzleft"></div>
+        <div class="m-x18"></div>
+        <div class="m-x19 xzleft"></div>
+        <div class="m-x20"></div>
+        <div class="m-8"></div>
+        <div class="m-9">
+            <div class="masked1" id="sx8">卸压瓦斯抽采评判系统</div>
+        </div>
+        <div class="m-11">
+            <div class="m-k-1">
+                <div class="t1"></div>
+            </div>
+            <div class="m-k-2">
+                <div class="t2"></div>
+            </div>
+            <div class="m-k-3">
+                <div class="t3"></div>
+            </div>
+            <div class="m-k-4">
+                <div class="t4"></div>
+            </div>
+            <div class="m-k-5">
+                <div class="t5"></div>
+            </div>
+            <div class="m-k-6">
+                <div class="t6"></div>
+            </div>
+            <div class="m-k-7">
+                <div class="t7"></div>
+            </div>
+        </div>
+        <div class="m-14">
+            <div class="ss"></div>
+        </div>
+        <div class="m-15-a">
+            <div class="m-15-k">
+                <div class="m-15xz1">
+                    <div class="m-15-dd2"></div>
+                </div>
+            </div>
+        </div>
+        <div class="m-16"></div>
+        <div class="m-17"></div>
+        <div class="m-18 xzleft"></div>
+        <div class="m-19"></div>
+        <div class="m-20 xzleft"></div>
+        <div class="m-21"></div>
+        <div class="m-22"></div>
+        <div class="m-23 xzleft"></div>
+        <div class="m-24" id="localtime"></div>
+    </div>
+</div>
+<script src="assets/js/common.min.js"></script>
+<script type="text/javascript">
+    //$("ul li:eq(3)")  // 元素的index位置工0开始计数，所以这里的3实际为第4个元素
+    //$("ul").find("li").eq(3)
+    //判断用户名
+    $("#realname").blur(function () {
+        if ($(this).val() == "") {
+            $(this).css("border-color", "orangered");
+        } else {
+            $(this).css("border-color", "#0095ff");
+        }
+    })
+    //判断手机号  11位数字，1开头
+    $("#phonenum").blur(function () {
+        var re = /^1\d{10}$/;
+        var str = $("#phonenum").val();
+        if (re.test(str)) {//正确
+            $(this).css("border-color", "#0095ff");
+        } else {//错误
+            $(this).css("border-color", "orangered");
+        }
+    })
+
+    //判断密码 最少6位，包括至少一个大写字母，1个小写字母，1个数字，1个特殊字符
+    $("#password").blur(function () {//wW&1234
+        if ($(this).val() != "") {//正确
+            $(this).css("border-color", "#0095FF");
+        } else {//错误
+            $(this).css("border-color", "orangered");
+        }
+    })
+
+    //密码确认
+    $("#repassword").blur(function () {
+        if ($("#password").val() == $("#repassword").val()) {
+            $(this).css("border-color", "#0095ff");
+        } else {
+            $(this).css("border-color", "orangered");
+        }
+    })
+    //点击提交
+    $("#submit").click(function () {
+        $.ajax({
+            type: "get",
+            dataType: "json",
+            url: "/application/checkinsert?realname=" + $("#realname").val() + "&phonenum=" + $("#phonenum").val() + "&password=" + $("#password").val() + "&code=" + $("#code").val(),
+            success: function (data){
+                alert(data.flag);
+                if (data.flag == "1") {//可以成功跳转
+                    window.location.href = "index.html";
+                } else {
+                    alert("验证码有误！");
+                    window.location.href = "zhuce.html";
+                }
+            }
+        });
+    })
+
+    //发送验证码
+    $("#fasong").click(function () {
+        $.ajax({
+            type: "get",
+            url: "/application/message?model=0&phonenum=" + $("#phonenum").val(),
+            success: function (data) {
+                $("#code").blur(function () {
+                    if ($("#code").val() == data) {
+                        $(this).css("border-color", "#0095ff");
+                    } else {
+                        $(this).css("border-color", "orangered");
+                    }
+                })
+            }
+        })
+
+        var countdown = 60;
+        var obj = $("#fasong");
+
+        function settime(obj) {
+            if (countdown == 0) {
+                obj.attr("disabled", false);
+                obj.val("获取短信验证码");
+                countdown = 60;
+                return;
+            } else {
+                obj.attr("disabled", false);
+                obj.val("重新发送(" + countdown + ")");
+                countdown--;
+            }
+            setTimeout(function () {
+                settime(obj);
+            }, 1000);
+        }
+
+        settime(obj);
+    })
+
+
+</script>
+</body>
+</html>
+

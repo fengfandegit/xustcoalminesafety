@@ -1,6 +1,5 @@
-package com.xust.dao;
+package com.xust.utils;
 
-import com.xust.utils.RedisPoll;
 import lombok.AllArgsConstructor;
 import redis.clients.jedis.Jedis;
 
@@ -16,7 +15,7 @@ public class SSDBClient implements Callable<Double[]> {
     @Override
     public Double[] call() throws Exception {
         Jedis jedis = RedisPoll.getResource();
-        String[] strs = jedis.get(key).split(";");
+        String[] strs = jedis.get(key).split(",");
         Double[] value = new Double[strs.length];
         for (int i = 0; i < strs.length; i++) {
             value[i] = Double.parseDouble(strs[i]);

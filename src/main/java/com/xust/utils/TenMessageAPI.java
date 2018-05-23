@@ -2,8 +2,6 @@ package com.xust.utils;
 
 import com.xust.utils.message.api.MessageAPI;
 import org.apache.log4j.Logger;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Service;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -22,10 +20,10 @@ public class TenMessageAPI extends MessageAPI {
 
     private static Random random = new Random();
 
-    static {
+    /*static {
         Timer timer = new Timer();
         timer.schedule(new TenMessageAPI(), 60 * 1000);
-    }
+    }*/
 
     private static String get_Random_Verification_Code() {
         StringBuilder stringBuilder = new StringBuilder();
@@ -40,7 +38,8 @@ public class TenMessageAPI extends MessageAPI {
         PHONE_NUMS.put(phoneNum, Code + "_" + System.currentTimeMillis());
         ArrayList<String> messages = new ArrayList<>();
         messages.add(Code);
-       // messages.add("1");
+        System.out.println(Code);
+        // messages.add("1");
         try {
             super.send_Message(appid, appkey, phoneNum, templateId, smsSign, messages);
             logger.debug("Phone:" + phoneNum + "_Code:" + Code);
@@ -49,6 +48,18 @@ public class TenMessageAPI extends MessageAPI {
             //线上运行使用
             // logger.error("", e);
         }
+    }
+
+
+    public boolean checkVerificationCode(String code, String phonenum) {
+        boolean falg = false;
+        if (PHONE_NUMS.size() > 0 && PHONE_NUMS.get(phonenum).length() > 0) {
+            String Code = PHONE_NUMS.get(phonenum).split("_")[0];
+            if (code.equals(Code)) {
+                falg = true;
+            }
+        }
+        return falg;
     }
 
     @Override

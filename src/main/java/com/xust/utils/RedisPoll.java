@@ -1,7 +1,6 @@
 package com.xust.utils;
 
 import org.apache.log4j.Logger;
-import org.springframework.context.annotation.Bean;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
