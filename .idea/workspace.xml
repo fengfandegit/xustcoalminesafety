@@ -1359,7 +1359,7 @@
       <workItem from="1526883892513" duration="11009000" />
       <workItem from="1526959577099" duration="935000" />
       <workItem from="1526966769835" duration="15222000" />
-      <workItem from="1527060463476" duration="31272000" />
+      <workItem from="1527060463476" duration="31357000" />
     </task>
     <servers />
   </component>
@@ -1396,7 +1396,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="149613000" />
+    <option name="totallyTimeSpent" value="149698000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="916" extended-state="6" />
@@ -1413,7 +1413,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4212548" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.50448143" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.56081945" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23907454" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1760,13 +1760,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="332">
           <caret line="184" column="35" selection-start-line="184" selection-start-column="35" selection-end-line="184" selection-end-column="35" />
-          <folding>
-            <marker date="1527095175001" expanded="true" signature="6364:6582" ph="{...}" />
-            <marker date="1527095175001" expanded="true" signature="6364:7162" ph="{...}" />
-            <marker date="1527095175001" expanded="true" signature="6382:6469" ph="{...}" />
-            <marker date="1527095175001" expanded="true" signature="6735:6887" ph="{...}" />
-            <marker date="1527095175001" expanded="true" signature="7070:7115" ph="{...}" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
