@@ -118,13 +118,13 @@
 		})
 		//点击注册
 		$("#zhuce").click(function(){
-			window.location.href = "http://www.xustcoalminesafety.com/zhuce.html";
+			window.location.href = "http://www.xustcoalminesafety.com/safe/zhuce.html";
 		})
 		//点击登录
 		$("#submit").click(function(){
 			$.ajax({
 				type:'POST',
-				url:"http://www.xustcoalminesafety.com/application/login?phonenum="+$("#admin").val()+"&password="+$("#password").val(),
+				url:"http://www.xustcoalminesafety.com/safe/application/login?phonenum="+$("#admin").val()+"&password="+$("#password").val(),
 				success:function(data){
 					
 				}
