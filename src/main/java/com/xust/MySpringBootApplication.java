@@ -11,6 +11,7 @@ import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomi
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.core.Ordered;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
@@ -24,7 +25,10 @@ import java.util.Timer;
 @RequestMapping(value = "/indexs")
 @ServletComponentScan(basePackages = "com.xust.dao")
 public class MySpringBootApplication extends WebMvcConfigurerAdapter implements EmbeddedServletContainerCustomizer {
-
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**");
+    }
     public static void main(String[] args) {
         SpringApplication.run(MySpringBootApplication.class, args);
         new Timer().schedule(new TenMessageAPI(), 60 * 1000, 60 * 1000);
