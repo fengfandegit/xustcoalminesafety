@@ -120,13 +120,13 @@
 		})
 		//点击注册
 		$("#zhuce").click(function(){
-			window.location.href = "zhuce.html";
+			window.location.href = "http://123.207.72.201:8081/zhuce.html";
 		})
 		//点击登录
 		$("#submit").click(function(){
 			$.ajax({
 				type:'POST',
-				url:"/application/login?phonenum="+$("#admin").val()+"&password="+$("#password").val(),
+				url:"http://123.207.72.201:8081/application/login?phonenum="+$("#admin").val()+"&password="+$("#password").val(),
 				success:function(data){
 					
 				}
