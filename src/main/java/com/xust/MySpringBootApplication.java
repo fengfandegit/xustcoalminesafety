@@ -9,6 +9,7 @@ import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletCont
 import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
 
 import org.springframework.boot.web.servlet.ServletComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -24,6 +25,7 @@ import java.util.Timer;
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class}/*,scanBasePackages = {"com.xust.controller"}*/)
 @RequestMapping(value = "/indexs")
 @ServletComponentScan(basePackages = "com.xust.dao")
+@Configuration
 public class MySpringBootApplication extends WebMvcConfigurerAdapter implements EmbeddedServletContainerCustomizer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
