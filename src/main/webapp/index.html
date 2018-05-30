@@ -123,7 +123,7 @@
 		//点击登录
 		$("#submit").click(function(){
 			$.ajax({
-				type:'POST',
+				type:'get',
 				url:"http://www.xustcoalminesafety.com/safe/application/login?phonenum="+$("#admin").val()+"&password="+$("#password").val(),
 				success:function(data){
 					

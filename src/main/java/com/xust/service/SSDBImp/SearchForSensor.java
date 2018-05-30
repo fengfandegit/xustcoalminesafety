@@ -1,16 +1,39 @@
 package com.xust.service.SSDBImp;
 
 import com.xust.service.AllSSDBSearchI;
+import com.xust.utils.DataUtils;
+import com.xust.utils.RedisPoll;
 import com.xust.utils.SSDBClient;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import redis.clients.jedis.Jedis;
+
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CountDownLatch;
 
 /**
  * Created by lenovo on 2018/5/21.
  */
-public class SearchForSensor implements AllSSDBSearchI{
-    private SSDBClient ssdbClient;
+@AllArgsConstructor
+@Getter
+@Setter
+public class SearchForSensor implements AllSSDBSearchI {
+    //private SSDBClient ssdbClient;
+    CountDownLatch countDownLatch;
+    String key;
+    ConcurrentHashMap<String, String> concurrentHashMap;
 
-    public void test(String zhan,String type,String no){
-        String key = zhan+"_"+type+"_"+no;
 
+    @Override
+    public void run() {
+        Jedis jedis = RedisPoll.getResource();/*
+        long starttime = System.currentTimeMillis();*/
+        String values = jedis.get(key);/*
+        System.out.println(System.currentTimeMillis()-starttime+"mmmmmmmmmmmmmmmm");*/
+        if (values!=null) {
+            concurrentHashMap.put(key, values);
+        }
+        countDownLatch.countDown();
     }
 }

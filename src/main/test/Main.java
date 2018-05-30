@@ -1,24 +1,60 @@
 import com.alibaba.fastjson.JSONArray;
 import com.github.qcloudsms.SmsMultiSender;
 import com.github.qcloudsms.SmsMultiSenderResult;
+import com.xust.utils.DataUtils;
+import com.xust.utils.RedisPoll;
 import org.json.JSONException;
 
 import java.io.IOException;
+
 import com.github.qcloudsms.SmsSingleSender;
 import com.github.qcloudsms.SmsSingleSenderResult;
 import com.github.qcloudsms.httpclient.HTTPException;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 
 /**
  * Created by lenovo on 2018/5/9.
  */
 public class Main {
+
     @Test
-    public  void main() {
+    public void test() {
+        String str = RedisPoll.getResource().get("1_1_1_20180329");
+        System.out.println(str);
+
+       /* String[] datas = dataUtils.getSearchKeys("20010225", "20010325");
+        for (int i = 0; i < datas.length; i++) {
+            //if (datas[i] != null) {
+                System.out.println(datas[i]);
+            //}
+        }*/
+    }
+
+    @Test
+    public void test1() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(2018, 0, 25, 1, 3, 55);
+        System.out.println(calendar.getTimeInMillis());
+      /*  Date date = new Date(System.currentTimeMillis());
+        System.out.println(date);*/
+        //System.out.println(new java.util.Date(date.getTime()));
+        Date date = new Date();
+        Long time = date.getTime();
+        System.out.println(time);
+        Date d = new Date(calendar.getTimeInMillis());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
+        System.out.println(sdf.format(d));
+    }
+
+    @Test
+    public void main() {
         // 短信应用SDK AppID
         int appid = 1400091265; // 1400开头
 
@@ -27,7 +63,7 @@ public class Main {
 
         // 需要发送短信的手机号码
         ArrayList<String> phoneNumbers = new ArrayList<>();
-        phoneNumbers.add(0,"13319193336");
+        phoneNumbers.add(0, "13319193336");
 
         // 短信模板ID，需要在短信应用中申请
         int templateId = 125276; // NOTE: 这里的模板ID`7839`只是一个示例，真实的模板ID需要在短信控制台中申请
@@ -42,9 +78,9 @@ public class Main {
             ArrayList<String> params = new ArrayList<>();
             params.add("1234");
             //params.add("1");
-            SmsSingleSender ssender =  new SmsSingleSender(appid, appkey);
-            SmsSingleSenderResult  result = ssender.sendWithParam("86", "13319193336",
-                    templateId, new ArrayList<String>(), smsSign,"","");
+            SmsSingleSender ssender = new SmsSingleSender(appid, appkey);
+            SmsSingleSenderResult result = ssender.sendWithParam("86", "13319193336",
+                    templateId, new ArrayList<String>(), smsSign, "", "");
         } catch (HTTPException e) {
             // HTTP响应码错误
             e.printStackTrace();
