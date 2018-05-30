@@ -1,5 +1,8 @@
 
+import com.xust.dao.AverageDao;
 import com.xust.service.ReadRunService;
+import com.xust.utils.AbstractDao;
+import com.xust.utils.AverageUtil;
 import com.xust.utils.DataUtils;
 import com.xust.utils.RedisPoll;
 import org.junit.Test;
@@ -17,16 +20,23 @@ public class TestRedis {
 
     @Test
     public void testread() {
-/*        long start = System.currentTimeMillis();
+        long start = System.currentTimeMillis();
         String strt = "1";
         System.out.println(strt.split("_")[0]);
-        String[] str = new ReadRunService().getData("1_1","1_1","1_2","20180325","20180325");
-        System.out.println("time:"+(System.currentTimeMillis()-start));
-        for (int i = 0;i<str.length;i++){
+        String[] str = new ReadRunService().getData("1", "1", "1", "20180325", "20180325");
+        System.out.println("time:" + (System.currentTimeMillis() - start));
+       /* for (int i = 0;i<str.length;i++){
             System.out.println(str[i]);
         }*/
+       StringBuilder sb = new StringBuilder(str[0]).append(",12342/123456");
+        str = sb.toString().split("kkkk");
+        AverageDao[] abstractDaos = new AverageUtil().getAverage(str[0].split(":")[1].split(","), 0.90);
+        for (int i = 0; i < abstractDaos.length; i++) {
+            System.out.println(abstractDaos[i]);
+        }
+        /*
         System.out.println(((int)(Math.random()*15+15)));
-        System.out.println(RedisPoll.getResource().get("1_2_2_20180325"));
+        System.out.println(RedisPoll.getResource().get("1_2_2_20180325"));*/
     }
 
     @Test
@@ -99,7 +109,7 @@ public class TestRedis {
                 }
                /* System.out.println("key:" + key + "value:" + values);*/
                 jedis.set(key, values.toString());
-                System.out.println(key+":"+jedis.get(key));
+                System.out.println(key + ":" + jedis.get(key));
                 // System.out.println(jedis.get(key));
             }
         }
