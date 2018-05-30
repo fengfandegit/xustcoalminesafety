@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="4c4c227b-0a08-4657-8706-30b7ba202ddd" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/test/TestRedis.java" afterPath="$PROJECT_DIR$/src/main/test/TestRedis.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xust/dao/AverageDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/xust/dao/AverageDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xust/utils/AverageUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/xust/utils/AverageUtil.java" />
     </list>
     <ignored path="TestTenchat.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -67,8 +68,8 @@
       <file leaf-file-name="AverageUtil.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/xust/utils/AverageUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="89">
-              <caret line="10" column="40" selection-start-line="10" selection-start-column="40" selection-end-line="10" selection-end-column="40" />
+            <state relative-caret-position="232">
+              <caret line="26" column="27" selection-start-line="26" selection-start-column="27" selection-end-line="26" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -124,8 +125,8 @@
       <file leaf-file-name="AverageDao.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/xust/dao/AverageDao.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="351">
-              <caret line="13" column="9" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="9" />
+            <state relative-caret-position="305">
+              <caret line="18" column="21" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -212,8 +213,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/xust/utils/ExecutorsUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xust/service/ReadRunService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xust/controller/ReadDataController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xust/dao/AverageDao.java" />
         <option value="$PROJECT_DIR$/src/main/test/TestRedis.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xust/dao/AverageDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xust/utils/AverageUtil.java" />
       </list>
     </option>
@@ -1161,20 +1162,11 @@
       <workItem from="1527490447889" duration="2297000" />
       <workItem from="1527492881479" duration="20598000" />
       <workItem from="1527571655074" duration="23000" />
-      <workItem from="1527667370586" duration="21064000" />
+      <workItem from="1527667370586" duration="21580000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="TestRedis_testread - 2018.05.31 at 00h 14m 11s.xml">
-      <configuration name="TestRedis.testread" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestRedis_testread - 2018.05.31 at 00h 15m 01s.xml">
-      <configuration name="TestRedis.testread" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestRedis_testread - 2018.05.31 at 00h 15m 53s.xml">
-      <configuration name="TestRedis.testread" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="TestRedis_testread - 2018.05.31 at 00h 16m 46s.xml">
       <configuration name="TestRedis.testread" configurationId="JUnit" />
     </history-entry>
@@ -1196,9 +1188,18 @@
     <history-entry file="TestRedis_testread - 2018.05.31 at 00h 23m 35s.xml">
       <configuration name="TestRedis.testread" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="TestRedis_testread - 2018.05.31 at 00h 24m 07s.xml">
+      <configuration name="TestRedis.testread" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestRedis_testread - 2018.05.31 at 00h 31m 28s.xml">
+      <configuration name="TestRedis.testread" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestRedis_testread - 2018.05.31 at 00h 32m 17s.xml">
+      <configuration name="TestRedis.testread" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="199487000" />
+    <option name="totallyTimeSpent" value="200003000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="916" extended-state="6" />
@@ -1213,7 +1214,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32969153" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41101152" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.44046095" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28425097" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1226,7 +1227,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5262484" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5262484" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -1294,12 +1295,6 @@
           <line>29</line>
           <properties />
           <option name="timeStamp" value="37" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/xust/utils/AverageUtil.java</url>
-          <line>30</line>
-          <properties />
-          <option name="timeStamp" value="44" />
         </line-breakpoint>
       </breakpoints>
       <option name="time" value="46" />
@@ -1702,8 +1697,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xust/dao/AverageDao.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="13" column="9" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="9" />
+        <state relative-caret-position="305">
+          <caret line="18" column="21" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1712,8 +1707,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xust/utils/AverageUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="89">
-          <caret line="10" column="40" selection-start-line="10" selection-start-column="40" selection-end-line="10" selection-end-column="40" />
+        <state relative-caret-position="232">
+          <caret line="26" column="27" selection-start-line="26" selection-start-column="27" selection-end-line="26" selection-end-column="27" />
           <folding />
         </state>
       </provider>

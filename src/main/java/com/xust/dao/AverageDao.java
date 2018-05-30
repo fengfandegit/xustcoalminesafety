@@ -16,4 +16,6 @@ public class AverageDao {
     private Double values;
     private String date;
     private boolean alarm;
+    private String starttime;
+    private String endtime;
 }

@@ -14,17 +14,26 @@ public class AverageUtil {
         boolean flag = false;
         int j = 0;
         double dat;
+        String starttime = "";
+        String endtime = "";
         for (int i = 0; i < data.length; i++) {
+            if (i == 0) {
+                starttime = data[i].split("/")[0];
+            }
             dat = Double.parseDouble(data[i].split("/")[1]);
             if (dat >= alarm) {
                 flag = true;
             }
             if (i < endt) {
                 temp += dat;
-                if ((i+1) % baselen == 0 && i > 0) {
+                if ((i + 1) % baselen == 0 && i > 0) {
+                    endtime = data[i].split("/")[0];
                     averageDao[j++] = new AverageDao((double) temp / (double) baselen, data[i - (baselen / 2)]
-                            .split("/")[0], flag);
+                            .split("/")[0], flag, starttime, endtime);
                     flag = false;
+                    if (i+1<data.length){
+                        starttime = data[i].split("/")[0];
+                    }
                     temp = 0;
                 }
             } else {
@@ -32,7 +41,7 @@ public class AverageUtil {
                 if (i == data.length - 1) {
                     averageDao[j++] = new AverageDao((double) temp / (double) (data.length - endt),
                             data[(data.length + endt) / 2]
-                                    .split("/")[0], flag);
+                                    .split("/")[0], flag,starttime,endtime);
                 }
             }
         }
