@@ -45,7 +45,6 @@ public class AverageUtil {
                 }
             }
         }
-        System.out.println();
         return averageDao;
     }
 }

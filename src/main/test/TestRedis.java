@@ -28,8 +28,8 @@ public class TestRedis {
        /* for (int i = 0;i<str.length;i++){
             System.out.println(str[i]);
         }*/
-       StringBuilder sb = new StringBuilder(str[0]).append(",12342/123456");
-        str = sb.toString().split("kkkk");
+       //StringBuilder sb = new StringBuilder(str[0]).append(",12342/123456");
+        //str = sb.toString().split("kkkk");
         AverageDao[] abstractDaos = new AverageUtil().getAverage(str[0].split(":")[1].split(","), 0.90);
         for (int i = 0; i < abstractDaos.length; i++) {
             System.out.println(abstractDaos[i]);

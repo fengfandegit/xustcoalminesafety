@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4c4c227b-0a08-4657-8706-30b7ba202ddd" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xust/dao/AverageDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/xust/dao/AverageDao.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xust/utils/AverageUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/xust/utils/AverageUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/test/TestRedis.java" afterPath="$PROJECT_DIR$/src/main/test/TestRedis.java" />
     </list>
     <ignored path="TestTenchat.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -35,11 +34,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="TestRedis.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="TestRedis.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/test/TestRedis.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="169">
-              <caret line="35" column="9" selection-start-line="35" selection-start-column="9" selection-end-line="35" selection-end-column="9" />
+            <state relative-caret-position="34">
+              <caret line="30" column="9" selection-start-line="30" selection-start-column="9" selection-end-line="30" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -65,11 +64,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AverageUtil.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AverageUtil.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/xust/utils/AverageUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="232">
-              <caret line="26" column="27" selection-start-line="26" selection-start-column="27" selection-end-line="26" selection-end-column="27" />
+            <state relative-caret-position="0">
+              <caret line="0" column="9" selection-start-line="0" selection-start-column="9" selection-end-line="0" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -213,9 +212,9 @@
         <option value="$PROJECT_DIR$/src/main/java/com/xust/utils/ExecutorsUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xust/service/ReadRunService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xust/controller/ReadDataController.java" />
-        <option value="$PROJECT_DIR$/src/main/test/TestRedis.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xust/dao/AverageDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xust/utils/AverageUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/test/TestRedis.java" />
       </list>
     </option>
   </component>
@@ -1162,14 +1161,11 @@
       <workItem from="1527490447889" duration="2297000" />
       <workItem from="1527492881479" duration="20598000" />
       <workItem from="1527571655074" duration="23000" />
-      <workItem from="1527667370586" duration="21580000" />
+      <workItem from="1527667370586" duration="21735000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="TestRedis_testread - 2018.05.31 at 00h 16m 46s.xml">
-      <configuration name="TestRedis.testread" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="TestRedis_testread - 2018.05.31 at 00h 17m 13s.xml">
       <configuration name="TestRedis.testread" configurationId="JUnit" />
     </history-entry>
@@ -1197,9 +1193,12 @@
     <history-entry file="TestRedis_testread - 2018.05.31 at 00h 32m 17s.xml">
       <configuration name="TestRedis.testread" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="TestRedis_testread - 2018.05.31 at 00h 32m 43s.xml">
+      <configuration name="TestRedis.testread" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="200003000" />
+    <option name="totallyTimeSpent" value="200158000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="916" extended-state="6" />
@@ -1214,9 +1213,9 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32969153" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.44046095" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44046095" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28425097" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28425097" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23907454" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1671,22 +1670,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/test/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="27" column="24" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/test/TestRedis.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="35" column="9" selection-start-line="35" selection-start-column="9" selection-end-line="35" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar!/org/junit/internal/runners/model/ReflectiveCallable.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
@@ -1707,8 +1690,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xust/utils/AverageUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="26" column="27" selection-start-line="26" selection-start-column="27" selection-end-line="26" selection-end-column="27" />
+        <state relative-caret-position="0">
+          <caret line="0" column="9" selection-start-line="0" selection-start-column="9" selection-end-line="0" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/test/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="27" column="24" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/test/TestRedis.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="30" column="9" selection-start-line="30" selection-start-column="9" selection-end-line="30" selection-end-column="9" />
           <folding />
         </state>
       </provider>
