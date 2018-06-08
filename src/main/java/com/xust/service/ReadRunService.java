@@ -61,7 +61,7 @@ public class ReadRunService {
                 prestr[temp++] = returndatas[i];
             }
         }
-        System.out.println("sss");
+        //System.out.println("sss");
         /*
         AverageDao[] a = new AverageUtil().getAverage(returndatas,0.90);*/
         return prestr;

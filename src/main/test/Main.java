@@ -27,7 +27,7 @@ public class Main {
     @Test
     public void test() {
         String str = RedisPoll.getResource().get("1_1_1_20180329");
-        System.out.println(str);
+        //System.out.println(str);
 
        /* String[] datas = dataUtils.getSearchKeys("20010225", "20010325");
         for (int i = 0; i < datas.length; i++) {

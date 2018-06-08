@@ -29,9 +29,9 @@ public class ReadDataController {
                               @RequestParam("endtime") String endtime) {
         //JSONObject jsonObject = new JSONObject();
         String[] realdatas = readRunService.getData(no, type, id, starttime, endtime);
-        for (int i = 0;i<realdatas.length;i++){
+      /*  for (int i = 0;i<realdatas.length;i++){
             System.out.println(realdatas[i]);
-        }
+        }*/
         AverageDao[] abstractDaos = new AverageUtil().getAverage(realdatas[0].split(":")[1].split(","), 0.90);
         int newlen = 0;
         for(int i = 0;i<abstractDaos.length;i++){
