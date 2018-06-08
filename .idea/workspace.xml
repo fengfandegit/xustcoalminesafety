@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4c4c227b-0a08-4657-8706-30b7ba202ddd" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/redis.properties" afterPath="$PROJECT_DIR$/config/redis.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xust/controller/ReadDataController.java" afterPath="$PROJECT_DIR$/src/main/java/com/xust/controller/ReadDataController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xust/service/ReadRunService.java" afterPath="$PROJECT_DIR$/src/main/java/com/xust/service/ReadRunService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xust/utils/AverageUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/xust/utils/AverageUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/test/TestRedis.java" afterPath="$PROJECT_DIR$/src/main/test/TestRedis.java" />
     </list>
     <ignored path="TestTenchat.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -41,8 +37,8 @@
       <file leaf-file-name="ReadDataController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/xust/controller/ReadDataController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="78">
-              <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+            <state relative-caret-position="164">
+              <caret line="31" column="33" selection-start-line="31" selection-start-column="33" selection-end-line="31" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -93,8 +89,8 @@
       <file leaf-file-name="ReadRunService.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/xust/service/ReadRunService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="429">
-              <caret line="71" column="33" selection-start-line="71" selection-start-column="33" selection-end-line="71" selection-end-column="33" />
+            <state relative-caret-position="459">
+              <caret line="136" column="8" selection-start-line="136" selection-start-column="8" selection-end-line="136" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -208,8 +204,8 @@
         <option value="$PROJECT_DIR$/config/redis.properties" />
         <option value="$PROJECT_DIR$/src/main/java/com/xust/dao/AverageDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xust/utils/AverageUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xust/controller/ReadDataController.java" />
         <option value="$PROJECT_DIR$/src/main/test/TestRedis.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xust/controller/ReadDataController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xust/service/ReadRunService.java" />
       </list>
     </option>
@@ -1221,7 +1217,7 @@
       <workItem from="1527939918999" duration="9511000" />
       <workItem from="1528029164841" duration="7273000" />
       <workItem from="1528365298642" duration="2580000" />
-      <workItem from="1528446216958" duration="12846000" />
+      <workItem from="1528446216958" duration="13877000" />
     </task>
     <servers />
   </component>
@@ -1258,7 +1254,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="233509000" />
+    <option name="totallyTimeSpent" value="234540000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="916" extended-state="6" />
@@ -1281,7 +1277,7 @@
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24455826" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24455826" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28425097" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23907454" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1720,8 +1716,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xust/controller/ReadDataController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+        <state relative-caret-position="164">
+          <caret line="31" column="33" selection-start-line="31" selection-start-column="33" selection-end-line="31" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1730,8 +1726,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xust/service/ReadRunService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="71" column="33" selection-start-line="71" selection-start-column="33" selection-end-line="71" selection-end-column="33" />
+        <state relative-caret-position="459">
+          <caret line="136" column="8" selection-start-line="136" selection-start-column="8" selection-end-line="136" selection-end-column="8" />
           <folding />
         </state>
       </provider>

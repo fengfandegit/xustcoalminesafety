@@ -20,6 +20,15 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class ReadRunService {
 
+    /**
+     *
+     * @param no 传感器所在站点1_1表示要查询的两个传感器都是1站点
+     * @param type 传感器类型，解释同上
+     * @param id 传感器具体的id
+     * @param starttime 起始时间，年月日
+     * @param endtime 结束时间，年月日
+     * @return 返回的是前端曲线展示的协定数据格式
+     */
     public Map<String,AverageDao[]>getData(String no, String type, String id, String starttime, String endtime) {
         String nos[] = no.split("_");
         String types[] = type.split("_");
@@ -65,10 +74,6 @@ public class ReadRunService {
                 prestr[temp++] = returndatas[i];
             }
         }
-        //System.out.println("sss");
-        /*
-        AverageDao[] a = new AverageUtil().getAverage(returndatas,0.90);*/
-
         return this.test(prestr);
     }
 
@@ -124,7 +129,11 @@ public class ReadRunService {
             }
             returnmap.put(key,realDaos);
         }
-
         return returnmap;
+    }
+
+
+    public void getNowDatas(){
+
     }
 }

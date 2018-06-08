@@ -29,7 +29,6 @@ public class ReadDataController {
                                       @RequestParam("id") String id,
                                       @RequestParam("starttime") String starttime,
                                       @RequestParam("endtime") String endtime) {
-
         return readRunService.getData(no, type, id, starttime, endtime);
     }
 
@@ -38,7 +37,6 @@ public class ReadDataController {
                               @RequestParam("type") String type,
                               @RequestParam("id") String id) {
         JSONObject jsonObject = new JSONObject();
-
         return jsonObject;
     }
 }
