@@ -37,8 +37,8 @@ public class ReadRunService {
                     new SearchForSensor(countDownLatch, pre[i], concurrentHashMap));
         }
         try {
-            countDownLatch.await(1000 * 10, TimeUnit.MILLISECONDS);
-            //countDownLatch.await();
+            //countDownLatch.await(1000 * 10, TimeUnit.MILLISECONDS);
+            countDownLatch.await();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
