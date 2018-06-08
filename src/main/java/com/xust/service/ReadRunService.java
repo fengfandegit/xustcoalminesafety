@@ -5,6 +5,7 @@ import com.xust.service.SSDBImp.SearchForSensor;
 import com.xust.utils.AverageUtil;
 import com.xust.utils.DataUtils;
 import com.xust.utils.ExecutorsUtil;
+import com.xust.utils.RedisPoll;
 import org.springframework.stereotype.Service;
 
 import java.util.concurrent.ConcurrentHashMap;
@@ -33,8 +34,10 @@ public class ReadRunService {
         ConcurrentHashMap<String, String> concurrentHashMap = new ConcurrentHashMap<>();
         CountDownLatch countDownLatch = new CountDownLatch(pre.length);
         for (int i = 0; i < pre.length; i++) {
-            ExecutorsUtil.cachedThreadPool.submit(
-                    new SearchForSensor(countDownLatch, pre[i], concurrentHashMap));
+            if (RedisPoll.getResource().exists(pre[i])) {
+                ExecutorsUtil.cachedThreadPool.submit(
+                        new SearchForSensor(countDownLatch, pre[i], concurrentHashMap));
+            }
         }
         try {
             //countDownLatch.await(1000 * 10, TimeUnit.MILLISECONDS);
@@ -49,15 +52,15 @@ public class ReadRunService {
             }
         }
         int newlen = 0;
-        for (int i = 0;i<returndatas.length;i++){
-            if (!returndatas[i].split(":")[1].equals("null")){
+        for (int i = 0; i < returndatas.length; i++) {
+            if (!returndatas[i].split(":")[1].equals("null")) {
                 newlen++;
             }
         }
         String prestr[] = new String[newlen];
         int temp = 0;
-        for (int i = 0;i<returndatas.length;i++){
-            if (!returndatas[i].split(":")[1].equals("null")){
+        for (int i = 0; i < returndatas.length; i++) {
+            if (!returndatas[i].split(":")[1].equals("null")) {
                 prestr[temp++] = returndatas[i];
             }
         }

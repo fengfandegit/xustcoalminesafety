@@ -4,6 +4,7 @@
     <list default="true" id="4c4c227b-0a08-4657-8706-30b7ba202ddd" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xust/service/ReadRunService.java" afterPath="$PROJECT_DIR$/src/main/java/com/xust/service/ReadRunService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xust/service/SSDBImp/SearchForSensor.java" afterPath="$PROJECT_DIR$/src/main/java/com/xust/service/SSDBImp/SearchForSensor.java" />
     </list>
     <ignored path="TestTenchat.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -104,11 +105,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ReadRunService.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ReadRunService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/xust/service/ReadRunService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="218">
-              <caret line="40" column="12" selection-start-line="40" selection-start-column="12" selection-end-line="40" selection-end-column="12" />
+            <state relative-caret-position="191">
+              <caret line="38" column="36" selection-start-line="38" selection-start-column="36" selection-end-line="38" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -124,11 +125,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SearchForSensor.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SearchForSensor.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/xust/service/SSDBImp/SearchForSensor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="365">
-              <caret line="32" column="33" selection-start-line="32" selection-start-column="33" selection-end-line="32" selection-end-column="33" />
+            <state relative-caret-position="272">
+              <caret line="33" column="9" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -196,7 +197,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/xust/utils/SSDBClient.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xust/service/AllSSDBSearchI.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xust/utils/DataUtils.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xust/service/SSDBImp/SearchForSensor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xust/utils/ExecutorsUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xust/dao/AverageDao.java" />
         <option value="$PROJECT_DIR$/src/main/test/Maine.java" />
@@ -205,6 +205,7 @@
         <option value="$PROJECT_DIR$/src/main/test/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xust/controller/ReadDataController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xust/service/ReadRunService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xust/service/SSDBImp/SearchForSensor.java" />
       </list>
     </option>
   </component>
@@ -1215,7 +1216,7 @@
       <workItem from="1527939918999" duration="9511000" />
       <workItem from="1528029164841" duration="7273000" />
       <workItem from="1528365298642" duration="2580000" />
-      <workItem from="1528446216958" duration="5736000" />
+      <workItem from="1528446216958" duration="6234000" />
     </task>
     <servers />
   </component>
@@ -1252,7 +1253,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="226399000" />
+    <option name="totallyTimeSpent" value="226897000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="916" extended-state="6" />
@@ -1646,14 +1647,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xust/service/SSDBImp/SearchForSensor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="32" column="33" selection-start-line="32" selection-start-column="33" selection-end-line="32" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/test/Maine.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
@@ -1720,8 +1713,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xust/service/ReadRunService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="40" column="12" selection-start-line="40" selection-start-column="12" selection-end-line="40" selection-end-column="12" />
+        <state relative-caret-position="191">
+          <caret line="38" column="36" selection-start-line="38" selection-start-column="36" selection-end-line="38" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xust/service/SSDBImp/SearchForSensor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="33" column="9" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="9" />
           <folding />
         </state>
       </provider>

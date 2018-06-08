@@ -27,13 +27,13 @@ public class SearchForSensor implements AllSSDBSearchI {
 
     @Override
     public void run() {
-        Jedis jedis = RedisPoll.getResource();/*
-        long starttime = System.currentTimeMillis();*/
-        String values = jedis.get(key);/*
-        System.out.println(System.currentTimeMillis()-starttime+"mmmmmmmmmmmmmmmm");*/
-        if (values!=null) {
+        Jedis jedis = RedisPoll.getResource();
+        String values = jedis.get(key);
+        if (values != null) {
             concurrentHashMap.put(key, values);
         }
+        jedis.close();
         countDownLatch.countDown();
+
     }
 }
