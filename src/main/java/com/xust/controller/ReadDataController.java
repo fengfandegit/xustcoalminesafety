@@ -1,7 +1,9 @@
 package com.xust.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.xust.dao.AverageDao;
 import com.xust.service.ReadRunService;
+import com.xust.utils.AverageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -20,18 +22,31 @@ public class ReadDataController {
     ReadRunService readRunService;
 
     @RequestMapping("/gethistorydata")
-    public JSONObject getData(@RequestParam("no") String no,
+    public AverageDao[] getData(@RequestParam("no") String no,
                               @RequestParam("type") String type,
                               @RequestParam("id") String id,
                               @RequestParam("starttime") String starttime,
                               @RequestParam("endtime") String endtime) {
-        JSONObject jsonObject = new JSONObject();
+        //JSONObject jsonObject = new JSONObject();
         String[] realdatas = readRunService.getData(no, type, id, starttime, endtime);
-        for (int i = 0; i < realdatas.length; i++) {
-            String[] value = realdatas[i].split(":");
-            jsonObject.put(value[0], value[1]);
+        for (int i = 0;i<realdatas.length;i++){
+            System.out.println(realdatas[i]);
         }
-        return jsonObject;
+        AverageDao[] abstractDaos = new AverageUtil().getAverage(realdatas[0].split(":")[1].split(","), 0.90);
+        int newlen = 0;
+        for(int i = 0;i<abstractDaos.length;i++){
+            if (abstractDaos[i]!=null){
+                newlen++;
+            }
+        }
+        AverageDao[] realDaos = new AverageDao[newlen];
+        int temp = 0;
+        for (int i = 0;i<abstractDaos.length;i++){
+            if (abstractDaos[i]!=null){
+                realDaos[temp++] = abstractDaos[i];
+            }
+        }
+        return realDaos;
     }
 
     @RequestMapping("/getnowdata")

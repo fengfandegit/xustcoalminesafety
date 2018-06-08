@@ -1,6 +1,8 @@
 package com.xust.service;
 
+import com.xust.dao.AverageDao;
 import com.xust.service.SSDBImp.SearchForSensor;
+import com.xust.utils.AverageUtil;
 import com.xust.utils.DataUtils;
 import com.xust.utils.ExecutorsUtil;
 import org.springframework.stereotype.Service;
@@ -42,8 +44,26 @@ public class ReadRunService {
         }
         String returndatas[] = new String[pre.length];
         for (int i = 0; i < pre.length; i++) {
-            returndatas[i] = pre[i] + ":" + concurrentHashMap.get(pre[i]);
+            if (pre[i] != null) {
+                returndatas[i] = pre[i] + ":" + concurrentHashMap.get(pre[i]);
+            }
         }
-        return returndatas;
+        int newlen = 0;
+        for (int i = 0;i<returndatas.length;i++){
+            if (!returndatas[i].split(":")[1].equals("null")){
+                newlen++;
+            }
+        }
+        String prestr[] = new String[newlen];
+        int temp = 0;
+        for (int i = 0;i<returndatas.length;i++){
+            if (!returndatas[i].split(":")[1].equals("null")){
+                prestr[temp++] = returndatas[i];
+            }
+        }
+        System.out.println("sss");
+        /*
+        AverageDao[] a = new AverageUtil().getAverage(returndatas,0.90);*/
+        return prestr;
     }
 }

@@ -25,18 +25,18 @@ public class TestRedis {
         System.out.println(strt.split("_")[0]);
         String[] str = new ReadRunService().getData("1", "1", "1", "20180325", "20180325");
         System.out.println("time:" + (System.currentTimeMillis() - start));
-       /* for (int i = 0;i<str.length;i++){
+        for (int i = 0;i<str.length;i++){
             System.out.println(str[i]);
-        }*/
+        }
        //StringBuilder sb = new StringBuilder(str[0]).append(",12342/123456");
         //str = sb.toString().split("kkkk");
         AverageDao[] abstractDaos = new AverageUtil().getAverage(str[0].split(":")[1].split(","), 0.90);
         for (int i = 0; i < abstractDaos.length; i++) {
             System.out.println(abstractDaos[i]);
         }
-        /*
+
         System.out.println(((int)(Math.random()*15+15)));
-        System.out.println(RedisPoll.getResource().get("1_2_2_20180325"));*/
+        System.out.println(RedisPoll.getResource().get("1_2_2_20180325"));
     }
 
     @Test
