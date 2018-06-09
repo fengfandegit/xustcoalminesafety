@@ -3,13 +3,9 @@ package com.xust.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.xust.dao.AverageDao;
 import com.xust.service.ReadRunService;
-import com.xust.utils.AverageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.converter.json.MappingJacksonValue;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
@@ -23,13 +19,19 @@ public class ReadDataController {
     @Autowired
     ReadRunService readRunService;
 
+    /*@PostMapping("/gethistorydata")*/
     @RequestMapping("/gethistorydata")
-    public Map<String,AverageDao[]> getData(@RequestParam("no") String no,
+    public Object getData(@RequestParam("callback")String callback,
+                                            @RequestParam("no") String no,
                                       @RequestParam("type") String type,
                                       @RequestParam("id") String id,
                                       @RequestParam("starttime") String starttime,
                                       @RequestParam("endtime") String endtime) {
-        return readRunService.getData(no, type, id, starttime, endtime);
+        System.out.println("ssssssssssssssssssssss");
+        Map<String,AverageDao[]>  map = readRunService.getData(no, type, id, starttime, endtime);
+        MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(map);
+        mappingJacksonValue.setJsonpFunction(callback);
+        return mappingJacksonValue;
     }
 
     @RequestMapping("/getnowdata")

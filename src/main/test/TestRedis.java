@@ -20,7 +20,7 @@ public class TestRedis {
 
     @Test
     public void testread() {
-        /*long start = System.currentTimeMillis();
+       /* long start = System.currentTimeMillis();
         String strt = "1";
         System.out.println(strt.split("_")[0]);
         String[] str = new ReadRunService().getData("1", "1", "1", "20180325", "20180325");
@@ -37,6 +37,8 @@ public class TestRedis {
 
         System.out.println(((int)(Math.random()*15+15)));
         System.out.println(RedisPoll.getResource().get("1_2_2_20180325"));*/
+       String str = RedisPoll.getResource().get("1_1_1_20180325");
+        System.out.println(str);
     }
 
     @Test

@@ -1,9 +1,7 @@
 package com.xust.service.SSDBImp;
 
 import com.xust.service.AllSSDBSearchI;
-import com.xust.utils.DataUtils;
 import com.xust.utils.RedisPoll;
-import com.xust.utils.SSDBClient;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;

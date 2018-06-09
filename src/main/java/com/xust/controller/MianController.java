@@ -8,9 +8,7 @@ import com.xust.utils.MessageInfo;
 import com.xust.utils.TenMessageAPI;
 import com.xust.utils.message.api.MessageAPI;
 
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
