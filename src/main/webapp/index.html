@@ -32,14 +32,12 @@
 		<div class="box-a">
 	    <div class="m-2">
 	          <div class="m-2-1">
-	            <form action="#" method="post">
 	                <div class="m-2-2">
 	                   <input type="text" placeholder="请输入用户名" id="admin"/><br />
 	                   <input type="password" placeholder="请输入密码" id="password"/><br />
 	                   <button id="zhuce" value="注册" />注册
-	                   <button type="submit" value="登陆" id="submit"/> 登陆
+	                   <button type="button" value="登陆" id="submit"/> 登陆
 	                </div>
-	            </form>
 	          </div>
 	    </div>
 	    <div class="m-5"> 
@@ -120,13 +118,13 @@
 		})
 		//点击注册
 		$("#zhuce").click(function(){
-			window.location.href = "zhuce.html";
+			window.location.href = "http://www.xustcoalminesafety.com/safe/zhuce.html";
 		})
 		//点击登录
 		$("#submit").click(function(){
 			$.ajax({
-				type:'POST',
-				url:"/application/login?phonenum="+$("#admin").val()+"&password="+$("#password").val(),
+				type:'get',
+				url:"http://www.xustcoalminesafety.com/safe/application/login?phonenum="+$("#admin").val()+"&password="+$("#password").val(),
 				success:function(data){
 					
 				}

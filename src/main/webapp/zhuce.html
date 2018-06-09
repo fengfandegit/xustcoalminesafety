@@ -177,7 +177,7 @@
         $.ajax({
             type: "get",
             dataType: "json",
-            url: "/application/checkinsert?realname=" + $("#realname").val() + "&phonenum=" + $("#phonenum").val() + "&password=" + $("#password").val() + "&code=" + $("#code").val(),
+            url: "http://www.xustcoalminesafety.com/safe/application/checkinsert?realname=" + $("#realname").val() + "&phonenum=" + $("#phonenum").val() + "&password=" + $("#password").val() + "&code=" + $("#code").val(),
             success: function (data){
                 alert(data.flag);
                 if (data.flag == "1") {//可以成功跳转
@@ -194,7 +194,7 @@
     $("#fasong").click(function () {
         $.ajax({
             type: "get",
-            url: "/application/message?model=0&phonenum=" + $("#phonenum").val(),
+            url: "http://www.xustcoalminesafety.com/safe/application/message?model=0&phonenum=" + $("#phonenum").val(),
             success: function (data) {
                 $("#code").blur(function () {
                     if ($("#code").val() == data) {

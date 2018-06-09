@@ -1,6 +1,7 @@
 package com.xust.utils;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import redis.clients.jedis.Jedis;
 
 import java.util.concurrent.Callable;
@@ -9,6 +10,7 @@ import java.util.concurrent.Callable;
  * Created by lenovo on 2018/5/21.
  */
 @AllArgsConstructor
+@Getter
 public class SSDBClient implements Callable<Double[]> {
     private String key;
 

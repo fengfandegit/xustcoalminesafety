@@ -26,6 +26,7 @@ public class MianController {
     Userservice userservice;
 
     @RequestMapping(value = "/message")
+    @CrossOrigin
     public void index(@RequestParam("model") String model, @RequestParam("phonenum") String phonenum) {
         //0是验证码、1是报警
         MessageAPI messageAPI = null;
