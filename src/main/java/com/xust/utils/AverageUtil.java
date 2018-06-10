@@ -6,11 +6,30 @@ import com.xust.dao.AverageDao;
  * Created by lenovo on 2018/5/30.
  */
 public class AverageUtil {
-    public AverageDao[] getAverage(String[] data, Double alarm) {
-        AverageDao[] averageDao = new AverageDao[151];
-        if (data != null && data.length > 150) {
-            int baselen = data.length / 150;
-            int endt = baselen * 150;
+    /**
+     *
+     * @param data
+     * @param alarm
+     * @param black 间隔期
+     * @param flags 是否走间隔
+     * @return
+     */
+    public AverageDao[] getAverage(String[] data, Double alarm,String black,boolean flags) {
+        /*int i = Integer.parseInt(black.substring(1,black.length()));*/
+        int allnum = 0;
+        if (flags == false){
+            allnum = 150;
+        }else {
+            if (black.substring(0, 1).equals("d")) {
+                allnum = data.length / (2880*Integer.parseInt(black.substring(1,black.length())));
+            }else {
+                allnum = data.length/(120*Integer.parseInt(black.substring(1,black.length())));
+            }
+        }
+        AverageDao[] averageDao = new AverageDao[allnum+1];
+        if (data != null && data.length > allnum) {
+            int baselen = data.length / allnum;
+            int endt = baselen * allnum;
             double temp = 0;
             boolean flag = false;
             int j = 0;

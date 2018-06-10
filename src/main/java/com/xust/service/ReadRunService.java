@@ -1,5 +1,6 @@
 package com.xust.service;
 
+import com.xust.dao.AboutZhan;
 import com.xust.dao.AverageDao;
 import com.xust.service.SSDBImp.SearchForSensor;
 import com.xust.utils.AverageUtil;
@@ -28,7 +29,8 @@ public class ReadRunService {
      * @param endtime   结束时间，年月日
      * @return 返回的是前端曲线展示的协定数据格式
      */
-    public Map<String, AverageDao[]> getData(String no, String type, String id, String starttime, String endtime) {
+    public Map<String, AverageDao[]> getData(String no, String type, String id, String starttime,
+                                             String endtime,String black,boolean flag) {
         String nos[] = no.split("_");
         String types[] = type.split("_");
         String ids[] = id.split("_");
@@ -73,10 +75,10 @@ public class ReadRunService {
                 prestr[temp++] = returndatas[i];
             }
         }
-        return this.test(prestr);
+        return this.test(prestr,black,flag);
     }
 
-    public Map<String, AverageDao[]> test(String[] realdatas) {
+    public Map<String, AverageDao[]> test(String[] realdatas,String black,boolean flag) {
         HashMap<String, StringBuilder> map = new HashMap<>();
         Map<String, AverageDao[]> returnmap = new HashMap<>();
         for (int i = 0; i < realdatas.length; i++) {
@@ -111,7 +113,7 @@ public class ReadRunService {
         AverageDao[] abstractDaos;
         while (it.hasNext()) {
             String key = it.next();
-            abstractDaos = new AverageUtil().getAverage(map.get(key).toString().split(","), 0.90);
+            abstractDaos = new AverageUtil().getAverage(map.get(key).toString().split(","), 0.90,black,flag);
 
             int newlen = 0;
             for (int i = 0; i < abstractDaos.length; i++) {
@@ -133,6 +135,35 @@ public class ReadRunService {
 
 
     public Map<String, AverageDao[]> getNowDatas(String no, String type, String id, String data) {
-        return this.getData(no, type, id, data, data);
+        //兼容下层调用模块
+        return this.getData(no, type, id, data, data,"d0",false);
     }
+
+    public Map<String, AboutZhan[]> getAboutZhan() {
+
+        int num = ((int) Math.random() * 80) + 20;
+        AboutZhan[] aboutZhen = new AboutZhan[num];
+        for (int i = 0; i < aboutZhen.length; i++) {
+            String id = i + "";
+            String panqu = ((int) (Math.random() * 10) + 1) + "盘区";
+            String choucainame = ((int) (Math.random() * 2000) + 2000) + "采空区";
+            String installaction = ((int) (Math.random() * 2000) + 2000) + "";
+            String mixnum = ((Double) (Math.random() * 30) + 4) + "";
+            String jueya = ((int) (Math.random() * 20) + 80) + "";
+            String fuya = ((int) (Math.random() * -20) + 18) + "";
+            String wendu = ((int) (Math.random() * 20) + 20) + "";
+            String chunliuliang = ((int) (Math.random() * 10) + 0.25) + "";
+            String sunliulangleiji = ((int) (Math.random() * 2000) + 200) + "";
+            String riliuliangleiji = ((int) (Math.random() * 500) + 30) + "";
+            String chunliuliangshilieji = ((int) (Math.random() * 30000) + 3000) + "";
+            String chunliuliangrileiji = ((int) (Math.random() * 4000) + 500) + "";
+            String chunliuliangyueleiji = ((int) (Math.random() * 30000) + 8000) + "";
+            aboutZhen[i] = new AboutZhan(id, panqu, choucainame, installaction, mixnum, jueya, fuya, wendu, chunliuliang, sunliulangleiji
+                    , riliuliangleiji, chunliuliangshilieji, chunliuliangrileiji, chunliuliangyueleiji);
+        }
+        Map<String, AboutZhan[]> map = new HashMap<>();
+        map.put("values",aboutZhen);
+        return map;
+    }
+
 }

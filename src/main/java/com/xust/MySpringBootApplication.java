@@ -2,7 +2,9 @@ package com.xust;
 
 import com.xust.utils.SendNowData;
 import com.xust.utils.TenMessageAPI;
-
+import org.apache.log4j.PropertyConfigurator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
@@ -28,6 +30,9 @@ import java.util.Timer;
 @ServletComponentScan(basePackages = "com.xust.dao")
 @Configuration
 public class MySpringBootApplication extends WebMvcConfigurerAdapter implements EmbeddedServletContainerCustomizer {
+    static Logger logger = LoggerFactory.getLogger(MySpringBootApplication.class);
+    static Logger log = LoggerFactory.getLogger("Single");
+
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**");
@@ -37,6 +42,9 @@ public class MySpringBootApplication extends WebMvcConfigurerAdapter implements 
         SpringApplication.run(MySpringBootApplication.class, args);
         new Timer().schedule(new TenMessageAPI(), 60 * 1000, 60 * 1000);
         new Thread(new SendNowData()).start();
+        PropertyConfigurator.configure(System.getProperty("user.dir") + "/config/log4j.properties");
+        logger.info("test");
+        //SendNowData.config();
     }
 
     @Override

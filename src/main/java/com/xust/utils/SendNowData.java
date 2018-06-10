@@ -1,6 +1,7 @@
 package com.xust.utils;
 
 import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import redis.clients.jedis.Jedis;
 
 import java.text.SimpleDateFormat;
@@ -10,7 +11,15 @@ import java.util.Date;
  * Created by lenovo on 2018/6/10.
  */
 public class SendNowData implements Runnable {
-    private static final Logger logger = Logger.getLogger(SendNowData.class);
+    private static  Logger logger = Logger.getLogger(SendNowData.class);
+    public static void config(){
+        String path = System.getProperty("user.dir");
+        String logConf = path + "/config/log4j.properties";
+        PropertyConfigurator.configure(logConf);
+        logger.info("ss");
+        logger.debug("bb");
+        logger.error("mm");
+    }
     @Override
     public void run() {
         Jedis jedis = RedisPoll.getResource();
