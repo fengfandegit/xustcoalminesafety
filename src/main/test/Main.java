@@ -26,7 +26,12 @@ public class Main {
 
     @Test
     public void test() {
-        String str = RedisPoll.getResource().get("1_1_1_20180329");
+        Date d = new Date(System.currentTimeMillis());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
+        String valuem = sdf.format(d);
+        System.out.println(valuem);
+        /*
+        String str = RedisPoll.getResource().get("1_1_1_20180329");*/
         //System.out.println(str);
 
        /* String[] datas = dataUtils.getSearchKeys("20010225", "20010325");

@@ -7,6 +7,8 @@ import com.xust.utils.DataUtils;
 import com.xust.utils.ExecutorsUtil;
 import com.xust.utils.RedisPoll;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
+import redis.clients.jedis.Jedis;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -110,6 +112,7 @@ public class ReadRunService {
         while (it.hasNext()) {
             String key = it.next();
             abstractDaos = new AverageUtil().getAverage(map.get(key).toString().split(","), 0.90);
+
             int newlen = 0;
             for (int i = 0; i < abstractDaos.length; i++) {
                 if (abstractDaos[i] != null) {
@@ -123,13 +126,13 @@ public class ReadRunService {
                     realDaos[temp++] = abstractDaos[i];
                 }
             }
-            returnmap.put("S"+key, realDaos);
+            returnmap.put("S" + key, realDaos);
         }
         return returnmap;
     }
 
 
-    public void getNowDatas(Map<String, AverageDao[]> datamap, String starttime, String endtime) {
-
+    public Map<String, AverageDao[]> getNowDatas(String no, String type, String id, String data) {
+        return this.getData(no, type, id, data, data);
     }
 }

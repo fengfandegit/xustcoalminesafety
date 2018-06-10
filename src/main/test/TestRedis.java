@@ -37,8 +37,14 @@ public class TestRedis {
 
         System.out.println(((int)(Math.random()*15+15)));
         System.out.println(RedisPoll.getResource().get("1_2_2_20180325"));*/
-       String str = RedisPoll.getResource().get("1_1_1_20180325");
-        System.out.println(str);
+        for (int i = 1; i < 3; i++) {
+            for (int j = 1; j < 5; j++) {
+                for (int k = 1; k < 3; k++) {
+                    String key = i + "_" + j + "_" + k + "_" + 20180610;
+                    System.out.println(RedisPoll.getResource().get(key));
+                }
+            }
+        }
     }
 
     @Test
@@ -82,7 +88,7 @@ public class TestRedis {
         }*/
         Jedis jedis = RedisPoll.getResource();
         DataUtils ds = new DataUtils();
-        String[] data = ds.getSearchKeys("20180325", "20180425");
+        String[] data = ds.getSearchKeys("20180426", "20180625");
         Calendar calendar = Calendar.getInstance();
         calendar.set(2018, 2, 25, 0, 0, 0);
       /*  for (int i = 0;i<data.length;i++){
@@ -91,7 +97,7 @@ public class TestRedis {
         long starttime = calendar.getTimeInMillis();
         for (int i = 0; i < data.length; i++) {
             if (data[i] != null) {
-                StringBuilder keys = new StringBuilder("1_2_3_");
+                StringBuilder keys = new StringBuilder("1_4_1_");
                 String key = new String(keys.append(data[i]));
                 StringBuilder values = new StringBuilder();
                 for (int j = 1; j <= 2880; j++) {
@@ -102,15 +108,21 @@ public class TestRedis {
                     //Date d = new Date(calendar.getTimeInMillis());
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
                     String valuem = sdf.format(d);
+                    double will = 1.0;
+
+                    while(Double.valueOf(String.valueOf(will).substring(0,1))>0.00){
+                        will = Math.random()*0.0012+0.0008;
+                    }
                     if (j < 2880) {
-                        values.append(valuem + "/" + ((int) (Math.random() * 15 + 15)) + ",");
+                        values.append(valuem + "/" + will+ ",");
                     } else {
-                        values.append(valuem + "/" + ((int) (Math.random() * 15 + 15)));
+                        values.append(valuem + "/" + will);
                     }
                     starttime = starttime + 30 * 1000;
                 }
                /* System.out.println("key:" + key + "value:" + values);*/
                 jedis.set(key, values.toString());
+                //System.out.println(values.toString());
                 System.out.println(key + ":" + jedis.get(key));
                 // System.out.println(jedis.get(key));
             }

@@ -1,5 +1,6 @@
 package com.xust;
 
+import com.xust.utils.SendNowData;
 import com.xust.utils.TenMessageAPI;
 
 import org.springframework.boot.SpringApplication;
@@ -31,9 +32,11 @@ public class MySpringBootApplication extends WebMvcConfigurerAdapter implements 
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**");
     }
+
     public static void main(String[] args) {
         SpringApplication.run(MySpringBootApplication.class, args);
         new Timer().schedule(new TenMessageAPI(), 60 * 1000, 60 * 1000);
+        new Thread(new SendNowData()).start();
     }
 
     @Override

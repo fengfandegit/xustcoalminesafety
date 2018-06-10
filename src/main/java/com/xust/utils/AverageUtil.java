@@ -7,8 +7,8 @@ import com.xust.dao.AverageDao;
  */
 public class AverageUtil {
     public AverageDao[] getAverage(String[] data, Double alarm) {
-        if (data != null && data.length > 0) {
-            AverageDao[] averageDao = new AverageDao[156];
+        AverageDao[] averageDao = new AverageDao[151];
+        if (data != null && data.length > 150) {
             int baselen = data.length / 150;
             int endt = baselen * 150;
             double temp = 0;
@@ -47,9 +47,16 @@ public class AverageUtil {
                 }
             }
 
-            return averageDao;
-        } else {
-            return null;
+        } else if (data != null && data.length <= 150) {
+            for (int i = 0; i < data.length; i++) {
+                String[] values = data[i].split("/");
+                boolean flag = false;
+                if (Double.valueOf(values[1]) > alarm) {
+                    flag = true;
+                }
+                averageDao[i++] = new AverageDao(Double.valueOf(values[1]), values[0], flag, values[0], values[0]);
+            }
         }
+        return averageDao;
     }
 }

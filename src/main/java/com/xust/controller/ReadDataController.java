@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -27,7 +28,6 @@ public class ReadDataController {
                                       @RequestParam("id") String id,
                                       @RequestParam("starttime") String starttime,
                                       @RequestParam("endtime") String endtime) {
-        System.out.println("ssssssssssssssssssssss");
         Map<String,AverageDao[]>  map = readRunService.getData(no, type, id, starttime, endtime);
         MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(map);
         mappingJacksonValue.setJsonpFunction(callback);
@@ -35,10 +35,15 @@ public class ReadDataController {
     }
 
     @RequestMapping("/getnowdata")
-    public JSONObject getData(@RequestParam("no") String no,
+    public Object getData(@RequestParam("no") String no,
                               @RequestParam("type") String type,
-                              @RequestParam("id") String id) {
-        JSONObject jsonObject = new JSONObject();
-        return jsonObject;
+                              @RequestParam("id") String id,
+                              @RequestParam("callback")String callback) {
+        Date d = new Date(System.currentTimeMillis());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+        String valuem = sdf.format(d);
+        MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(readRunService.getNowDatas(no,type,id,valuem));
+        mappingJacksonValue.setJsonpFunction(callback);
+        return mappingJacksonValue;
     }
 }
