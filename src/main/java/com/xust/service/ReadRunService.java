@@ -169,10 +169,16 @@ public class ReadRunService {
         for (int i = 0; i < averageDaos.length; i++) {
             if (i%2 == 1){
                 Double pre = (averageDaos[i].getValues() - 0.1 - r.nextInt(23) * 0.01);
+                if (pre<0){
+                    pre = pre*-1;
+                }
                 as[i] = new AverageDao(pre,
                         averageDaos[i].getDate(),false,averageDaos[i].getStarttime(),averageDaos[i].getEndtime());
             }else {
                 Double pre = (averageDaos[i].getValues() - 0.2 + r.nextInt(17) * 0.01);
+                if (pre<0){
+                    pre = pre*-1;
+                }
                 as[i] = new AverageDao(pre,
                         averageDaos[i].getDate(),false,averageDaos[i].getStarttime(),averageDaos[i].getEndtime());
             }
