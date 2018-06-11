@@ -1,0 +1,101 @@
+.container{
+				width:100%;
+				margin: 0;
+				padding: 0;
+		  }
+.row{
+	margin: 0;
+}
+.head{
+				background-color:#f5f5f5;
+				 height:66px; 
+				 line-height:66px;
+	 }
+.welcome{
+				font-size:20px;
+		}
+.back{
+				text-align:center;
+				font-size:18px;
+				color:#278296;
+	 }
+.left{
+				background-color:#f5f5f5;
+				height:700px;
+				margin-top:1px;
+				padding-left:10px;
+				padding-right:28px;
+				font-size:14px;
+	 }
+.menu{
+				padding-left:38px;
+				height:35px;
+				line-height:35px;
+	 }
+.menu span{
+				float:left;
+		  }
+.menu img{
+				float:right;
+				margin-top:11px;
+		 }
+.manage{
+				/*border:2px #c1c1c1 solid;*/
+				box-shadow:inset 1px -1px 1px #c1c1c1, inset -1px 1px 1px #c1c1c1;
+				padding:16px 0 86px 16px;
+				background-color:#fff;
+       }
+.manage .level1{
+				margin-bottom:10px;
+			}
+.level2 li{
+				margin-left:24px;
+				margin-top:10px;
+			}
+.level2 span:hover{
+				color:red;
+			}
+.manage img{
+				margin-right:6px;
+			}
+.current{
+				color:#67dff0;
+		}
+
+/*右侧*/
+.right{
+	padding-left: 0;
+}
+.description{
+	width: 100%;
+	height: 50px;
+	background-color: #f5f5f5;
+	font-size: 18px;
+	/*padding-left: 30px;*/
+	line-height: 50px;
+	margin-left:10px;
+	margin-top:10px; 
+	margin-bottom:10px;
+	padding-left: 15px;
+}
+.APP-1,.APP-2{
+	width: 100%;
+	font-size: 18px;
+	margin-bottom:10px;
+	line-height: 40px; 
+
+}
+.APP-1 span,.APP-2 span{
+	text-align: right;
+}
+.APP-logo span{
+	line-height: 40px;
+	font-size: 18px;
+}
+.APP-show-span{
+	line-height: 40px;
+	font-size: 18px;
+}
+.appBtn{
+	margin-bottom: 10px;
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="date" class="time"/>
+		<input type="button" name="but" id="but" value="点击" />
+		<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			/*var str = "2018_03_04_00_09_00";
+			str1 = str.substring(0,10);
+			var arr = str1.split("_");
+			str1 = arr.join("/");
+			str2 = str.substring(11);
+			var arr1 = str2.split("_");
+			str2 = arr1.join(":");*/
+			//alert(str1+" "+str2);
+			
+			$("#but").click(function(){
+				//alert($(".time").val());//2018-06-15T03:33
+				//alert(typeof $(".time").val());
+				var str = $(".time").val();
+				str1 = str.substring(0,10);
+				var arr = str1.split("-");
+				str1 = arr.join("_");
+				alert(str1);
+			})
+		</script>
+	</body>
+</html>

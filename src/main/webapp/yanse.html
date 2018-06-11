@@ -3,8 +3,15 @@
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
+		<meta http-equiv="Content-Type" content="multipart/form-data; charset=utf-8" />
 		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+		<script src="houtai/script/jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="houtai/script/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/echarts.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/dark.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/xlsx.core.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.form.js" type="text/javascript" charset="utf-8"></script>
 		<style type="text/css">
 			.clearfix:before, .clearfix:after {
 			  display: table;
@@ -17,12 +24,13 @@
 			  *zoom: 1; }
 			body{
 				background: linear-gradient(#1d2e4c,#5c94a1);
+				height: 100%;
 			}
 			#header{
 				width: 100%;
 				height: 100px;
 				line-height: 100px;
-				background: rgba(255,255,255,0.7);
+				background-color: #e6e8e7;
 			}
 			#header img{
 				float: left;
@@ -59,6 +67,7 @@
 			#header ul li a{
 				font-size: 18px;
 				color: #727e8a;
+				
 			}
 			#header ul li a img{
 				position: absolute;
@@ -75,11 +84,11 @@
 			}
 			.left{
 				width: 170px;
-				height: 580px;
+				height: 1000px;
 				background: linear-gradient(to bottom left,#9fb9d0,#556a6f);
 				float: left;
 			}
-			.left li a{
+			.left li p span,.system a{
 				color: #e6e6e6;
 				font-size: 15px;
 			}
@@ -90,29 +99,32 @@
 				line-height: 40px;
 				position: relative;
 			}
-			.left .li1:hover{
+			.left #li1:hover{
 				background-color: #28405b;
 			}
-			.left .li2:hover{
+			.left #li2:hover{
 				background-color: #2c4761;
 			}
-			.left .li3:hover{
+			.left #li3:hover{
 				background-color: #304d65;
 			}
-			.left .li4:hover{
+			.left #li4:hover{
 				background-color: #34536b;
 			}
-			.left .li5:hover{
+			.left #li5:hover{
 				background-color: #37586f;
 			}
-			.left li a img{
+			.left li p img{
 				margin-right: 10px;
+			}
+			.left li p{
+				width: 100%;
+				display: block;
 			}
 			.left .arrow{
 				position: absolute;
 				right: 5px;
 				top: 15px;
-				
 			}
 			.system{
 				padding-left: 19px;
@@ -120,15 +132,516 @@
 			}
 			.system li{
 				position: relative;
-				
+			}
+			.system li .p-span1{
+				color: #e6e6e6;
+			}
+			.system li .p-span1:hover{
+				color: #4ebbf4;
 			}
 			.system img{
 				position: absolute;
 				right: 0px;
 				top: 3px;
+			}
+			.right{
+				width: 1177px;
+				
+				padding: 0px 20px 20px 20px;
+				float: left;
+			}
+			.w-a{
+				
+			}
+			#houye-p{
+				background: rgba(0,0,0,0.1);
+			}
+			#shouye,#shouye1,#shouye2,#shouye3{
+				width: 50%;
+				height: 250px;
+				float: left;
+				
+				border-radius: 10px;
+			}
+			.sy-header{
+				width: 100%;
+				height: 70px;
+				background: rgba(255,255,255,0.3);
+				font-size: 30px;
+				line-height: 70px;
+				padding-left: 15px;
+				color: #3b5468;
+				border-radius: 10px;
+				border-bottom-left-radius: 5px;
+				border-bottom-right-radius: 5px;
+			}
+			#sy-contain{
+				width: 100%;
+				height: 430px;
+			}
+			.canshushezhi select{
+				width: 309px;
+			    height: 28px;
+			    border-radius: 2px;
+			    background: rgba(0,0,0,0.1);
+			    border: 1px #ccc solid;
+			    height: 34px;
+			    color: #999999;
+			}
+			.w-a .header{
+				margin: 0px 16px 16px 0px;
+				font-size: 15px;
+				color: #dbe1ed;
+			}
+			.canshushezhi .row1{
+				margin-left: 103px;
+				margin-right: 103px;
+			}
+			.canshushezhi .row1 .input-group{
+				width: 48%;
+				float: left;
+				margin-right: 10px;
+				background: rgba(0,0,0,0.1);
+				margin-top: 26px;
+			}
+			.canshushezhi .row1 .form-control{
+				background: rgba(0,0,0,0);
+			    color: #c1c6c3;
+			    font-size: 16px;
+			}
+			.canshushezhi .row1 .input-group-addon{
+				width: 137px;
+			}
+			.canshushezhi .row1 .lie{
+				width: 48%;
+				
+			}
+			.canshushezhi .row1 .bs-example{
+				position: relative;
+			}
+			.canshushezhi .row1  .btn-success{
+				position: absolute;
+				left: 18px;
+				top: 440px;
+			}
+			.canshushezhi .row1  .btn-warning{
+				position: absolute;
+				right: 43px;
+				top: 440px;
+			}
+			.canshushezhi .row1 .tishi{
+				margin-top: 32px;
+			    display: block;
+			    font-size: 15px;
+			    color: #dbe1ed;
+			    float: left;
+			}
+			.chuanganqi .row1,.fenzhan .row1{
+				background: rgba(0,0,0,0.1);
+				border-radius: 3px;
+				box-shadow: 2px 1px 20px #fff;
+			}
+			.chuanganqi .row1 table,.fenzhan .row1 table,.baojing .row1 table{
+				background-color: transparent;
+				border-collapse: collapse;
+			}
+			.chuanganqi .row1 th,.fenzhan .row1 th,.baojing .row1 th,.chaxunjilu .table th{
+				text-align: center;
+				background: rgba(255,255,255,0.1);
+				/*background: #fff;*/
+				color: #fafbfc;
+				border-color: rgba(0,0,0,0.2);
+				 vertical-align:middle;
+			}
+			.chuanganqi .row1 td,.fenzhan .row1 td,.baojing .row1 td,.chaxunjilu .table td{
+				text-align: center;
+				color: #fafbfc;
+				border-color: rgba(0,0,0,0.2);
+				 vertical-align:middle;
+			}
+			.chuanganqi .row1 tr{
+				
 				
 			}
 			
+			.chuanganqi .row1 .table .btn-warning,.fenzhan .row1 .table .btn-warning{
+				margin-left: 3px;
+			}
+			.chuanganqi select,.fenzhan select{
+				color: #00243F;
+			}
+			.baojing .row1{
+				margin-left: 16px;
+			}
+			/*.baojing .row1 h1{
+				color: #fff;
+				font-family: inherit;
+				font-size: 20px;
+				
+			}*/
+			.baojing .row1 #chart{
+				width: 900px;
+				height: 250px;
+				box-shadow: 2px 1px 20px #fff;
+				margin: 0 auto;
+			}
+			.baojing .row1 table{
+				margin-top: 16px;
+			}
+			.zuankong .row1,.choucaijiliang .row1,.choucaipinggu .row1{
+				width: 70%;
+				height: 450px;
+				margin: 0 auto;
+				border: 2px #999999 solid;
+				position: relative;
+				border-radius: 5px;
+				background: rgba(0,0,0,0.1);
+				box-shadow: 3px 2px 44px #8699A4;
+				margin-top: 10px;
+			}
+			.zuankong .row1 .input-group{
+				width: 39%;
+				float: left;
+				margin-right: 10px;
+				background: rgba(0,0,0,0.1);
+				margin-top: 25px;
+				margin-left: 82px;
+			}
+			.zuankong .row1 .input-group .form-control,.choucaijiliang .row1 .input-group .form-control{
+				background: transparent;
+				color: #fff;
+			}
+			.zuankong .btn-primary{
+				position: absolute;
+				left: 100px;
+				top: 380px;
+			}
+			.zuankong .btn-danger{
+				position: absolute;
+				right: 100px;
+				top: 380px;
+			}
+			.zuankong .tishi{
+				display: block;
+			    color: #dbe1ed;
+			    margin-top: 33px;
+			    float: left;
+			}
+			.zuankong .input-group-addon{
+				width: 81px;
+			}
+			.zuankong .danwei{
+				position: absolute;
+			    right: 10px;
+			    top: 6px;
+			    color: #999999;
+			}
+			.choucaijiliang .row1 .input-group{
+				width: 51%;
+				float: left;
+				margin-right: 10px;
+				background: rgba(0,0,0,0.1);
+				margin-top: 76px;
+				margin-left: 83px;
+			}
+			.choucaijiliang .btn-primary{
+				position: absolute;
+				left: 127px;
+				top: 367px;
+			}
+			.choucaijiliang .btn-danger{
+				position: absolute;
+				right: 256px;
+				top: 367px;
+			}
+			.choucaijiliang .tishi{
+				display: block;
+			    float: left;
+			    margin-top: 81px;
+			    font-size: 15px;
+			    color: #dbe1ed;
+			}
+			.choucaijiliang .input-group-addon{
+				width: 81px;
+			}
+			.choucaiyuce .row1{
+				position: relative;
+			}
+			.choucaiyuce #chart1{
+				width: 600px;
+				height: 250px;
+				margin-left: 194px;
+			    margin-top: 44px;
+			    box-shadow: 2px 1px 20px #fff;
+			    margin-bottom: 44px;
+			}
+			.choucaiyuce .input-group{
+				width: 36%;
+				margin-left: 200px;
+				margin-top: 12px;
+				float: left;
+			}
+			.choucaiyuce .btn-primary{
+				position: absolute;
+				left: 711px;
+				top: 420px;
+			}
+			.choucaiyuce .tishi{
+				float: left;
+			    display: block;
+			    margin-top: 19px;
+			    margin-left: 5px;
+			    font-size: 15px;
+			    color: #dbe1ed;
+			}
+			.choucaiyuce .input-group-addon{
+				width: 109px;
+			}
+			.choucaipinggu .input-group{
+				width: 76%;
+				float: left;
+				margin-top: 39px;
+				margin-left: 10px;
+			}
+			.choucaipinggu .input-group-addon{
+				width: 95px;
+			}
+			.choucaipinggu .form-control{
+				background: transparent;
+				color: #fff;
+			}
+			.choucaipinggu .btn-success{
+				margin-left: 28px;
+				margin-top: 39px;
+				float: left;
+			}
+			.choucaipinggu .btn-danger{
+				margin-left: 10px;
+				margin-top: 39px;
+				float: left;
+			}
+			.choucaipinggu .btn-default{
+				margin-top: 44px;
+				margin-left: 337px;
+				
+			}
+			.choucaipinggu .danwei,.choucaijiliang .danwei{
+				position: absolute;
+			    right: 10px;
+			    top: 6px;
+			    color: #999999;
+			}
+			.chaxunjilu .chaxun{
+				width: 100%;
+				margin-left: 10px;
+				background: rgba(0,0,0,0.1);
+				box-shadow: 2px 1px 20px #fff;
+				padding-top: 19px;
+    			padding-bottom: 8px;
+			}
+			.chaxunjilu span{
+				color: #eaeef1;
+				margin-right: 8px;
+				margin-left: 51px;
+			}
+			.chaxunjilu .text{
+				width: 172px;
+				height: 24px;
+				border-radius: 3px;
+			    background: rgba(0,0,0,0.1);
+			    border: 1px #223949 solid;
+			    color: #fff;
+			    box-shadow: 1px 1px 1px #8699A4;
+			}
+			.chaxunjilu .lie1{
+				margin-top: 20px;
+			}
+			.chaxunjilu .lie1 select{
+				width: 172px;
+				height: 24px;
+				border-radius: 3px;
+			    background: rgba(0,0,0,0.1);
+			    border: 1px #223949 solid;
+			    color: #fff;
+			    box-shadow: 1px 1px 1px #8699A4;
+			}
+			.chaxunjilu .button{
+				margin-left: 794px;
+    			margin-top: 15px;
+			}
+			.chaxunjilu .table{
+				background: rgba(0,0,0,0.1);
+				margin-top: 10px;
+			}
+			.tiaokong .top-l{
+				margin-top: 97px;
+			}
+			.tiaokong .bottom-l{
+				margin-top: 152px;
+			}
+			.tiaokong .top-l,.tiaokong .bottom-l{
+				float: left;
+			    width: 173px;
+			    height: 65px;
+			    line-height: 65px;
+			    color: #fff;
+			    font-size: 15px;
+			    background: rgba(255,255,255,0.2);
+			    text-align: center;
+			    border-radius: 8px;
+			    box-shadow: 1px 1px 1px #fff;
+			    margin-left: 114px;
+			}
+			.tiaokong .top-r,.tiaokong .bottom-r{
+				float: left;
+			    border: 1px #fff solid;
+			    border-radius: 5px;
+			    box-shadow: 1px 1px 1px #fff;
+			    background: rgba(255,255,255,0.1);
+			    margin-top: 79px;
+			    margin-left: 100px;
+			    width: 601px;
+			}
+			.tiaokong .top-r td,.tiaokong .bottom-r td{
+				border: 0;
+				color: #fff;
+			}
+			.tiaokong .top-r .pull-right,.tiaokong .bottom-r .pull-right{
+				width: 100px;
+			}
+			.tiaokong .bottom-r{
+				margin-top: 135px;
+			}
+			.tiaokong span{
+				margin-right: 14px;
+    			color: #FFF;
+			}
+			.shishishuju .row1 a{
+				width: 93px;
+			    display: inline-block;
+			    height: 38px;
+			    border: 1px #ccc solid;
+			    border-radius: 5px;
+			    margin-right: 29px;
+			    margin-left: 29px;
+			    background: rgba(255,255,255,0.1);
+			    text-align: center;
+			    line-height: 38px;
+			    color: #999;
+			    box-shadow: 1px 1px 1px #fff;
+			}
+			.shishishuju #div1{
+				width: 100%;
+			    padding-left: 26px;
+			    padding-top: 15px;
+			    border: 1px #999 solid;
+			    border-radius: 5px;
+			}
+			.shishishuju #div2{
+				width: 100%;
+    			padding-left: 26px;
+    			margin-top: 10px;
+			}
+			.shishishuju #div2 td,.shishishuju #div2 th{
+				color: #ccc;
+			}
+			
+			.shishishuju .fenzhan{
+				    margin-left: 98px;
+			    /* margin-top: 106px; */
+			    color: #ccc;
+			}
+			.shishishuju .fz{
+				width: 110px;
+			    height: 25px;
+			    color: #ccc;
+			    background: rgba(0,0,0,0.1);
+			    border-radius: 3px;
+			    margin-left: 10px;
+			}
+			.shishishuju .mingcheng{
+				   margin-left: 32px;
+			    /* margin-top: 106px; */
+			    color: #ccc;
+			}
+			.shishishuju .mc{
+				width: 100px;
+			    height: 25px;
+			    color: #ccc;
+			    background: rgba(0,0,0,0.1);
+			    border-radius: 3px;
+			    margin-left: 10px;	 
+			}
+			.shishishuju .but{
+				margin-left: 105px;
+			    background: #ed4848;
+			    border: none;
+			    border-radius: 3px;
+			    color: #fff;
+			    box-shadow: 1px 1px 1px #f08e8e;
+			}
+			.shishishuju .tou{
+				margin-top: 10px;
+			}
+			.shishishuju #qx1,.shishishuju #qx2,.shishishuju #qx3,.shishishuju #qx4{
+			    width: 1208px;
+			    height: 200px;
+			    margin-top: 10px;
+			    margin-left: 10px;
+			}
+			.shishishuju #qx2,.shishishuju #qx4{
+			}
+			.lishishuju span{
+				margin-left: 42px;
+			    /* margin-top: 10px; */
+			    color: #ccc;
+			}
+			.lishishuju select{
+				width: 185px;
+			    margin-top: 10px;
+			    height: 26px;
+			    border: 1px #ccc solid;
+			    background: rgba(0,0,0,0.1);
+			    border-radius: 5px;
+			    color: #ccc;
+			}
+			.lishishuju .time{
+				width: 186px;
+				height: 26px;
+			    border: 1px #ccc solid;
+			    background: rgba(0,0,0,0.1);
+			    border-radius: 5px;
+			    color: #ccc;
+			}
+			.lishishuju .btn-success{
+				margin-left: 10px;
+			}
+			.lishishuju .btn-info{
+				margin-left: 10px;
+				margin-left: 10px;
+			    position: absolute;
+			    right: 24px;
+			    top: -4px;
+			}
+			.lishishuju .btn-warning{
+				margin-left: 400px;
+    			margin-top: 10px;	
+			}
+			.lishishuju #fenxi1,.lishishuju #fenxi2,.lishishuju #fenxi3,.lishishuju #fenxi4{
+				 width: 1208px;
+			    height: 200px;
+			    margin-top: 10px;
+			    float: left;
+			        
+			}
+			.lishishuju form{
+				position: absolute;
+			    top: 194px;
+			    right: 10px;
+			}
+			#div2 td,#div2 th{
+				text-align: center;
+			}
 		</style>
 		
 		
@@ -146,160 +659,2830 @@
 				<li><a href=""><img src="img/报表打印.png" width="30px" height="28px"/>报表打印</a></li>
 			</ul>
 		</div>
-		<div class="left">
-			<ul>
-				<li class="li1">
-					<a href="">
-						<img src="img/首页-选中 (1).png" alt="" width="21px" height="21px"/>
-						首页
-					</a>
-				</li>
-				<li class="li2">
-					<a href="">
-						<img src="img/系统管理 (1).png" alt="" width="25px" height="25px"/>
-							系统管理
-						<img src="img/箭头.png" width="10px" height="10px" class="arrow"/>
-					</a>
-					<ul class="system">
-						<li><a href="">参数设置</a></li>
-						<li><a href="">传感器管理</a></li>
-						<li><a href="">分站管理</a></li>
-					</ul>
-				</li>
-				<li class="li3">
-					<a href="">
-						<img src="img/数据显示 (1).png" width= "21px" height="21px"/>
-							数据显示
-						<img src="img/箭头.png" width="10px" height="10px" class="arrow"/>
-					</a>
-					<ul>
-						<li><a href="">实时数据显示</a></li>
-						<li><a href="">历史数据显示</a></li>
-						<li><a href="">报警信息显示</a></li>
-					</ul>
-				</li>
-				<li class="li4">
-					<a href="">
-						<img src="img/智能 (1).png" alt=""  width="21px" height="21px"/>
-							智能评判
-						<img src="img/箭头.png" width="10px" height="10px" class="arrow"/>
-					</a>
-				</li>
-				<li class="li5">
-					<a href="">
-						<img src="img/报表打印 (1).png" width="21px" height="21px"/>
-							报表打印
-						<img src="img/箭头.png" width="10px" height="10px" class="arrow"/>
-					</a>
-				</li>
-			</ul>
+		<div class="section clearfix">
+			<div class="left">
+				<ul>
+					<li id="li1">
+						<p class="p-span1">
+							<img src="img/首页-选中 (1).png" alt="" width="21px" height="21px"/>
+							<span >首页</span>
+						</p>
+					</li>
+					<li id="li2" class="level1">
+						<p>
+							<img src="img/系统管理 (1).png" alt="" width="25px" height="25px"/>
+							<span>系统管理</span>
+							<img src="img/箭头.png" width="10px" height="10px" class="arrow"/>
+						</p>
+						<ul class="system">
+							<li><a href="#" ><span class="p-span1" id="w-can">参数设置</span></a></li>
+							<li><a href="#" ><span class="p-span1" id="w-chuan">传感器管理</span></a></li>
+							<li><a href="#" ><span class="p-span1" id="w-fen">分站管理</span></a></li>
+						</ul>
+					</li>
+					<li id="li3" class="level1">
+						<p>
+							<img src="img/数据显示 (1).png" width= "21px" height="21px"/>
+							<span>数据显示</span>
+							<img src="img/箭头.png" width="10px" height="10px" class="arrow"/>
+						</p>
+						<ul class="system">
+							<li><a href="#" ><span class="p-span1">实时数据显示</span></a></li>
+							<li><a href="#" ><span class="p-span1" id="w-lishi">历史数据显示</span></a></li>
+							<li><a href="#" ><span class="p-span1">报警信息显示</span></a></li>
+						</ul>
+					</li>
+					<li id="li4" class="level1">
+						<p>
+							<img src="img/智能 (1).png" alt=""  width="21px" height="21px"/>
+							<span>智能评判</span>
+							<img src="img/箭头.png" width="10px" height="10px" class="arrow"/>
+						</p>
+						<ul class="system">
+							<li><a href="#" ><span class="p-span1" id="w-zuankong">钻孔施工信息</span></a></li>
+							<li><a href="#" ><span class="p-span1" id="w-jiliang">抽采计量数据</span></a></li>
+							<li><a href="#" ><span class="p-span1">抽采效果预测</span></a></li>
+							<li><a href="#" ><span class="p-span1">抽采效果评估</span></a></li>
+							<li><a href="#" ><span class="p-span1" id="w-tiaokong">调控命令管理</span></a></li>
+						</ul>
+					</li>
+					<li id="li5" class="level1">
+						<p>
+							<img src="img/报表打印 (1).png" width="21px" height="21px"/>
+							<span>报表打印</span>
+							<img src="img/箭头.png" width="10px" height="10px" class="arrow"/>
+						</p>
+						<ul class="system">
+							<li><a href="#" ><span class="p-span1">预警信息报表</span></a></li>
+							<li><a href="#" ><span class="p-span1">抽采效果评估</span></a></li>
+							<li><a href="#" ><span class="p-span1">抽采报表</span></a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<div class="right" id="right_block">
+				<!--<div id="shouye" class="w-a">
+					<div class="sy-header">
+						实时数据展示 
+					</div>
+					<div id="sy-contain"></div>
+				</div>-->
+				<div class="w-a" id="shouye-p">
+					<div class="shouye">
+						<div class="header">位置：首页</div>
+						<div id="shouye"></div>
+						<div id="shouye1"></div>
+						<div id="shouye2"></div>
+						<div id="shouye3"></div>
+					</div>
+				</div>
+				<div class="w-a">
+					<div class="canshushezhi">
+						<div class="header">位置：系统管理-参数设置</div>
+						<div class="row1">
+							<form class="bs-example bs-example-form" role="form" style="height: 100%;" onsubmit="return false">
+					        	<div class="input-group">
+						            <span class="input-group-addon">矿井名称</span>
+						            <!--<input type="text" class="form-control" placeholder="请输入矿井名称" value="">-->
+						        </div>
+						        <div class="input-group">
+						            <span class="input-group-addon">设计生产能力</span>
+						            <!--<input type="text" class="form-control" placeholder="请输入设计生产能力">-->
+						        </div>
+						        <div class="input-group">
+						            <span class="input-group-addon">回风量</span>
+						            <!--<input type="text" class="form-control" placeholder="请输入回风量">-->
+						            <span class="danwei"></span>
+						        </div>
+						        <div class="input-group">
+						            <span class="input-group-addon">核定生产能力</span>
+						           <!-- <input type="text" class="form-control" placeholder="请输入核定生产能力">-->
+						            <span class="danwei"></span>
+						        </div>
+						        <div class="input-group">
+						            <span class="input-group-addon">进风量</span>
+						            <!--<input type="text" class="form-control" placeholder="请输入进风量">-->
+						            <span class="danwei"></span>
+						        </div>
+						        <div class="input-group lie">
+						            <span class="input-group-addon">瓦斯绝对涌出量</span>
+						            <!--<input type="text" class="form-control" placeholder="请输入瓦斯绝对涌出量">-->
+						            <span class="danwei"></span>
+						        </div>
+						        <div class="input-group lie">
+						            <span class="input-group-addon">瓦斯相对涌出量</span>
+						            <!--<input type="text" class="form-control" placeholder="请输入瓦斯相对涌出量">-->
+						            <span class="danwei"></span>
+						        </div>
+						        <div class="input-group">
+						            <span class="input-group-addon">煤层原始瓦斯压力</span>
+						            <!--<input type="text" class="form-control" placeholder="请输入煤层原始瓦斯压力">-->
+						            <span class="danwei"></span>
+						        </div>
+						        <div class="input-group lie">
+						            <span class="input-group-addon">煤层原始瓦斯含量</span>
+						           <!-- <input type="text" class="form-control" placeholder="请输入煤层原始瓦斯含量">-->
+						            
+						        </div>
+						        <div class="input-group">
+						            <span class="input-group-addon">媒体破坏类型</span>
+						            
+						            <!--<select>
+						            	<option value="请选择">请选择</option>
+						            	<option value="I">I</option>
+						            	<option value="II">II</option>
+						            	<option value="III">III</option>
+						            	<option value="IV">IV</option>
+						            	<option value="V">V</option>
+						            </select>-->
+						            
+						        </div>
+						        <div class="input-group">
+						            <span class="input-group-addon">瓦斯放散初速度</span>
+						            <!--<input type="text" class="form-control" placeholder="请输入瓦斯放散初速度">-->
+						            
+						        </div>
+						        <div class="input-group">
+						            <span class="input-group-addon">煤层坚固性系数</span>
+						            <!--<input type="text" class="form-control" placeholder="请输入煤层坚固性系数">-->
+						        </div>
+						        <div class="input-group">
+						            <span class="input-group-addon">煤层透气性系数</span>
+						            <!--<input type="text" class="form-control" placeholder="请输入煤层透气性系数">-->
+						        </div>
+						        
+						        <div class="input-group lie">
+						            <span class="input-group-addon">地质构造</span>
+						            <!--<input type="text" class="form-control" placeholder="请输入地质构造">-->
+						        </div>
+						        <button type="button" class="btn btn-success btn-lg">保存</button>
+						        <input type="reset" class="btn btn-warning btn-lg" value="取消" />
+						    </form>
+							
+						</div>
+					</div>
+				</div>
+				<div class="w-a">
+					<div class="chuanganqi">
+						<div class="header">位置：系统管理-传感器管理</div>
+						<div class="row1">
+							<table class="table">
+								<thead>
+									<tr>
+										<th>传感器编号</th>
+										<th>传感器名称</th>
+										<th>传感器型号</th>
+										<th>传感器类型</th>
+										<th>传感器单位</th>
+										<th>修改信息</th>
+										<th>删除</th>
+									</tr>
+								</thead>
+								<tbody>
+									<!--<tr>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td>
+											<select>
+												<option value="请选择">请选择</option>
+												<option value="瓦斯传感器">瓦斯传感器</option>
+												<option value="温度传感器">温度传感器</option>
+												<option value="流量传感器">流量传感器</option>
+												<option value="负压传感器">负压传感器</option>
+												<option value="风速传感器">风速传感器</option>
+											</select>
+										</td>
+										<td></td>
+										<td style="display: none;"></td>
+										
+										<td><input type="button" value="修改"  class="btn btn-primary btn-sm"/></td>
+										<td><input type="button" value="删除" class="btn btn-danger btn-sm"/></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td>
+											<select>
+												<option value="请选择">请选择</option>
+												<option value="瓦斯传感器">瓦斯传感器</option>
+												<option value="温度传感器">温度传感器</option>
+												<option value="流量传感器">流量传感器</option>
+												<option value="负压传感器">负压传感器</option>
+												<option value="风速传感器">风速传感器</option>
+											</select>
+										</td>
+										<td></td>
+										<td style="display: none;"></td>
+										<td><input type="button" value="修改"  class="btn btn-primary btn-sm"/></td>
+										<td><input type="button" value="删除" class="btn btn-danger btn-sm"/></td>
+									</tr>-->
+									
+								
+								</tbody>
+							</table>
+							
+						</div>
+						<input type="button" class="btn btn-default" value="添加" style="position: absolute;right: 20px;"/>
+					</div>
+				</div>
+				<div class="w-a">
+					<div class="fenzhan">
+						<div class="header">位置：系统管理-分站管理</div>
+						<div class="row1">
+							<table class="table">
+								<thead>
+									<tr>
+										<th>分站编号</th>
+										<th>分站位置</th>
+										<th>分站类型</th>
+										<th>修改信息</th>
+										<th>删除</th>
+									</tr>
+								</thead>
+								<tbody>
+									<!--<tr>
+										<td></td>
+										<td></td>
+										<td>
+											<select>
+												<option value="请选择">请选择</option>
+												<option value="0-16通道分站">0-16通道分站</option>
+												<option value="1-4通道分站">1-4通道分站</option>
+											</select>
+										</td>
+										<span style="display: none;"></span>
+										<td><input type="button" value="修改"  class="btn btn-primary btn-sm"/></td>
+										<td><input type="button" value="删除" class="btn btn-danger btn-sm"/></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td></td>
+										<td>
+											<select>
+												<option value="请选择">请选择</option>
+												<option value="0-16通道分站">0-16通道分站</option>
+												<option value="1-4通道分站">1-4通道分站</option>
+											</select>
+										</td>
+										<span style="display: none;"></span>
+										<td><input type="button" value="修改"  class="btn btn-primary btn-sm"/></td>
+										<td><input type="button" value="删除" class="btn btn-danger btn-sm"/></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td></td>
+										<td>
+											<select>
+												<option value="请选择">请选择</option>
+												<option value="0-16通道分站">0-16通道分站</option>
+												<option value="1-4通道分站">1-4通道分站</option>
+											</select>
+										</td>
+										<span style="display: none;"></span>
+										<td><input type="button" value="修改" class="btn btn-primary btn-sm"/></td>
+										<td><input type="button" value="删除" class="btn btn-danger btn-sm"/></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td></td>
+										<td>
+											<select>
+												<option value="请选择">请选择</option>
+												<option value="0-16通道分站">0-16通道分站</option>
+												<option value="1-4通道分站">1-4通道分站</option>
+											</select>
+										</td>
+										<span style="display: none;"></span>
+										<td><input type="button" value="修改"  class="btn btn-primary btn-sm"/></td>
+										<td><input type="button" value="删除" class="btn btn-danger btn-sm"/></td>
+									</tr>-->
+								</tbody>
+							</table>
+						</div>
+						<input type="button" class="btn btn-default" value="添加" style="position: absolute;right: 20px;"/>
+					</div>
+				</div>
+				<div class="w-a">
+					<div class="shishishuju">
+						<div class="header">位置：数据显示-实时数据显示</div>
+						<div class="row1">
+							<a class="but1">曲线显示</a><a class="but2">分站显示</a>
+							<div class="parent clearfix">  
+							    <div id="div1 clearfix">  
+							          <div class="tou">
+							          	<span class="fenzhan">分站</span>
+								          <select class="fz">
+								          	<option value="请选择">请选择</option>
+								          	<option value="0-16通道分站">0-16通道分站</option>
+								          	<option value="1-4通道分站">1-4通道分站</option>
+								          </select>
+								          <!--<span class="mingcheng">时间</span>
+								          <select class="mc">
+								          	<option value="请选择">2018-06-03</option>
+								          </select>-->
+								          <input type="button" value="生成曲线" class="but"/>
+							          </div>
+							          <div id="qx1"></div>
+							          <div id="qx2"></div>
+							          <div id="qx3"></div>
+							          <div id="qx4"></div>
+							    </div>  
+							    <!--<div id="div2">  
+							        <p>分站显示的内容</p>  
+							    </div> --> 
+							</div>  
+							<div id="div2">  
+							     <table class="table">
+									  <thead>
+									    <tr>
+									      <th>序号</th>
+									      <th>盘区</th>
+									      <th>抽采名称</th>
+									      <th>安装位置</th>
+									      <th>混合流量</th>
+									      <th>绝压</th>
+									      <th>负压</th>
+									      <th>温度</th>
+									      <th>纯流量</th>
+									      <th>流量时累积</th>
+									      <th>流量日累计</th>
+									      <th>纯流量时累积</th>
+									      <th>纯流量日累计</th>
+									      <th>纯流量月累计</th>
+									    </tr>
+									  </thead>
+									  <tbody>
+									  </tbody>
+									</table> 
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="w-a">
+					<div class="lishishuju">
+						<div class="header">位置：数据显示-历史数据展示</div>
+						<div class="row1">
+							<span>抽采地点</span>
+							<select class="fz">
+								<option value="请选择">请选择</option>
+								<option value="0-16通道分站">0-16通道分站</option>
+								<option value="1-4通道分站">1-4通道分站</option>
+							</select>
+							<span>参数类型</span>
+							<select>
+								<option value="请选择">请选择</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+							</select>
+							<span>统计方式</span>
+							<select>
+								<option value="请选择">请选择</option>
+								<option value="平均值">平均值</option>
+							</select><br />
+							<span>开始时间</span>
+							<input type="date" class="time" id="time1"/>
+							<span>结束时间</span>
+							<input type="date" class="time" id="time2"/>
+							<span>时间间隔</span>
+							<select class="jiange">
+								<option value="请选择">请选择</option>
+								<option value="d1">d1</option>
+								<option value="d2">d2</option>
+								<option value="d6">d6</option>
+								<option value="h1">h1</option>
+								<option value="h2">h2</option>
+								<option value="h3">h6</option>
+							</select>
+							<form id= "uploadForm" enctype ="multipart/form-data" name="uploadForm" action="http://192.168.43.178:8081/history/param2" method="post">
+								<input type="file"  name="file"/>
+								<input type="submit" class="btn btn-info" value="上传"/>
+							</form>
+							<div>
+								<input type="button" class="btn btn-warning" value="生成曲线"/>
+							</div>
+							<div id="fenxi1"></div>
+							<div id="fenxi2"></div>
+							<div id="fenxi3"></div>
+							<div id="fenxi4"></div>
+						</div>
+					</div>
+				</div>
+				<div class="w-a">
+					<div class="baojing">
+						<div class="header">位置：数据显示-报警信息显示</div>
+						<div class="row1">
+							<div id="chart">
+							</div>
+							<table class="table">
+							  <thead>
+							    <tr>
+							      <th>站点</th>
+							      <th>传感器类型</th>
+							      <th>传感器编号</th>
+							      <th>时间</th>
+							      <th>数据</th>
+							    </tr>
+							  </thead>
+							  <tbody>
+							    <tr>
+							      <td>Tanmay</td>
+							      <td>Bangalore</td>
+							      <td>560001</td>
+							      <td>1023-04-05</td>
+							      <td>20909</td>
+							    </tr>
+							    <tr>
+							      <td>Sachin</td>
+							      <td>Mumbai</td>
+							      <td>400003</td>
+							      <td>1023-04-05</td>
+							      <td>20909</td>
+							    </tr>
+							    <tr>
+							      <td>Uma</td>
+							      <td>Pune</td>
+							      <td>411027</td>
+							      <td>1023-04-05</td>
+							      <td>20909</td>
+							    </tr>
+							  </tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div class="w-a">
+					<div class="zuankong">
+						<div class="header">位置：智能评判-钻孔施工信息</div>
+						<div class="row1">
+							<form class="bs-example bs-example-form" role="form" onsubmit="return false">
+						        <div class="input-group">
+						            <span class="input-group-addon">钻孔直径</span>
+						            <!--<input type="text" class="form-control" value="">-->
+						            <span class="danwei">mm</span>
+						        </div>
+						        <span class="tishi">请输入钻孔直径</span>
+						        <div class="input-group">
+						            <span class="input-group-addon">间距</span>
+						            <!--<input type="text" class="form-control" value="">-->
+						            <span class="danwei">m</span>
+						        </div>
+						        <span class="tishi">请输入间距</span>
+						        <div class="input-group">
+						            <span class="input-group-addon">开孔位置</span>
+						            <!--<input type="text" class="form-control"  value="">-->
+						        </div>
+						        <span class="tishi">请输入开孔位置</span>
+						        <div class="input-group">
+						            <span class="input-group-addon">钻孔方位</span>
+						            <!--<input type="text" class="form-control" value="">-->
+						        </div>
+						        <span class="tishi">请输入钻孔方位</span>
+						        <div class="input-group">
+						            <span class="input-group-addon">倾角</span>
+						            <!--<input type="text" class="form-control" value="">-->
+						            <span class="danwei">°</span>
+						        </div>
+						        <span class="tishi">请输入倾角</span>
+						        <div class="input-group">
+						            <span class="input-group-addon">深度</span>
+						            <!--<input type="text" class="form-control" value="">-->
+						            <span class="danwei">m</span>
+						        </div>
+						        <span class="tishi">请输入深度</span>
+						        <input type="button" value="保存" class="btn btn-primary btn-lg"/>
+						        <input type="reset" value="取消" class="btn btn-danger btn-lg"/>
+						    </form>
+						</div>
+					</div>
+				
+				</div>
+				<div class="w-a">
+					<div class="choucaijiliang">
+						<div class="header">位置：智能评判-抽采计量数据</div>
+						<div class="row1">
+							<form class="bs-example bs-example-form" role="form" onsubmit="return false">
+						        <div class="input-group">
+						            <span class="input-group-addon">抽采率</span>
+						            <!--<input type="text" class="form-control" >-->
+									<span class="danwei">%</span>
+						        </div>
+						        <span class="tishi">请输入抽采量</span>
+						        <div class="input-group">
+						            <span class="input-group-addon">抽采量</span>
+						            <!--<input type="text" class="form-control">-->
+						            <span class="danwei">m³</span>
+						        </div>
+						        <span class="tishi">请输入抽采率</span>
+						        <div class="input-group">
+						            <span class="input-group-addon">抽采时间</span>
+						            <!--<input type="text" class="form-control">-->
+						            <span class="danwei">min</span>
+						        </div>
+						        <span class="tishi">请输入抽采时间</span>
+						        <input type="button" value="保存" class="btn btn-primary btn-lg"/>
+						        <input type="reset" value="取消" class="btn btn-danger btn-lg"/>
+						    </form>
+						</div>
+					</div>
+				</div>
+				<div class="w-a">
+					<div class="choucaiyuce">
+						<div class="header">位置：智能评判-抽采效果预测</div>
+						<div class="row1">
+							<div id="chart1">
+							</div>
+							<form class="bs-example bs-example-form" role="form" onsubmit="return false">
+						        <div class="input-group">
+						            <span class="input-group-addon">抽采估计时间</span>
+						            <input type="text" class="form-control" placeholder="eg:10min">
+						        </div>
+						        <span class="tishi">请输入抽采估计时间</span>
+						        <br>
+						        <div class="input-group">
+						            <span class="input-group-addon">抽采速度</span>
+						            <input type="text" class="form-control" placeholder="eg:55㎡/min">
+						        </div>
+						        <span class="tishi">请输入抽采速度</span>
+						        <input type="button" value="保存" class="btn btn-primary"/>
+						    </form>
+						</div>
+					</div>
+				</div>
+				<div class="w-a">
+					<div class="choucaipinggu">
+						<div class="header">位置：智能评判-抽采效果评估</div>
+						<div class="row1 clearfix">
+							<form class="bs-example bs-example-form" role="form" onsubmit="return false">
+						        <div class="input-group">
+						            <span class="input-group-addon">回风流浓度</span>
+						            <input type="text" class="form-control" placeholder="请输入抽采浓度" value="">
+						            <span class="danwei">%</span>
+						        </div>
+						        <input type="button" class="btn btn-success" value="达标"/>
+						        <input type="button" class="btn btn-danger" value="未达标"/>
+						        <br>
+						        <div class="input-group">
+						            <span class="input-group-addon">抽采量</span>
+						            <input type="text" class="form-control" placeholder="请输入抽采量" value="">
+						           <span class="danwei">m³</span>
+						        </div>
+						        <input type="button" class="btn btn-success" value="达标"/>
+						        <input type="button" class="btn btn-danger" value="未达标"/><br />
+						        <div class="input-group">
+						            <span class="input-group-addon">抽采率</span>
+						            <input type="text" class="form-control" placeholder="请输入抽采率" value="">
+						            <span class="danwei">%</span>
+						        </div>
+						        <input type="button" class="btn btn-success" value="达标"/>
+						        <input type="button" class="btn btn-danger" value="未达标"/>
+						        <br>
+						        <div class="input-group">
+						            <span class="input-group-addon">综合评价</span>
+						        </div>
+						        <input type="button" class="btn btn-success" value="达标"/>
+						        <input type="button" class="btn btn-danger" value="未达标"/><br />
+						        <input type="button" value="效果评价" class="btn btn-default"/>
+						    </form>
+						</div>
+					</div>
+				</div>
+				<div class="w-a">
+					<div class="tiaokong">
+						<div class="header">位置：智能评判-调控命令管理</div>
+						<div class="row1">
+							<div class="top clearfix">
+								<div class="top-l">
+									抽采系统调控
+								</div>
+								<div class="top-r">
+									<table class="table">
+										<tbody>
+											<tr><td>1.增加抽采负压到</td><td class="pull-right" align="right"><span></span>pa</td></tr>
+											<tr><td>2.增加抽采时间到</td><td class="pull-right" align="right"><span></span>d</td></tr>
+											
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="bottom">
+								<div class="bottom-l">
+									生产系统调控
+								</div>
+								<div class="bottom-r">
+									<table class="table">
+										<tbody>
+											<tr><td>1.减缓日推进距</td><td class="pull-right" align="right"><span></span>m/d</td></tr>
+											<tr><td>2.增加通风量为</td><td class="pull-right" align="right"><span></span>㎡/min</td></tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="w-a">
+					<div class="chaxunjilu">
+						<div class="header">位置：报表打印-预警信息报表</div>
+						<div class="row1">
+							<div class="chaxun">
+								<div class="lie1">
+									<span>开始时间:</span>
+									<input type="date" class="text"/>
+									<span>结束时间:</span>
+									<input type="date" class="text"/>
+									<span>安装地点</span>
+									<select>
+										<option value="请选择">请选择</option>
+										<option value="0-16通道分站">0-16通道分站</option>
+										<option value="1-4通道分站">1-4通道分站</option>
+									</select>
+								</div>
+								<form class="button">
+									<input type="button" class="btn btn-warning btn-sm" value="查询"/>
+									<input type="button" class="btn btn-info  btn-sm" value="导出excel" onclick="exportExcel('tableExcel')"/>
+								</form>
+								
+							</div>
+							<table class="table table-bordered" id="tableExcel">
+								  <thead>
+								    <tr>
+								      <th colspan="9">预警信息报表</th>
+								    </tr>
+								  </thead>
+								  <tbody>
+								    <tr>
+								      <td>工作面名称</td>
+								      <td>二11060工作面</td>
+								      <td>传感器地址</td>
+								      <td>二11060工作面风流</td>
+								      <td>传感器编码</td>
+								      <td>0610</td>
+								      <td>日期和班次</td>
+								      <td>2018-06-11</td>
+								      <td>中班</td>
+								    </tr>
+								    <tr>
+								      <td colspan="9" id="nongdu" width="1100px" height="200px"></td>
+								    </tr>
+								    <tr>
+								      <td colspan="9" id="liuliang"  width="1100px" height="200px"></td>
+								    </tr>
+								    <tr>
+								      <td colspan="9" id="wendu"  width="1100px" height="200px"></td>
+								    </tr>
+								    <tr>
+								      <td colspan="9" id="fuya"  width="1100px" height="200px"></td>
+								    </tr>
+								    <tr>
+								      <td>趋势预测结果</td>
+								      <td colspan="2">绿色</td>
+								      <td>状态预测结果</td>
+								      <td colspan="2">正常</td>
+								      <td>工作面位置</td>
+								      <td colspan="2">距胶带顶槽开口852.8米</td>
+								    </tr>
+								    <tr>
+								    	<td>预测结果</td>
+								    	<td colspan="8">四个指标的各自平均值</td>
+								    </tr>
+								    <tr>
+								    	<td>备注</td>
+								    	<td colspan="8"></td>
+								    </tr>
+								  </tbody>
+								</table>
+						</div>
+					</div>
+				
+				</div>
+				<div class="w-a">
+					
+				</div>
+				<div class="w-a">
+					<div class="header">位置：报表打印-预警信息报表</div>
+						<div class="row1">
+							<div class="chaxun">
+								<div class="lie2">
+									<span>参数:</span>
+									<input type="text" class="text"/>
+									<span>地址:</span>
+									<input type="text" class="text"/>
+									<span>类型:</span>
+									<input type="text" class="text"/>
+								</div>
+								<div class="lie1">
+									<span>开始时间:</span>
+									<input type="text" class="text"/>
+									<span>结束时间:</span>
+									<input type="text" class="text"/>
+									<span>安装地点</span>
+									<input type="text" class="text"/>
+									<!--<select>
+										<option value=""></option>
+										<option value=""></option>
+										
+									</select>-->
+								</div>
+								<form class="button">
+									<input type="button" class="btn btn-warning btn-sm" value="查询"/>
+									<input type="button" class="btn btn-success btn-sm" value="打印"/>
+									<input type="button" class="btn btn-info  btn-sm" value="导出excel"/>
+								</form>
+								
+							</div>
+							<table class="table">
+								  <thead>
+								    <tr>
+								      <th>编号</th>
+								      <th>测点</th>
+								      <th>名称</th>
+								      <th>安装地址</th>
+								      <th>单位</th>
+								      <th>时间区间</th>
+								      <th>最大值</th>
+								      <th>最小值</th>
+								      <th>平均值</th>
+								    </tr>
+								  </thead>
+								  <tbody>
+								    <tr>
+								      <td>Tanmay</td>
+								      <td>Bangalore</td>
+								      <td>560001</td>
+								      <td>Tanmay</td>
+								      <td>Bangalore</td>
+								      <td>560001</td>
+								      <td>5</td>
+								      <td>2</td>
+								      <td>1</td>
+								    </tr>
+								    <tr>
+								      <td>Sachin</td>
+								      <td>Mumbai</td>
+								      <td>400003</td>
+								      <td>Sachin</td>
+								      <td>Mumbai</td>
+								      <td>400003</td>
+								      <td>5</td>
+								      <td>2</td>
+								      <td>1</td>
+								    </tr>
+								    <tr>
+								      <td>Uma</td>
+								      <td>Pune</td>
+								      <td>411027</td>
+								      <td>Uma</td>
+								      <td>Pune</td>
+								      <td>411027</td>
+								      <td>5</td>
+								      <td>2</td>
+								      <td>1</td>
+								    </tr>
+								  </tbody>
+								</table>
+						</div>
+				</div>
+				
+				<div></div>
+			</div>
 		</div>
-		
-		
-		<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+
+
 		<script type="text/javascript">
-			var arrow = true;
-			$(".left .li2").click(function(){
-				if(arrow==true){
-					$(".li2 .arrow").attr("src","img/箭头-下.png");
-					$(".system").css("display","block");
-					$(this).css("backgroundColor","#2c4761");	
-				}else{
-					$(".li2 .arrow").attr("src","img/箭头.png");
-					$(".system").css("display","none");
-				}
-				arrow=!arrow;
+			$(function(){
+				$(".level1 p").click(function(){
+					if($(this).next().is(":visible")){//若每项的子文件是可见的         
+			   	 		$(this).next().hide();
+			   	 	}else{
+			   	 		$(this).next().show();
+			   	 	}
+				})
+				return false;
 			})
-			$(".left .li3").click(function(){
-				if(arrow==true){
-					$(".li3 .arrow").attr("src","img/箭头-下.png");
-					$(".system").css("display","block");
-					$(this).css("backgroundColor","#304d65");	
-				}else{
-					$(".li3 .arrow").attr("src","img/箭头.png");
-					$(".system").css("display","none");
-				}
-				arrow=!arrow;
+			
+			
+			
+			//选项卡
+			var $aspan = $(".p-span1");//获取到所有子li
+			//$("#right_block .w-a").eq(0).show().siblings().hide();//进循环之前，先让所有右边的块都隐藏
+			$("#right_block #shouye-p").show().siblings().hide();
+			for(var i=0;i<$aspan.length;i++){
+				(function(){
+					$aspan[i].index = i;
+					var index = $aspan[i].index;//$aspan[i]已经是dom元素了，所以下面直接用onclick
+					$aspan[i].onclick = function(){
+						$("#right_block .w-a").eq(index).show().siblings().hide();
+					}
+				})(i);
+				
+			}
+			
+			/*首页的js*/
+			//初始化echarts实例
+			/*$(".sy-shouye").click(function(){
+				$("#shouye-p").show();
+				$(".w-a").hide();
+			})*/
+		    var myChart = echarts.init(document.getElementById('shouye'),'dark');
+		    var myChart1 = echarts.init(document.getElementById('shouye1'),'dark');
+		    var myChart2 = echarts.init(document.getElementById('shouye2'),'dark');
+		    var myChart3 = echarts.init(document.getElementById('shouye3'),'dark');
+		    var base = + new Date(2018,6,6);
+		    var oneDay = 24*3600*1000;
+		    var date = [];
+		    var data = [Math.random()*150];
+		    var now = new Date(base);
+		    var day = 30;
+		    function addData(shift){
+		        now = [now.getFullYear(),now.getMonth()+1,now.getDate()].join('/');        
+		        date.push(now);        
+		        data.push((Math.random()-0.5)*10+data[data.length-1]);
+		        if (shift) {
+		            console.log(data);
+		            date.shift();
+		            data.shift();
+		        }
+		        now = new Date(+new Date(now)+oneDay);        
+		    }
+		
+		    for (var i = 0; i < day; i++) {
+		        addData();
+		    }
+		    //设置图标配置项
+		    myChart.setOption({
+		    	//设置全局背景色
+				backgroundColor: 'rgba(0,0,0,0.1)',
+		        title:{
+		            text:'30天内数据实时更新'
+		        },
+		        xAxis:{
+		            type:"category",
+		            boundaryGap:false,
+		            data:date
+		        },
+		        yAxis:{
+		            boundaryGap:[0,'100%'],
+		            type:'value'
+		        },
+		        series:[{
+		            name:'成交',
+		            type:'line',
+		            smooth:true, //数据光滑过度
+		            symbol:'none', //下一个数据点
+		            stack:'a',
+		            areaStyle:{
+		                normal:{
+		                    color:'red'
+		                }
+		            },
+		            data:data
+		        }]
+		    })
+		    setInterval(function(){
+		        addData(true);
+		        myChart.setOption({
+		            xAxis:{
+		                data:date
+		            },
+		            series:[{
+		                name:'成交',
+		                data:data
+		            }]
+		        });
+		    },2000)
+			
+			
+			
+			
+			
+			
+			//参数设置的ajax
+			$("#w-can").click(function(){
+				$.ajax({
+					type:"post",
+					url:"http://192.168.43.178:8081/setting/param?callback=?",
+					async:true,
+					dataType:"jsonp",
+					jsonpCallback:"callback",
+					success:function(data){
+						var input_group = $(".canshushezhi").find(".input-group");
+						$(input_group[0].children[0]).after("<input type='text' placeholder='请输入矿井名称' class='form-control' value="+data.name+">");
+						$(input_group[1].children[0]).after("<input type='text' placeholder='请输入设计生产能力' class='form-control' value="+data.design_production_capacity+">");
+						$(input_group[2].children[0]).after("<input type='text' placeholder='请输入回风量' class='form-control' value="+data.air_intake+">");
+						$(input_group[3].children[0]).after("<input type='text' placeholder='请输入核定生产能力' class='form-control' value="+data.verification_production_capacity+">");
+						$(input_group[4].children[0]).after("<input type='text' placeholder='请输入进风量' class='form-control' value="+data.air_velocity+">");
+						$(input_group[5].children[0]).after("<input type='text' placeholder='请输入瓦斯绝对涌出量' class='form-control' value="+data.wasijueduiyongchuliang+">");
+						$(input_group[6].children[0]).after("<input type='text' placeholder='请输入瓦斯相对涌出量' class='form-control' value="+data.wasixiangduiyongchuliang+">");
+						$(input_group[7].children[0]).after("<input type='text' placeholder='请输入煤层原始瓦斯压力' class='form-control' value="+data.meicengyuanshiwasiyali+">");
+						$(input_group[8].children[0]).after("<input type='text' placeholder='请输入煤层原始瓦斯含量' class='form-control' value="+data.meicengyuanshiwasihanliang+">");
+						$(input_group[9].children[0]).after("<input type='text' placeholder='请输入媒体破坏类型' class='form-control' value="+data.meicengpohuaileixing+">");
+						$(input_group[10].children[0]).after("<input type='text' placeholder='请输入瓦斯放散初速度' class='form-control' value="+data.wasifangsanchusudu+">");
+						$(input_group[11].children[0]).after("<input type='text' placeholder='请输入煤层坚固性系数' class='form-control' value="+data.coal_seam+">");
+						$(input_group[12].children[0]).after("<input type='text' placeholder='请输入煤层透气性系数' class='form-control' value="+data.meicengtouqixingxishu+">");
+						$(input_group[13].children[0]).after("<input type='text' placeholder='请输入地质构造' class='form-control' value="+data.geological_structure+">");
+					}
+				});
 			})
-			 //指定图标的配置项和数据
-	        /*var option = {
-	            title:{
-	                text:'活动受众人群',
-	            },
-	            tooltip:{},
-	            legend:{
-	                data:['销量']
-	            },
-	            xAxis:{
-	                data:["2103","2014","2015"]
-	            },
-	            yAxis:{
-	                
-	            },
-	            series:[{
-	                name:'访问量',
-	                type:'line',
-	                data:[500,200,100],
-	                 // 此系列自己的调色盘。
-       				 color: ['#dd6b66','#759aa0','#e69d87','#8dc1a9','#ea7e53','#eedd78','#73a373','#73b9bc','#7289ab', '#91ca8c','#f49f42'],
-	            }],
-	            textStyle:{
-	        		color:"#eff8ff"
-	        	},
-	        	// 全局调色盘。
-       			color: ['#c23531','#2f4554', '#61a0a8', '#d48265', '#91c7ae','#749f83',  '#ca8622', '#bda29a','#6e7074', '#546570', '#c4ccd3'],
-	        };
-	        //初始化echarts实例
-	        var myChart = echarts.init(document.getElementById('chartmain'));
-	
-	        //使用制定的配置项和数据显示图表
-	        myChart.setOption(option);
-	       // 绘制图表。
-	        echarts.init(document.getElementById('div3')).setOption({
-	            series: {
-	                type: 'pie',
-	                data: [
-	                    {name: 'A', value: 1212},
-	                    {name: 'B', value: 2323},
-	                    {name: 'C', value: 1919}
-	                ]
-	            }
-	        });
-	        
-	        
-	        //自定义表格
-	        var chart1 = echarts.init(document.getElementById("zidingyi"));
-	        chart1.setOption({
-	        	series:[{
-	        		name:"访问来源",
-	        		type: 'pie',
-	        		data:[
-	        			{value:235,name:'视频广告'},
-	        			{value:274, name:'联盟广告'},
-		                {value:310, name:'邮件营销'},
-		                {value:335, name:'直接访问'},
-		                {value:400, name:'搜索引擎'}
-	        		],
-	        		roseType: 'angle',
-	        		itemStyle:{
-	        			//阴影的大小
-	        			shadowBlur:200,
-	        			//阴影水平方向上的偏移
-	        			shadowOffsetX:0,
-	        			//阴影垂直方向上的偏移
-	        			shadowOffsetY:0,
-	        			//阴影颜色
-	        			shadowColor:"rgba(0,0,0,0.5)",
-	        			emphasis:{
-	        				shadowBlur:200,
-	        				shadowColor:'rgba(0,0,0,0.5)'
-	        			}
-	        		}
-	        	}],
-	        	textStyle:{
-	        		color:"#c3cfdd"
-	        	}
-	        })*/
+			//点击保存按钮
+			$(".canshushezhi .btn-success").click(function(){
+				var form_control = $(".canshushezhi .form-control");
+				//alert(typeof $(form_control[0]).val());
+				$.ajax({
+					type:"post",
+					url:"http://192.168.43.178:8081/setting/param3?callback=?",
+					data:{
+						"id":"0d46ecf2-315f-4b54-8f54-d7c1f88783ec",
+						"name":$(form_control[0]).val(),
+						"air_intake":$(form_control[2]).val(),
+						"air_velocity": $(form_control[4]).val(),
+					    "coal_seam": $(form_control[11]).val(),
+					    "geological_structure": $(form_control[13]).val(),
+					    "design_production_capacity": $(form_control[1]).val(),
+					    "verification_production_capacity": $(form_control[3]).val(),
+					    "meicengyuanshiwasihanliang":$(form_control[8]).val(),
+					    "wasifangsanchusudu": $(form_control[10]).val(),
+					    "meicengtouqixingxishu": $(form_control[12]).val(),
+					    "wasijueduiyongchuliang": $(form_control[5]).val(),
+					    "meicengyuanshiwasiyali": $(form_control[7]).val(),
+					    "meicengpohuaileixing": $(form_control[9]).val(),
+					    "wasixiangduiyongchuliang":$(form_control[6]).val()
+					},
+					async:true,
+					dataType:"jsonp",
+					jsonpCallback:"callback",
+					success:function(data){
+						alert(1);
+					}
+				});
+			})
+			
+			
+			//传感器管理相关js
+			//点击传感器管理时，发起Ajax请求
+			$("#w-chuan").click(function(){
+				$.ajax({
+					type:"post",
+					url:"http://192.168.43.178:8081/sensor/info?callback=?",
+					async:true,
+					dataType:"jsonp",
+					jsonpCallback:"callback",
+					success:function(data){
+						for(var i=0;i<data.length;i++){
+							var tr = "<tr><td>"+data[i].num+"</td><td>"+data[i].name+"</td><td>"+data[i].model+"</td><td><select><option value='请选择'>请选择</option><option value='瓦斯传感器'>瓦斯传感器</option><option value='温度传感器'>温度传感器</option><option value='流量传感器'>流量传感器</option><option value='负压传感器'>负压传感器</option><option value='风速传感器'>风速传感器</option></select></td><td>"+data[i].unit+"</td><td style='display: none;'>"+data[i].id+"</td><td><input type='button' value='修改'  class='btn btn-primary btn-sm'/></td><td><input type='button' value='删除' class='btn btn-danger btn-sm'/></td></tr>"
+							
+							$(".chuanganqi tbody").append(tr);
+							//$($(".chuanganqi tbody").children("tr")[i].children[4]).html(unit);
+							$(".chuanganqi .btn-primary").click(function(){
+								//点击修改按钮
+								//先保存当前按钮
+								var input1 = $(this);
+								//找到当前元素的兄弟节点td
+								var a = $(this).parent().siblings();
+								if(a[0].children.length===0){
+							    	a[0].innerHTML="<input type='text' value='"+a[0].innerText+"' class='form-control'/>";
+							   	}
+								if(a[1].children.length===0){
+							    	a[1].innerHTML="<input type='text' value='"+a[1].innerText+"' class='form-control'/>";
+							   	}
+								if(a[2].children.length===0){
+							    	a[2].innerHTML="<input type='text' value='"+a[2].innerText+"' class='form-control'/>";
+							   	}
+								if(a[4].children.length===0){
+							    	a[4].innerHTML="<input type='text' value='"+a[4].innerText+"' class='form-control'/>";
+							   	}
+								$(this).parent().html("<input type='button' value='保存' class='btn btn-success btn-sm'/><input type='button' value='取消' class='btn btn-warning btn-sm'/>");
+								//点击保存按钮
+								$(".chuanganqi .btn-success").click(function(){
+									//获取td的兄弟节点
+									var a = $(this).parent().siblings();
+									var td_num = a[0].children[0].value;//编号
+									var td_name = a[1].children[0].value;//名称
+									var td_xinghao = a[2].children[0].value;//型号
+									var td_leixing = a[3].children[0].value;
+									var td_danwei = a[4].children[0].value;//单位
+									var td_id = a[5].innerHTML;//id
+									a[0].innerHTML = td_num;
+									a[1].innerHTML = td_name;
+									a[2].innerHTML = td_xinghao;
+									a[3].innerHTML = td_leixing;
+									a[4].innerHTML = td_danwei;
+									$(this).parent().html(input1);
+									//发起ajax请求
+									var url = "http://192.168.43.178:8081/sensor/info2?callback=?";
+								    $.ajax({
+								      url:url,
+								      type:"post",
+								      data:{
+								      	 "id":td_id,
+								         "num":parseInt(td_num),
+								         "name":td_name,
+								         "model":td_xinghao,
+								         "type":td_leixing,
+								         "unit":td_danwei
+								      },
+								      datatype:"jsonp",
+								      jsonpCallback:"callback",
+								      success:function (data) {
+								      }
+								    });
+								   
+								})
+								
+								//点击取消按钮
+								var b = $(".chuanganqi .btn-warning").parent().siblings();
+								var td_num = b[0].children[0].value;//编号
+								var td_name = b[1].children[0].value;//名称
+								var td_xinghao = b[2].children[0].value;//型号
+								var td_danwei = b[4].children[0].value;//单位
+								$(".chuanganqi .btn-warning").click(function(){
+									var a = $(this).parent().siblings();
+									a[0].innerHTML = td_num;
+									a[1].innerHTML = td_name;
+									a[2].innerHTML = td_xinghao;
+									a[4].innerHTML = td_danwei;
+									$(this).parent().html("<input type='button' value='修改' class='btn btn-primary btn-sm'/>");
+								})
+							})
+							//点击删除按钮
+							$(".chuanganqi .btn-danger").click(function(){
+								$(this).parent().parent().remove();
+								$.ajax({
+									type:"post",
+									url:"http://192.168.43.178:8081/sensor/info3?callback=?",
+									async:true,
+									data:{
+										id:$(this).parent().parent().find("td").eq(5).html()
+									},
+									dataType:'jsonp',
+									jsonpCallback:"callback",
+									success:function(data){
+										
+									}
+								});
+							})
+						}
+					}
+				});
+			})
+			
+			
+			
+			//点击添加按钮
+			$(".chuanganqi .btn-default").click(function(){
+				var addtr = "<tr></td><td><input type='text' class='form-control'/></td><td><input type='text' class='form-control'/></td><td><input type='text' class='form-control'/></td><td><select><option value='请选择'>请选择</option><option value='瓦斯传感器'>瓦斯传感器</option><option value='温度传感器'>温度传感器</option><option value='流量传感器'>流量传感器</option><option value='负压传感器'>负压传感器</option></select></td><td><input type='text' class='form-control'/></td><td><input type='button' value='保存'  class='btn btn-success btn-sm'/><input type='button' value='取消'  class='btn btn-warning btn-sm'/></td><td><input type='button' value='删除' class='btn btn-danger btn-sm'/></td></tr>";
+				$(this).prev().find(".table").append(addtr);
+				//点击保存
+				$(this).prev().find("tbody tr:last-child").find(".btn-success").click(function(){
+					//获取td的兄弟节点
+					var a = $(this).parent().siblings();
+					var td_num = a[0].children[0].value;//编号
+					var td_name = a[1].children[0].value;//名称
+					var td_xinghao = a[2].children[0].value;//型号
+					var td_leixing = a[3].children[0].value;
+					var td_danwei = a[4].children[0].value;//单位
+					a[0].innerHTML = td_num;
+					a[1].innerHTML = td_name;
+					a[2].innerHTML = td_xinghao;
+					a[3].innerHTML = td_leixing;
+					a[4].innerHTML = td_danwei;
+					$(this).parent().html("<input type='button' value='修改'  class='btn btn-primary btn-sm'/>");
+					//发起ajax
+					var url = "http://192.168.43.178:8081/sensor/info1?callback=?";
+				    $.ajax({
+				      url:url,
+				      type:"post",
+				      data:{
+				         "num":parseInt(td_num),
+				         "name":td_name,
+				         "model":td_xinghao,
+				         "type":td_leixing,
+				         "unit":td_danwei
+				      },
+				      datatype:"jsonp",
+				      jsonpCallback:"callback",
+				      success:function (data) {
+				      }
+				    });
+				})
+				//点击删除
+				$(".chuanganqi .btn-danger").click(function(){
+					$(this).parent().parent().remove();
+					$.ajax({
+						type:"post",
+						url:"",
+						async:true,
+						dataType:'json',
+						success:function(data){
+							
+						}
+					});
+				})
+			})
+			
+			/*
+			 * 分站管理相关js
+			 * 
+			*/
+			
+			$("#w-fen").click(function(){
+				$.ajax({
+					type:"post",
+					url:"http://192.168.43.178:8081/substation/info?callback=?",
+					async:true,
+					dataType:'jsonp',
+					jsonpCallback:"callback",
+					success:function(data){
+						for(var i=0;i<data.length;i++){
+							var tr = '<tr><td>'+data[i].num+'</td><td>'+data[i].position1+'</td><td><select><option value='+data[i].type+'>'+data[i].type+'</option><option value="0-16通道分站">0-16通道分站</option><option value="1-4通道分站">1-4通道分站</option></select></td><td style="display: none;">'+data[i].id+'</td><td><input type="button" value="修改" class="btn btn-primary btn-sm"/></td><td><input type="button" value="删除" class="btn btn-danger btn-sm"/></td></tr>'
+							$(".fenzhan tbody").append(tr);
+							//点击修改按钮
+							$(".fenzhan .btn-primary").click(function(){
+								//先保存当前按钮
+								var input1 = $(this);
+								//找到当前元素的兄弟节点td
+								var a = $(this).parent().siblings();
+								if(a[0].children.length===0){
+							    	a[0].innerHTML="<input type='text' value='"+a[0].innerText+"' class='form-control'/>";
+							   	}
+								if(a[1].children.length===0){
+							    	a[1].innerHTML="<input type='text' value='"+a[1].innerText+"' class='form-control'/>";
+							   	}
+								if(a[2].children.length===0){
+							    	a[2].innerHTML="<input type='text' value='"+a[2].innerText+"' class='form-control'/>";
+							   	}
+								$(this).parent().html("<input type='button' value='保存' class='btn btn-success btn-sm'/><input type='button' value='取消' class='btn btn-warning btn-sm'/>");
+								//点击保存按钮
+								$(".fenzhan .btn-success").click(function(){
+									//获取td的兄弟节点
+									var a = $(this).parent().siblings();
+									var td_num = a[0].children[0].value;//编号
+									var td_name = a[1].children[0].value;//位置
+									var td_xinghao = a[2].children[0].value;//类型
+									var td_id = a[3].innerHTML;//id
+									alert(td_id);
+									a[0].innerHTML = td_num;
+									a[1].innerHTML = td_name;
+									a[2].innerHTML = td_xinghao;
+									$(this).parent().html(input1);
+									//发起ajax请求
+									var url = "http://192.168.43.178:8081/substation/info2?callback=?";
+								    $.ajax({
+								      url:url,
+								      type:"post",
+								      data:{
+								         "num":parseInt(td_num),
+								         "position1":td_name,
+								         "type":td_xinghao,
+								      },
+								      datatype:"jsonp",
+								      jsonpCallback:"callback",
+								      success:function (data) {
+								         
+								      }
+								    });
+								   
+								})
+								
+								//点击取消按钮
+								var b = $(".fenzhan .btn-warning").parent().siblings();
+								var td_num = b[0].children[0].value;//编号
+								var td_name = b[1].children[0].value;//名称
+								var td_xinghao = b[2].children[0].value;//型号
+								$(".fenzhan .btn-warning").click(function(){
+									var a = $(this).parent().siblings();
+									a[0].innerHTML = td_num;
+									a[1].innerHTML = td_name;
+									a[2].innerHTML = td_xinghao;
+									
+									$(this).parent().html("<input type='button' value='修改' class='btn btn-primary btn-sm'/>");
+								})
+								
+							})
+						}
+						//点击删除按钮
+						$(".fenzhan .btn-danger").click(function(){
+							$(this).parent().parent().remove();
+							$.ajax({
+								type:"post",
+								url:"http://192.168.43.178:8081/substation/info3?callback=?",
+								async:true,
+								data:{
+									id:$(this).parent().parent().find("td").eq(3).html()
+								},
+								dataType:'jsonp',
+								jsonpCallback:"callback",
+								success:function(data){
+									
+								}
+							});
+						})
+					}
+				});
+			})
+			
+			//点击添加按钮
+			$(".fenzhan .btn-default").click(function(){
+				var addtr = "<tr></td><td><input type='text' class='form-control'/></td><td><input type='text' class='form-control'/></td><td><select><option value='请选择'>请选择</option><option value='0-16通道分站'>0-16通道分站</option><option value='1-4通道分站'>1-4通道分站</option></select></td><td><input type='button' value='保存'  class='btn btn-success btn-sm'/><input type='button' value='取消'  class='btn btn-warning btn-sm'/></td><td><input type='button' value='删除' class='btn btn-danger btn-sm'/></td></tr>";
+				$(this).prev().find(".table").append(addtr);
+				//点击保存
+				$(this).prev().find("tbody tr:last-child").find(".btn-success").click(function(){
+					//获取td的兄弟节点
+					var a = $(this).parent().siblings();
+					var td_num = a[0].children[0].value;//编号
+					var td_name = a[1].children[0].value;//位置
+					var td_xinghao = a[2].children[0].value;//类型
+					var td_id = a[3].innerHTML;//id
+					a[0].innerHTML = td_num;
+					a[1].innerHTML = td_name;
+					a[2].innerHTML = td_xinghao;
+					$(this).parent().html("<input type='button' value='修改'  class='btn btn-primary btn-sm'/>");
+					//发起ajax请求
+					var url = "http://192.168.43.178:8081/substation/info1?callback=?";
+				    $.ajax({
+				      url:url,
+				      type:"post",
+				      data:{
+				         "num":parseInt(td_num),
+				         "position1":td_name,
+				         "type":td_xinghao,
+				      },
+				      datatype:"jsonp",
+				      jsonpCallback:"callback",
+				      success:function (data) {
+				         
+				      }
+				    });
+				})
+				//点击删除
+				$(".fenzhan .btn-danger").click(function(){
+					$(this).parent().parent().remove();
+					$.ajax({
+						type:"post",
+						url:"",
+						async:true,
+						dataType:'json',
+						success:function(data){
+							
+						}
+					});
+				})
+			})
+			
+			/*
+			 钻孔施工信息相关js
+			 * */
+			$("#w-zuankong").click(function(){
+				$.ajax({
+					type:"post",
+					url:"http://192.168.43.178:8081/judge/info?callback=?",
+					async:true,
+					dataType:"jsonp",
+					jsonpCallback:"callback",
+					success:function(data){
+						var input_group = $(".zuankong").find(".input-group");
+						$(input_group[0].children[0]).after('<input type="text" class="form-control"  value='+data.diameter+'>');
+						$(input_group[1].children[0]).after('<input type="text" class="form-control"  value='+data.spacing+'>');
+						$(input_group[2].children[0]).after('<input type="text" class="form-control"  value='+data.coordinate+'>');
+						$(input_group[3].children[0]).after('<input type="text" class="form-control"  value='+data.position2+'>');
+						$(input_group[4].children[0]).after('<input type="text" class="form-control"  value='+data.angle+'>');
+						$(input_group[5].children[0]).after('<input type="text" class="form-control"  value='+data.depth+'>');
+					}
+				});
+			})
+			//点击保存
+			$(".zuankong .btn-primary").click(function(){
+				$.ajax({
+					type:"post",
+					url:"http://192.168.43.178:8081/judge/info1?callback=?",
+					async:true,
+					data:{
+						"id":"f139b3ce-c00c-4d8a-xf2e-7s5d2298537d98",
+						"diameter":parseFloat($(".form-control").eq(0).val()),
+						"spacing":parseFloat($(".form-control").eq(1).val()),
+						"coordinate":$(".form-control").eq(2).val(),
+						"position2":$(".form-control").eq(3).val(),
+						"angle":parseInt($(".form-control").eq(4).val()),
+						"depth":parseFloat($(".form-control").eq(5).val())
+					},
+					dataType:"jsonp",
+					jsonpCallback:"callback",
+					success:function(){
+						
+					}
+				});
+			})
+			
+			/*
+			 抽采计量数据
+			 * */
+			$("#w-jiliang").click(function(){
+				$.ajax({
+					type:"post",
+					url:"http://192.168.43.178:8081/judge/info?callback=?",
+					async:true,
+					dataType:"jsonp",
+					jsonpCallback:"callback",
+					success:function(data){
+						var input_group = $(".choucaijiliang").find(".input-group");
+						$(input_group[0].children[0]).after('<input type="text" class="form-control"  value='+data.extraction_rate+'>');
+						$(input_group[1].children[0]).after('<input type="text" class="form-control"  value='+data.extraction_num+'>');
+						$(input_group[2].children[0]).after('<input type="text" class="form-control"  value='+data.time+'>');
+					}
+				});
+			})
+			//点击保存
+			$(".choucaijiliang .btn-primary").click(function(){
+				$.ajax({
+					type:"post",
+					url:"http://192.168.43.178:8081/judge/info1?callback=?",
+					async:true,
+					data:{
+						"id":"f139b3ce-c00c-4d8a-xf2e-7s5d2298537d98",
+						"extraction_rate":parseFloat($(".form-control").eq(0).val()),
+						"extraction_num":parseFloat($(".form-control").eq(1).val()),
+						"time":parseInt($(".form-control").eq(2).val()),
+						
+					},
+					dataType:"jsonp",
+					jsonpCallback:"callback",
+					success:function(){
+						
+					}
+				});
+			})
+			
+			/*
+			 调控命令管理
+			 * */
+			$("#w-tiaokong").click(function(){
+				$.ajax({
+					type:"post",
+					url:"http://192.168.43.178:8081/judge/info?callback=?",
+					async:true,
+					dataType:'jsonp',
+					jaonpCallback:"callback",
+					success:function(data){
+						var aspan = $(".tiaokong").find("span");
+						$(aspan[0]).html(data.add_press);
+						$(aspan[1]).html(data.time);
+						$(aspan[2]).html(data.distance);
+						$(aspan[3]).html(data.wind_num);
+					}
+				});
+			})
+			
+			
+			/*预警信息报表*/
+			var Chart1 = echarts.init(document.getElementById("nongdu"),'dark');
+			var Chart2 = echarts.init(document.getElementById("liuliang"),'dark');
+			var Chart3 = echarts.init(document.getElementById("wendu"),'dark');
+			var Chart4 = echarts.init(document.getElementById("fuya"),'dark');
+			var Option1 = {
+				//设置全局背景色
+				backgroundColor: 'rgba(0,0,0,0.1)',
+				
+				//定义一个标题
+				title:{
+					text:"瓦斯浓度图"
+				},
+				legend:{
+					data:['瓦斯浓度']
+				},
+				xAxis:{
+					data:[]
+				},
+				yAxis:{
+					 axisLabel:{show:true},//y轴文字
+			        axisLine: {show: true},//y轴线是否显示
+			    },
+			    tooltip : {//鼠标移入折点显示悬浮框
+			       show:true,
+					formatter:'系列名：{a}<br />时间：{b}<br />数值：{c}'
+				},
+				//name=legend.data才能显示图例
+				series:[{
+					name:"瓦斯浓度",
+					type:'line',
+					data:[],
+					areaStyle: {normal: {//设置线下面部分颜色渐变
+			            color: new echarts.graphic.LinearGradient(
+			                0, 0, 0, 1,
+			                [
+			                    {offset: 0, color: '#3e4abb'},
+			                    {offset: 0.5, color: '#222f77'},
+			                    {offset: 1, color: '#182250'}
+			                ]
+			            )
+			        }},
+			        
+			        symbol: 'emptyCircle',     //设定为空心点
+			        
+			        itemStyle:{
+			            normal:{
+			                color:'#595de4',//折点颜色
+			                lineStyle:{
+			                    color:'#595de4',//折线颜色
+			                    width:'2'
+			                }
+			            }
+			        }
+				}]
+			};
+			Chart1.setOption(Option1);
+			var Option2 = {
+				//设置全局背景色
+				backgroundColor: 'rgba(0,0,0,0.1)',
+				
+				//定义一个标题
+				title:{
+					text:"瓦斯浓度图"
+				},
+				legend:{
+					data:['瓦斯浓度']
+				},
+				xAxis:{
+					data:[]
+				},
+				yAxis:{
+					 axisLabel:{show:true},//y轴文字
+			        axisLine: {show: true},//y轴线是否显示
+			    },
+			    tooltip : {//鼠标移入折点显示悬浮框
+			       show:true,
+					formatter:'系列名：{a}<br />时间：{b}<br />数值：{c}'
+				},
+				//name=legend.data才能显示图例
+				series:[{
+					name:"瓦斯浓度",
+					type:'line',
+					data:[],
+					areaStyle: {normal: {//设置线下面部分颜色渐变
+			            color: new echarts.graphic.LinearGradient(
+			                0, 0, 0, 1,
+			                [
+			                    {offset: 0, color: '#3e4abb'},
+			                    {offset: 0.5, color: '#222f77'},
+			                    {offset: 1, color: '#182250'}
+			                ]
+			            )
+			        }},
+			        
+			        symbol: 'emptyCircle',     //设定为空心点
+			        
+			        itemStyle:{
+			            normal:{
+			                color:'#595de4',//折点颜色
+			                lineStyle:{
+			                    color:'#595de4',//折线颜色
+			                    width:'2'
+			                }
+			            }
+			        }
+				}]
+			};
+			Chart2.setOption(Option2);
+			var Option3 = {
+				//设置全局背景色
+				backgroundColor: 'rgba(0,0,0,0.1)',
+				
+				//定义一个标题
+				title:{
+					text:"瓦斯浓度图"
+				},
+				legend:{
+					data:['瓦斯浓度']
+				},
+				xAxis:{
+					data:[]
+				},
+				yAxis:{
+					 axisLabel:{show:true},//y轴文字
+			        axisLine: {show: true},//y轴线是否显示
+			    },
+			    tooltip : {//鼠标移入折点显示悬浮框
+			       show:true,
+					formatter:'系列名：{a}<br />时间：{b}<br />数值：{c}'
+				},
+				//name=legend.data才能显示图例
+				series:[{
+					name:"瓦斯浓度",
+					type:'line',
+					data:[],
+					areaStyle: {normal: {//设置线下面部分颜色渐变
+			            color: new echarts.graphic.LinearGradient(
+			                0, 0, 0, 1,
+			                [
+			                    {offset: 0, color: '#3e4abb'},
+			                    {offset: 0.5, color: '#222f77'},
+			                    {offset: 1, color: '#182250'}
+			                ]
+			            )
+			        }},
+			        
+			        symbol: 'emptyCircle',     //设定为空心点
+			        
+			        itemStyle:{
+			            normal:{
+			                color:'#595de4',//折点颜色
+			                lineStyle:{
+			                    color:'#595de4',//折线颜色
+			                    width:'2'
+			                }
+			            }
+			        }
+				}]
+			};
+			Chart3.setOption(Option3);
+			var Option4 = {
+				//设置全局背景色
+				backgroundColor: 'rgba(0,0,0,0.1)',
+				
+				//定义一个标题
+				title:{
+					text:"瓦斯浓度图"
+				},
+				legend:{
+					data:['瓦斯浓度']
+				},
+				xAxis:{
+					data:[]
+				},
+				yAxis:{
+					 axisLabel:{show:true},//y轴文字
+			        axisLine: {show: true},//y轴线是否显示
+			    },
+			    tooltip : {//鼠标移入折点显示悬浮框
+			       show:true,
+					formatter:'系列名：{a}<br />时间：{b}<br />数值：{c}'
+				},
+				//name=legend.data才能显示图例
+				series:[{
+					name:"瓦斯浓度",
+					type:'line',
+					data:[],
+					areaStyle: {normal: {//设置线下面部分颜色渐变
+			            color: new echarts.graphic.LinearGradient(
+			                0, 0, 0, 1,
+			                [
+			                    {offset: 0, color: '#3e4abb'},
+			                    {offset: 0.5, color: '#222f77'},
+			                    {offset: 1, color: '#182250'}
+			                ]
+			            )
+			        }},
+			        
+			        symbol: 'emptyCircle',     //设定为空心点
+			        
+			        itemStyle:{
+			            normal:{
+			                color:'#595de4',//折点颜色
+			                lineStyle:{
+			                    color:'#595de4',//折线颜色
+			                    width:'2'
+			                }
+			            }
+			        }
+				}]
+			};
+			Chart4.setOption(Option4);
+			var time1=[];    //时间数组（实际用来盛放X轴坐标值）
+        	 var num1=[];    //数据数组（实际用来盛放Y坐标值）
+        	 var time2 = [];
+        	 var num2 = [];
+        	 var time3 = [];
+        	 var num3 = [];
+        	 var time4 = [];
+        	 var num4 = [];
+        	 //点击查询
+			/*$(".chaxunjilu .btn-warning").click(function(){
+				$(".chaxunjilu .table").css("display","block");
+				var no = '0-16通道分站';
+				if($(".shishishuju .fz").val()=='0-16通道分站'){
+					no = '1_1_1_1';
+				}else if($(".shishishuju .fz").val()=="1-4通道分站"){
+					no='2_2_2_2';
+				}
+				var starttime = $("#time1").val();
+				starttime = starttime.substring(0,10);
+				var arr = starttime.split("-");
+				starttime = arr.join("");
+				alert(starttime);
+				var endtime = $("#time2").val();
+				endtime = endtime.substring(0,10);
+				var arr = endtime.split("-");
+				endtime = arr.join("");
+				alert(endtime);
+				var jiange = $(".jiange").val();
+				$.ajax({
+					type:"get",
+					url:"?callback=?",
+					async:true,
+					data:{
+						"no":no,
+						"type":'1_2_3_4',
+						"id":'1_1_1_1',
+						"starttime":starttime,
+						"endtime":endtime,
+						"black":jiange
+					},
+					dataType:"jsonp",
+					jsonpCallback:"callback",
+					success:function(data){
+						for(var i=0;i<res.S1_1_1.length;i++){
+								var str = res.S1_1_1[i].date;
+								str1 = str.substring(0,10);
+								var arr = str1.split("_");
+								str1 = arr.join("/");
+								str2 = str.substring(11);
+								var arr1 = str2.split("_");
+								str2 = arr1.join(":");
+								time1.push(str1+" "+str2);
+							}
+							for(var i=0;i<res.S1_1_1.length;i++){
+								num1.push(res.S1_1_1[i].values);
+							}
+							
+							for(var i=0;i<res.S1_2_1.length;i++){
+								var str = res.S1_2_1[i].date;
+								str1 = str.substring(0,10);
+								var arr = str1.split("_");
+								str1 = arr.join("/");
+								str2 = str.substring(11);
+								var arr1 = str2.split("_");
+								str2 = arr1.join(":");
+								time2.push(str1+" "+str2);
+							}
+							for(var i=0;i<res.S1_2_1.length;i++){
+								num2.push(res.S1_2_1[i].values);
+							}
+							for(var i=0;i<res.S1_3_1.length;i++){
+								var str = res.S1_3_1[i].date;
+								str1 = str.substring(0,10);
+								var arr = str1.split("_");
+								str1 = arr.join("/");
+								str2 = str.substring(11);
+								var arr1 = str2.split("_");
+								str2 = arr1.join(":");
+								time3.push(str1+" "+str2);
+							}
+							for(var i=0;i<res.S1_3_1.length;i++){
+								num3.push(res.S1_3_1[i].values);
+							}
+							for(var i=0;i<res.S1_4_1.length;i++){
+								var str = res.S1_4_1[i].date;
+								str1 = str.substring(0,10);
+								var arr = str1.split("_");
+								str1 = arr.join("/");
+								str2 = str.substring(11);
+								var arr1 = str2.split("_");
+								str2 = arr1.join(":");
+								time4.push(str1+" "+str2);
+							}
+							for(var i=0;i<res.S1_4_1.length;i++){
+								num4.push(res.S1_4_1[i].values);
+							}
+							Chart1.setOption({//加载数据图表
+								xAxis:{
+									data: time1
+								},
+								series:[{
+									name:"瓦斯浓度",
+									data:num1
+								}]
+							})
+							Chart2.setOption({//加载数据图表
+								xAxis:{
+									data: time2
+								},
+								series:[{
+									name:"瓦斯流量",
+									data:nums2
+								}]
+							})
+							Chart3.setOption({//加载数据图表
+								xAxis:{
+									data: time3
+								},
+								series:[{
+									name:"管道温度",
+									data:num3
+								}]
+							})
+							Chart4.setOption({//加载数据图表
+								xAxis:{
+									data: time4
+								},
+								series:[{
+									name:"管道负压",
+									data:num4
+								}]
+							})
+					}
+				});
+			})*/
+			//点击导出excel按钮
+			var idTmr; 
+			 //获取当前浏览器类型 
+			  function getExplorer() { 
+			   var explorer = window.navigator.userAgent ; 
+			   //ie 
+			   if (explorer.indexOf("MSIE") >= 0) { 
+			    return 'ie'; 
+			   } 
+			   //firefox 
+			   else if (explorer.indexOf("Firefox") >= 0) { 
+			    return 'Firefox'; 
+			   } 
+			   //Chrome 
+			   else if(explorer.indexOf("Chrome") >= 0){ 
+			    return 'Chrome'; 
+			   } 
+			   //Opera 
+			   else if(explorer.indexOf("Opera") >= 0){ 
+			    return 'Opera'; 
+			   } 
+			   //Safari 
+			   else if(explorer.indexOf("Safari") >= 0){ 
+			    return 'Safari'; 
+			   } 
+			  } 
+			 //获取到类型需要判断当前浏览器需要调用的方法，目前项目中火狐，谷歌，360没有问题 
+			  //win10自带的IE无法导出 
+			  function exportExcel(tableid) { //整个表格拷贝到excel中
+			   if(getExplorer()=='ie') 
+			   { 
+			    var curTbl = document.getElementById(tableid); 
+			     //创建AX对象excel
+			    var oXL = new ActiveXObject("Excel.Application"); 
+			   //获取workbook对象
+			    var oWB = oXL.Workbooks.Add(); 
+			     //激活当前sheet
+			    var xlsheet = oWB.Worksheets(1);
+			   //把表格中的内容移到TextRange中
+			    var sel = document.body.createTextRange(); 
+			    sel.moveToElementText(curTbl); 
+			    //全选TextRange中的内容
+			    sel.select(); 
+			   //复制TextRange中的内容
+			    sel.execCommand("Copy");
+			    //粘贴到活动的excel中
+			    xlsheet.Paste(); 
+			    //设置excel可见属性
+			    oXL.Visible = true; 
+			  
+			    try { 
+			     var fname = oXL.Application.GetSaveAsFilename("Excel.xls", "Excel Spreadsheets (*.xls), *.xls"); 
+			    } catch (e) { 
+			     print("Nested catch caught " + e); 
+			    } finally { 
+			     oWB.SaveAs(fname); 
+			     oWB.Close(savechanges = false); 
+			     oXL.Quit(); 
+			     oXL = null; 
+			     idTmr = window.setInterval("Cleanup();", 1); 
+			    } 
+			  
+			   } 
+			   else 
+			   { 
+			    tableToExcel(tableid) 
+			   } 
+			  } 
+			  function Cleanup() { 
+			   window.clearInterval(idTmr); 
+			   CollectGarbage(); 
+			  } 
+			   //判断浏览器后调用的方法，把table的id传入即可 
+			  var tableToExcel = (function() { 
+			   var uri = 'data:application/vnd.ms-excel;base64,', 
+			    template = '<html><head><meta charset="UTF-8"></head><body><table border="1">{table}</table></body></html>', 
+			    base64 = function(s) { 
+			    	return window.btoa(unescape(encodeURIComponent(s))) 
+			    },
+			    format = function(s, c) { 
+			      	return s.replace(/{(\w+)}/g, 
+			        function(m, p) {
+			        	return c[p]; 
+			        }) 
+			    }
+			   	return function(table, name) { 
+			    	if (!table.nodeType){
+			    		table = document.getElementById(table);//table就是传入的tableid
+			    	}
+			    	var ctx = {
+			    		worksheet: name || 'Worksheet', table: table.innerHTML
+			    	}
+			    	window.location.href = uri + base64(format(template, ctx)); 
+			   } 
+			  })() 
+			
+			
+			
+			/*实时数据显示相关js*/
+			$(".but1").click(function(){
+				$(".parent").show();
+				$("#div2").hide();
+				
+			})
+			//分站显示的按钮
+			$(".but2").click(function(){
+				$("#div2").show();
+				$(".parent").hide();
+				$.ajax({
+					type:"get",
+					url:"http://123.207.72.201:8081/readdata/getzhan?callback=?",
+					async:true,
+					dataType:'jsonp',
+					jsonpCallback:"callback",
+					success:function(data){
+						for(var i=0;i<data.values.length;i++){
+							var str = "<tr><td>"+data.values[i].id+"</td><td>"+data.values[i].panqu+"</td><td>"+data.values[i].choucainame+"</td><td>"+data.values[i].installaction+"</td><td>"+data.values[i].mixnum+"</td><td>"+data.values[i].jueya+"</td><td>"+data.values[i].fuya+"</td><td>"+data.values[i].wendu+"</td><td>"+data.values[i].chunliuliang+"</td><td>"+data.values[i].sunliulangleiji+"</td><td>"+data.values[i].riliuliangleiji+"</td><td>"+data.values[i].chunliuliangshilieji+"</td><td>"+data.values[i].chunliuliangrileiji+"</td><td>"+data.values[i].chunliuliangyueleiji+"</td></tr>"
+							$("#div2 tbody").append(str);
+						}
+						
+					}
+				});
+			})
+			var chart1 = echarts.init(document.getElementById("qx1"),'dark');
+			var chart2 = echarts.init(document.getElementById("qx2"),'dark');
+			var chart4 = echarts.init(document.getElementById("qx4"),'dark');
+			var chart3 = echarts.init(document.getElementById("qx3"),'dark');
+			var option1 = {
+				//设置全局背景色
+				backgroundColor: 'rgba(0,0,0,0.1)',
+				
+				//定义一个标题
+				title:{
+					text:"瓦斯浓度图"
+				},
+				legend:{
+					data:['瓦斯浓度']
+				},
+				xAxis:{
+					data:[]
+				},
+				yAxis:{
+					 axisLabel:{show:true},//y轴文字
+			        axisLine: {show: true},//y轴线是否显示
+			    },
+			    tooltip : {//鼠标移入折点显示悬浮框
+			       show:true,
+					formatter:'系列名：{a}<br />时间：{b}<br />数值：{c}'
+				},
+				//name=legend.data才能显示图例
+				series:[{
+					name:"瓦斯浓度",
+					type:'line',
+					data:[],
+					areaStyle: {normal: {//设置线下面部分颜色渐变
+			            color: new echarts.graphic.LinearGradient(
+			                0, 0, 0, 1,
+			                [
+			                    {offset: 0, color: '#3e4abb'},
+			                    {offset: 0.5, color: '#222f77'},
+			                    {offset: 1, color: '#182250'}
+			                ]
+			            )
+			        }},
+			        
+			        symbol: 'emptyCircle',     //设定为空心点
+			        
+			        itemStyle:{
+			            normal:{
+			                color:'#595de4',//折点颜色
+			                lineStyle:{
+			                    color:'#595de4',//折线颜色
+			                    width:'2'
+			                }
+			            }
+			        }
+				}]
+			};
+			chart1.setOption(option1);
+			var option2 = {
+				//设置全局背景色
+				backgroundColor: 'rgba(0,0,0,0.1)',
+				
+				//定义一个标题
+				title:{
+					text:"瓦斯流量图"
+				},
+				legend:{
+					data:['瓦斯流量']
+				},
+				xAxis:{
+					data:[]
+				},
+				yAxis:{
+					 axisLabel:{show:true},//y轴文字
+			        axisLine: {show: true},//y轴线是否显示
+			    },
+			    tooltip : {//鼠标移入折点显示悬浮框
+			       show:true,
+					formatter:'系列名：{a}<br />时间：{b}<br />数值：{c}'
+				},
+				//name=legend.data才能显示图例
+				series:[{
+					name:"瓦斯流量",
+					type:'line',
+					data:[],
+					areaStyle: {normal: {//设置线下面部分颜色渐变
+			            color: new echarts.graphic.LinearGradient(
+			                0, 0, 0, 1,
+			                [
+			                    {offset: 0, color: '#3e4abb'},
+			                    {offset: 0.5, color: '#222f77'},
+			                    {offset: 1, color: '#182250'}
+			                ]
+			            )
+			        }},
+			        
+			        symbol: 'emptyCircle',     //设定为空心点
+			        
+			        itemStyle:{
+			            normal:{
+			                color:'#595de4',//折点颜色
+			                lineStyle:{
+			                    color:'#595de4',//折线颜色
+			                    width:'2'
+			                }
+			            }
+			        }
+				}]
+			};
+			chart2.setOption(option2);
+			var option3 = {
+				//设置全局背景色
+				backgroundColor: 'rgba(0,0,0,0.1)',
+				
+				//定义一个标题
+				title:{
+					text:"管道温度图"
+				},
+				legend:{
+					data:['管道温度']
+				},
+				xAxis:{
+					data:[]
+				},
+				yAxis:{
+					 axisLabel:{show:true},//y轴文字
+			        axisLine: {show: true},//y轴线是否显示
+			    },
+			    tooltip : {//鼠标移入折点显示悬浮框
+			       show:true,
+					formatter:'系列名：{a}<br />时间：{b}<br />数值：{c}'
+				},
+				//name=legend.data才能显示图例
+				series:[{
+					name:"管道温度",
+					type:'line',
+					data:[],
+					areaStyle: {normal: {//设置线下面部分颜色渐变
+			            color: new echarts.graphic.LinearGradient(
+			                0, 0, 0, 1,
+			                [
+			                    {offset: 0, color: '#3e4abb'},
+			                    {offset: 0.5, color: '#222f77'},
+			                    {offset: 1, color: '#182250'}
+			                ]
+			            )
+			        }},
+			        
+			        symbol: 'emptyCircle',     //设定为空心点
+			        
+			        itemStyle:{
+			            normal:{
+			                color:'#595de4',//折点颜色
+			                lineStyle:{
+			                    color:'#595de4',//折线颜色
+			                    width:'2'
+			                }
+			            }
+			        }
+				}]
+			};
+			chart3.setOption(option3);
+			var option4 = {
+				//设置全局背景色
+				backgroundColor: 'rgba(0,0,0,0.1)',
+				
+				//定义一个标题
+				title:{
+					text:"管道负压图"
+				},
+				legend:{
+					data:['管道负压']
+				},
+				xAxis:{
+					data:[]
+				},
+				yAxis:{
+					 axisLabel:{show:true},//y轴文字
+			        axisLine: {show: true},//y轴线是否显示
+			    },
+			    tooltip : {//鼠标移入折点显示悬浮框
+			       show:true,
+					formatter:'系列名：{a}<br />时间：{b}<br />数值：{c}'
+				},
+				//name=legend.data才能显示图例
+				series:[{
+					name:"管道负压",
+					type:'line',
+					data:[],
+					areaStyle: {normal: {//设置线下面部分颜色渐变
+			            color: new echarts.graphic.LinearGradient(
+			                0, 0, 0, 1,
+			                [
+			                    {offset: 0, color: '#3e4abb'},
+			                    {offset: 0.5, color: '#222f77'},
+			                    {offset: 1, color: '#182250'}
+			                ]
+			            )
+			        }},
+			        
+			        symbol: 'emptyCircle',     //设定为空心点
+			        
+			        itemStyle:{
+			            normal:{
+			                color:'#595de4',//折点颜色
+			                lineStyle:{
+			                    color:'#595de4',//折线颜色
+			                    width:'2'
+			                }
+			            }
+			        }
+				}]
+			};
+			chart4.setOption(option4);
+			
+			//chart1.showLoading();
+			 var times1=[];    //时间数组（实际用来盛放X轴坐标值）
+        	 var nums1=[];    //数据数组（实际用来盛放Y坐标值）
+        	 var times2 = [];
+        	 var nums2 = [];
+        	 var times3 = [];
+        	 var nums3 = [];
+        	 var times4 = [];
+        	 var nums4 = [];
+			$(".but").click(function(){
+				//获取分站类型
+				//alert($(".shishishuju .fz").val());
+				var no = '0-16通道分站';
+				if($(".shishishuju .fz").val()=='0-16通道分站'){
+					no = '1_1_1_1';
+				}else if($(".shishishuju .fz").val()=="1-4通道分站"){
+					no='2_2_2_2';
+				}
+				$.ajax({
+						type:"post",
+						url:"http://123.207.72.201:8081/readdata/getnowdata/?callback=?",
+						async:true,
+						data:{
+							"no":no,
+							"type":'1_2_3_4',
+							"id":'1_1_1_1',
+							
+						},
+						dataType:"jsonp",
+						jsonpCallback:"callback",
+						success:function(res){
+							//拿到数据进行展示
+							for(var i=0;i<res.S1_1_1.length;i++){
+								var str = res.S1_1_1[i].date;
+								str1 = str.substring(0,10);
+								var arr = str1.split("_");
+								str1 = arr.join("/");
+								str2 = str.substring(11);
+								var arr1 = str2.split("_");
+								str2 = arr1.join(":");
+								times1.push(str1+" "+str2);
+							}
+							for(var i=0;i<res.S1_1_1.length;i++){
+								nums1.push(res.S1_1_1[i].values.toFixed(3));
+							}
+							
+							for(var i=0;i<res.S1_2_1.length;i++){
+								var str = res.S1_2_1[i].date;
+								str1 = str.substring(0,10);
+								var arr = str1.split("_");
+								str1 = arr.join("/");
+								str2 = str.substring(11);
+								var arr1 = str2.split("_");
+								str2 = arr1.join(":");
+								times3.push(str1+" "+str2);
+							}
+							for(var i=0;i<res.S1_2_1.length;i++){
+								nums3.push(res.S1_2_1[i].values.toFixed(3));
+							}
+							for(var i=0;i<res.S1_3_1.length;i++){
+								var str = res.S1_3_1[i].date;
+								str1 = str.substring(0,10);
+								var arr = str1.split("_");
+								str1 = arr.join("/");
+								str2 = str.substring(11);
+								var arr1 = str2.split("_");
+								str2 = arr1.join(":");
+								times2.push(str1+" "+str2);
+							}
+							for(var i=0;i<res.S1_3_1.length;i++){
+								nums2.push(res.S1_3_1[i].values.toFixed(3));
+							}
+							for(var i=0;i<res.S1_4_1.length;i++){
+								var str = res.S1_4_1[i].date;
+								str1 = str.substring(0,10);
+								var arr = str1.split("_");
+								str1 = arr.join("/");
+								str2 = str.substring(11);
+								var arr1 = str2.split("_");
+								str2 = arr1.join(":");
+								times4.push(str1+" "+str2);
+							}
+							for(var i=0;i<res.S1_4_1.length;i++){
+								nums4.push(res.S1_4_1[i].values);
+							}
+							//chart1.hideLoading(); //隐藏加载动画
+							chart1.setOption({//加载数据图表
+								xAxis:{
+									data: times1
+								},
+								series:[{
+									name:"瓦斯浓度",
+									data:nums1
+								}]
+							})
+							chart2.setOption({//加载数据图表
+								xAxis:{
+									data: times2
+								},
+								series:[{
+									name:"瓦斯流量",
+									data:nums2
+								}]
+							})
+							chart3.setOption({//加载数据图表
+								xAxis:{
+									data: times3
+								},
+								series:[{
+									name:"管道温度",
+									data:nums3
+								}]
+							})
+							chart4.setOption({//加载数据图表
+								xAxis:{
+									data: times4
+								},
+								series:[{
+									name:"管道负压",
+									data:nums4
+								}]
+							})
+						},
+						error:function(errorMsg){
+							//alert("图表数据请求失败");
+							chart1.hideLoading();
+						}
+				});
+				setInterval(function(){
+					$.ajax({
+						type:"post",
+						url:"http://123.207.72.201:8081/readdata/getnowdata/?callback=?",
+						async:true,
+						data:{
+							"no":no,
+							"type":'1_2_3_4',
+							"id":'1_1_1_1',
+						},
+						dataType:"jsonp",
+						jsonpCallback:"callback",
+						success:function(res){
+							//拿到数据进行展示
+							for(var i=0;i<res.S1_1_1.length;i++){
+								var str = res.S1_1_1[i].date;
+								str1 = str.substring(0,10);
+								var arr = str1.split("_");
+								str1 = arr.join("/");
+								str2 = str.substring(11);
+								var arr1 = str2.split("_");
+								str2 = arr1.join(":");
+								times1.push(str1+" "+str2);
+							}
+							for(var i=0;i<res.S1_1_1.length;i++){
+								nums1.push(res.S1_1_1[i].values.toFixed(3));
+							}
+							
+							for(var i=0;i<res.S1_2_1.length;i++){
+								var str = res.S1_2_1[i].date;
+								str1 = str.substring(0,10);
+								var arr = str1.split("_");
+								str1 = arr.join("/");
+								str2 = str.substring(11);
+								var arr1 = str2.split("_");
+								str2 = arr1.join(":");
+								times3.push(str1+" "+str2);
+							}
+							for(var i=0;i<res.S1_2_1.length;i++){
+								nums3.push(res.S1_2_1[i].values.toFixed(3));
+							}
+							for(var i=0;i<res.S1_3_1.length;i++){
+								var str = res.S1_3_1[i].date;
+								str1 = str.substring(0,10);
+								var arr = str1.split("_");
+								str1 = arr.join("/");
+								str2 = str.substring(11);
+								var arr1 = str2.split("_");
+								str2 = arr1.join(":");
+								times2.push(str1+" "+str2);
+							}
+							for(var i=0;i<res.S1_3_1.length;i++){
+								nums2.push(res.S1_3_1[i].values.toFixed(3));
+							}
+							for(var i=0;i<res.S1_4_1.length;i++){
+								var str = res.S1_4_1[i].date;
+								str1 = str.substring(0,10);
+								var arr = str1.split("_");
+								str1 = arr.join("/");
+								str2 = str.substring(11);
+								var arr1 = str2.split("_");
+								str2 = arr1.join(":");
+								times4.push(str1+" "+str2);
+							}
+							for(var i=0;i<res.S1_4_1.length;i++){
+								nums4.push(res.S1_4_1[i].values);
+							}
+							//chart1.hideLoading(); //隐藏加载动画
+							chart1.setOption({//加载数据图表
+								xAxis:{
+									data: times1
+								},
+								series:[{
+									name:"瓦斯浓度",
+									data:nums1
+								}]
+							})
+							chart2.setOption({//加载数据图表
+								xAxis:{
+									data: times2
+								},
+								series:[{
+									name:"瓦斯流量",
+									data:nums2
+								}]
+							})
+							chart3.setOption({//加载数据图表
+								xAxis:{
+									data: times3
+								},
+								series:[{
+									name:"管道温度",
+									data:nums3
+								}]
+							})
+							chart4.setOption({//加载数据图表
+								xAxis:{
+									data: times4
+								},
+								series:[{
+									name:"管道负压",
+									data:nums4
+								}]
+							})
+						},
+						error:function(errorMsg){
+							//alert("图表数据请求失败");
+							chart1.hideLoading();
+						}
+					});
+				},2000);
+			})
+			
+			
+			
+			
+			
+			
+			/*历史数据相关js*/
+			var chart5 = echarts.init(document.getElementById("fenxi1"),'dark');
+			var chart6 = echarts.init(document.getElementById("fenxi2"),'dark');
+			var chart8 = echarts.init(document.getElementById("fenxi4"),'dark');
+			var chart7 = echarts.init(document.getElementById("fenxi3"),'dark');
+			var option5 = {
+				//设置全局背景色
+				backgroundColor: 'rgba(0,0,0,0.1)',
+				
+				//定义一个标题
+				title:{
+					text:"瓦斯浓度图"
+				},
+				legend:{
+					data:['瓦斯浓度']
+				},
+				xAxis:{
+					data:[]
+				},
+				yAxis:{
+					 axisLabel:{show:true},//y轴文字
+			        axisLine: {show: true},//y轴线是否显示
+			    },
+			    tooltip : {//鼠标移入折点显示悬浮框
+			       show:true,
+					formatter:'系列名：{a}<br />时间：{b}<br />数值：{c}'
+				},
+				//name=legend.data才能显示图例
+				series:[{
+					name:"瓦斯浓度",
+					type:'line',
+					data:[],
+					areaStyle: {normal: {//设置线下面部分颜色渐变
+			            color: new echarts.graphic.LinearGradient(
+			                0, 0, 0, 1,
+			                [
+			                    {offset: 0, color: '#3e4abb'},
+			                    {offset: 0.5, color: '#222f77'},
+			                    {offset: 1, color: '#182250'}
+			                ]
+			            )
+			        }},
+			        
+			        symbol: 'emptyCircle',     //设定为空心点
+			        
+			        itemStyle:{
+			            normal:{
+			                color:'#595de4',//折点颜色
+			                lineStyle:{
+			                    color:'#595de4',//折线颜色
+			                    width:'2'
+			                }
+			            }
+			        }
+				}]
+			};
+			chart5.setOption(option5);
+			var option6 = {
+				//设置全局背景色
+				backgroundColor: 'rgba(0,0,0,0.1)',
+				
+				//定义一个标题
+				title:{
+					text:"瓦斯浓度图"
+				},
+				legend:{
+					data:['瓦斯浓度']
+				},
+				xAxis:{
+					data:[]
+				},
+				yAxis:{
+					 axisLabel:{show:true},//y轴文字
+			        axisLine: {show: true},//y轴线是否显示
+			    },
+			    tooltip : {//鼠标移入折点显示悬浮框
+			       show:true,
+					formatter:'系列名：{a}<br />时间：{b}<br />数值：{c}'
+				},
+				//name=legend.data才能显示图例
+				series:[{
+					name:"瓦斯浓度",
+					type:'line',
+					data:[],
+					areaStyle: {normal: {//设置线下面部分颜色渐变
+			            color: new echarts.graphic.LinearGradient(
+			                0, 0, 0, 1,
+			                [
+			                    {offset: 0, color: '#3e4abb'},
+			                    {offset: 0.5, color: '#222f77'},
+			                    {offset: 1, color: '#182250'}
+			                ]
+			            )
+			        }},
+			        
+			        symbol: 'emptyCircle',     //设定为空心点
+			        
+			        itemStyle:{
+			            normal:{
+			                color:'#595de4',//折点颜色
+			                lineStyle:{
+			                    color:'#595de4',//折线颜色
+			                    width:'2'
+			                }
+			            }
+			        }
+				}]
+			};
+			chart6.setOption(option6);
+			var option7 = {
+				//设置全局背景色
+				backgroundColor: 'rgba(0,0,0,0.1)',
+				
+				//定义一个标题
+				title:{
+					text:"瓦斯浓度图"
+				},
+				legend:{
+					data:['瓦斯浓度']
+				},
+				xAxis:{
+					data:[]
+				},
+				yAxis:{
+					 axisLabel:{show:true},//y轴文字
+			        axisLine: {show: true},//y轴线是否显示
+			    },
+			    tooltip : {//鼠标移入折点显示悬浮框
+			       show:true,
+					formatter:'系列名：{a}<br />时间：{b}<br />数值：{c}'
+				},
+				//name=legend.data才能显示图例
+				series:[{
+					name:"瓦斯浓度",
+					type:'line',
+					data:[],
+					areaStyle: {normal: {//设置线下面部分颜色渐变
+			            color: new echarts.graphic.LinearGradient(
+			                0, 0, 0, 1,
+			                [
+			                    {offset: 0, color: '#3e4abb'},
+			                    {offset: 0.5, color: '#222f77'},
+			                    {offset: 1, color: '#182250'}
+			                ]
+			            )
+			        }},
+			        
+			        symbol: 'emptyCircle',     //设定为空心点
+			        
+			        itemStyle:{
+			            normal:{
+			                color:'#595de4',//折点颜色
+			                lineStyle:{
+			                    color:'#595de4',//折线颜色
+			                    width:'2'
+			                }
+			            }
+			        }
+				}]
+			};
+			chart7.setOption(option7);
+			var option8 = {
+				//设置全局背景色
+				backgroundColor: 'rgba(0,0,0,0.1)',
+				
+				//定义一个标题
+				title:{
+					text:"瓦斯浓度图"
+				},
+				legend:{
+					data:['瓦斯浓度']
+				},
+				xAxis:{
+					data:[]
+				},
+				yAxis:{
+					 axisLabel:{show:true},//y轴文字
+			        axisLine: {show: true},//y轴线是否显示
+			    },
+			    tooltip : {//鼠标移入折点显示悬浮框
+			       show:true,
+					formatter:'系列名：{a}<br />时间：{b}<br />数值：{c}'
+				},
+				//name=legend.data才能显示图例
+				series:[{
+					name:"瓦斯浓度",
+					type:'line',
+					data:[],
+					areaStyle: {normal: {//设置线下面部分颜色渐变
+			            color: new echarts.graphic.LinearGradient(
+			                0, 0, 0, 1,
+			                [
+			                    {offset: 0, color: '#3e4abb'},
+			                    {offset: 0.5, color: '#222f77'},
+			                    {offset: 1, color: '#182250'}
+			                ]
+			            )
+			        }},
+			        
+			        symbol: 'emptyCircle',     //设定为空心点
+			        
+			        itemStyle:{
+			            normal:{
+			                color:'#595de4',//折点颜色
+			                lineStyle:{
+			                    color:'#595de4',//折线颜色
+			                    width:'2'
+			                }
+			            }
+			        }
+				}]
+			};
+			chart8.setOption(option8);
+			var times5=[];    //时间数组（实际用来盛放X轴坐标值）
+        	 var nums5=[];    //数据数组（实际用来盛放Y坐标值）
+        	 var times6 = [];
+        	 var nums6 = [];
+        	 var times8 = [];
+        	 var nums8 = [];
+        	 var times7 = [];
+        	 var nums7 = [];
+			$(".lishishuju .btn-warning").click(function(){
+				//获取到选择条件的值
+				var no = '0-16通道分站';
+				if($(".lishishuju .fz").val()=='0-16通道分站'){
+					no = '1_1_1_1';
+				}else if($(".lishishuju .fz").val()=="1-4通道分站"){
+					no='2_2_2_2';
+				}
+				var starttime = $("#time1").val();
+				starttime = starttime.substring(0,10);
+				var arr = starttime.split("-");
+				starttime = arr.join("");
+				alert(starttime);
+				var endtime = $("#time2").val();
+				endtime = endtime.substring(0,10);
+				var arr = endtime.split("-");
+				endtime = arr.join("");
+				alert(endtime);
+				var jiange = $(".jiange").val();
+				$.ajax({
+					type:"get",
+					url:"http://123.207.72.201:8081/readdata/gethistorydata?callback=?",
+					async:true,
+					data:{
+						"no":no,
+						"type":"1_2_3_4",
+						"id":"1_1_1_1",
+						"starttime":starttime,
+						"endtime":endtime,
+						"black":jiange
+					},
+					dataType:"jsonp",
+					jsonpCallback:"callback",
+					success:function(res){
+						alert("成功");
+						for(var i=0;i<res.S1_1_1.length;i++){
+								var str = res.S1_1_1[i].date;
+								str1 = str.substring(0,10);
+								var arr = str1.split("_");
+								str1 = arr.join("/");
+								str2 = str.substring(11);
+								var arr1 = str2.split("_");
+								str2 = arr1.join(":");
+								times5.push(str1+" "+str2);
+							}
+							for(var i=0;i<res.S1_1_1.length;i++){
+								nums5.push(res.S1_1_1[i].values);
+							}
+							
+							for(var i=0;i<res.S1_2_1.length;i++){
+								var str = res.S1_2_1[i].date;
+								str1 = str.substring(0,10);
+								var arr = str1.split("_");
+								str1 = arr.join("/");
+								str2 = str.substring(11);
+								var arr1 = str2.split("_");
+								str2 = arr1.join(":");
+								times6.push(str1+" "+str2);
+							}
+							for(var i=0;i<res.S1_2_1.length;i++){
+								nums6.push(res.S1_2_1[i].values);
+							}
+							for(var i=0;i<res.S1_3_1.length;i++){
+								var str = res.S1_3_1[i].date;
+								str1 = str.substring(0,10);
+								var arr = str1.split("_");
+								str1 = arr.join("/");
+								str2 = str.substring(11);
+								var arr1 = str2.split("_");
+								str2 = arr1.join(":");
+								times7.push(str1+" "+str2);
+							}
+							for(var i=0;i<res.S1_3_1.length;i++){
+								nums7.push(res.S1_3_1[i].values);
+							}
+							for(var i=0;i<res.S1_4_1.length;i++){
+								var str = res.S1_4_1[i].date;
+								str1 = str.substring(0,10);
+								var arr = str1.split("_");
+								str1 = arr.join("/");
+								str2 = str.substring(11);
+								var arr1 = str2.split("_");
+								str2 = arr1.join(":");
+								times8.push(str1+" "+str2);
+							}
+							for(var i=0;i<res.S1_4_1.length;i++){
+								nums8.push(res.S1_4_1[i].values);
+							}
+							chart5.setOption({//加载数据图表
+								xAxis:{
+									data: times5
+								},
+								series:[{
+									name:"瓦斯浓度",
+									data:nums5
+								}]
+							})
+							chart6.setOption({//加载数据图表
+								xAxis:{
+									data: times6
+								},
+								series:[{
+									name:"瓦斯流量",
+									data:nums6
+								}]
+							})
+							chart7.setOption({//加载数据图表
+								xAxis:{
+									data: times7
+								},
+								series:[{
+									name:"管道温度",
+									data:nums7
+								}]
+							})
+							chart8.setOption({//加载数据图表
+								xAxis:{
+									data: times8
+								},
+								series:[{
+									name:"管道负压",
+									data:nums8
+								}]
+							})
+					}
+				});
+			})
+			
+			
+			
+			/*
+			 预警信息报表
+			 * */
+			
+			
+			
+			
+			
+			
+			
+			
+			/*报警信息显示相关js*/
+			//初始化图标标签
+			var mychart = echarts.init(document.getElementById("chart"),'dark');
+			//var mychart2 = echarts.init(document.getElementById("chart"),'dark');
+			var options = {
+				//设置全局背景色
+				backgroundColor: 'rgba(0,0,0,0.1)',
+				//定义一个标题
+				title:{
+					text:"报警信息曲线图"
+				},
+				legend:{
+					data:['瓦斯浓度','瓦斯流量','管道温度','管道负压']
+				},
+				xAxis:{
+					data:['10','30','90','100','179','678','677']
+				},
+				yAxis:{
+					
+				},
+				tooltip:{//图标悬浮的提示内容
+					show:true,
+					formatter:'系列名：{a}<br />类目：{b}<br />数值：{c}'
+				},
+				//name=legend.data才能显示图例
+				series:[{
+					name:"瓦斯浓度",
+					type:'line',
+					data:['34','677','344','90','78','67','199']
+				},{
+					name:"瓦斯流量",
+					type:"line",
+					data:['900','300','500','100','67','899','455']
+				},{
+					name:"管道温度",
+					type:"line",
+					data:['80','30','90','100','67','766','145']
+				},{
+					name:"管道负压",
+					type:"line",
+					data:['200','80','200','800','670','100','355']
+				}]
+			};
+			
+			
+			mychart.setOption(options);
+			
+			
+			
+			/*钻孔施工信息相关JS*/
+			$.ajax({
+				type:"get",
+				url:"",
+				async:true,
+				data:{
+					
+				},
+				dataType:'json',
+				success:function(){
+					
+				}
+			});
+			
+			/*抽采计量数据相关JS*/
+			$.ajax({
+				type:"get",
+				url:"",
+				async:true,
+				data:{
+					
+				},
+				dataType:'json',
+				success:function(){
+					
+				}
+			});
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			/*抽采效果预测相关js*/
+			var mychart1 = echarts.init(document.getElementById("chart1"),"dark");
+			var options1 = {
+				//设置全局背景色
+				backgroundColor: 'rgba(0,0,0,0.1)',
+				title:{
+					text:"抽采效果预测图"
+				},
+				legend:{
+					data:["真实值","预测值"]
+				},
+				xAxis:{
+					data:["100",'90','55','900','566','89','1000']
+				},
+				yAxis:{
+					
+				},
+				tooltip:{//图标悬浮的提示内容
+					show:true,
+					formatter:'系列名：{a}<br />类目：{b}<br />数值：{c}'
+				},
+				series:[{
+					name:"真实值",
+					type:"line",
+					data:['10','30','300','577','533','298','767']
+				},{
+					name:"预测值",
+					type:"line",
+					data:['199','644','30','57','133','498','67']
+				}]
+			};
+			mychart1.setOption(options1);
+			
+			/*调控命令管理*/
+			$(".choucaipinggu .btn-default").click(function(){
+				//获取所有的form-control
+				if($(".choucaipinggu .form-control").eq(0).val()!=""&&parseFloat($(".choucaipinggu .form-control").eq(0).val())<1){
+					$(".choucaipinggu .btn-success").eq(0).css("display","block");
+					$(".choucaipinggu .btn-danger").eq(0).css("display","none");
+				}else{
+					$(".choucaipinggu .btn-success").eq(0).css("display","none");
+					$(".choucaipinggu .btn-danger").eq(0).css("display","block");
+				}
+				if($(".choucaipinggu .form-control").eq(1).val()!=""&&parseFloat($(".choucaipinggu .form-control").eq(1).val())>27.13){
+					$(".choucaipinggu .btn-success").eq(1).css("display","block");
+					$(".choucaipinggu .btn-danger").eq(1).css("display","none");
+				}else{
+					$(".choucaipinggu .btn-success").eq(1).css("display","none");
+					$(".choucaipinggu .btn-danger").eq(1).css("display","block");
+				}
+				if($(".choucaipinggu .form-control").eq(2).val()!=""&&parseFloat($(".choucaipinggu .form-control").eq(2).val())>=35){
+					$(".choucaipinggu .btn-success").eq(2).css("display","block");
+					$(".choucaipinggu .btn-danger").eq(2).css("display","none");
+				}else{
+					$(".choucaipinggu .btn-success").eq(2).css("display","none");
+					$(".choucaipinggu .btn-danger").eq(2).css("display","block");
+				}
+				if(parseFloat($(".choucaipinggu .form-control").eq(0).val())<1&&parseFloat($(".choucaipinggu .form-control").eq(1).val())>27.13&&parseFloat($(".choucaipinggu .form-control").eq(2).val())>=35){
+					$(".choucaipinggu .btn-success").eq(3).css("display","block");
+					$(".choucaipinggu .btn-danger").eq(3).css("display","none");
+				}else{
+					$(".choucaipinggu .btn-success").eq(3).css("display","none");
+					$(".choucaipinggu .btn-danger").eq(3).css("display","block");
+				}
+			})
+			
+			
+			
+			
+			 
 	       
 		</script>
 	</body>

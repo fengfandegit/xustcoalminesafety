@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Taurus - Responsive Bootstrap Admin Template</title>
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        
+        <link rel="stylesheet" href="frame/style.css"/>
+        <script type="text/javascript" src="/js/jquery.js"></script>
+        
+        <script>          
+            $(document).ready(function(){                                                
+                $("#remove").click(function(){
+                    document.location.href = document.getElementById("frame").contentWindow.location.href;
+                    return false;
+                });
+                $(".header-list .current").click(function(){
+                    if($(".header-list ul.list").hasClass('active')){
+                       $(".header-list ul.list").removeClass('active');
+                    }else{
+                       $(".header-list ul.list").addClass('active'); 
+                    }                      
+                    return false;
+                });
+                                                
+                $(".header-devices a").click(function(){                    
+                    var frameWidth = {desktop: "100%",tabletland:1023,tabletport:767,mobileland:479,mobileport:340};                    
+                    $(".header-devices > a").removeClass('active');
+                    $("#frame").width(frameWidth[$(this).attr("class")]);
+                    $(this).addClass('active');
+                    return false;
+                });
+                
+                
+                $(".header-devices .desktop").addClass('active');
+                frame();                    
+            });
+            $(window).resize(function(){
+                frame();
+            });
+            function frame(){
+                $("#frame").height($(window).height()-50);
+            }            
+        </script>        
+    </head>
+    <body>
+        <div class="header">
+            <a class="header-logo" href="http://aqvatarius.com/" target="_blank">Aqvatarius</a>
+            <div class="header-list">
+                <div class="current">Taurus - Responsive Bootstrap Admin Template</div>
+                <ul class="list">
+                    <li>
+                        <a href="http://aqvatarius.com/themes/index.php?template=boooya">Boooya - Revolution Admin Template <span>$24</span></a>
+                        <div class="template-preview"><img src="https://preview-tf.s3.envato.com/files/201839735/preview/01_preview.__large_preview.jpg"/></div>
+                    </li><li>
+                        <a href="http://aqvatarius.com/themes/index.php?template=intuitive">Intuitive - Admin Dashboard Template <span>$24</span></a>
+                        <div class="template-preview"><img src="https://image-tf.s3.envato.com/files/141570622/preview/01_preview.__large_preview.jpg"/></div>
+                    </li><li>
+                        <a href="http://aqvatarius.com/themes/index.php?template=atlant">Atlant - Bootstrap Admin Template with Frontend <span>$24</span></a>
+                        <div class="template-preview"><img src="https://0.s3.envato.com/files/110682651/preview/01_preview.__large_preview.jpg"/></div>
+                    </li><li>
+                        <a href="http://aqvatarius.com/themes/index.php?template=gemini">Gemini - Responsive Admin Template <span>$24</span></a>
+                        <div class="template-preview"><img src="http://3.s3.envato.com/files/85875294/preview/01_preview.__large_preview.jpg"/></div>
+                    </li><li>
+                        <a href="http://aqvatarius.com/themes/index.php?template=taurus">Taurus - Responsive Bootstrap Admin Template <span>$22</span></a>
+                        <div class="template-preview"><img src="http://3.s3.envato.com/files/73449824/preview/01_preivew.__large_preview.jpg"/></div>
+                    </li><li>
+                        <a href="http://aqvatarius.com/themes/index.php?template=leo">Leo - Premium Admin Template <span>$20</span></a>
+                        <div class="template-preview"><img src="http://2.s3.envato.com/files/84563535/preview/01_preview.__large_preview.jpg"/></div>
+                    </li><li>
+                        <a href="http://aqvatarius.com/themes/index.php?template=aquarius">Aquarius - Responsive Admin Panel <span>$22</span></a>
+                        <div class="template-preview"><img src="http://3.s3.envato.com/files/63021852/preview/01_preview.__large_preview.jpg"/></div>
+                    </li><li>
+                        <a href="http://aqvatarius.com/themes/index.php?template=virgo">Virgo - Premium Admin Template <span>$24</span></a>
+                        <div class="template-preview"><img src="http://2.s3.envato.com/files/62760026/preview/01_preview.__large_preview.jpg"/></div>
+                    </li><li>
+                        <a href="http://aqvatarius.com/themes/index.php?template=aries">Aries - Metro Style Admin Template <span>$20</span></a>
+                        <div class="template-preview"><img src="http://2.s3.envato.com/files/82414334/preview/01_preview.__large_preview.jpg"/></div>
+                    </li>                </ul>
+            </div>
+                        <div class="header-devices">
+                <a href="#" class="desktop"></a>
+                <a href="#" class="tabletland"></a>
+                <a href="#" class="tabletport"></a>
+                <a href="#" class="mobileland"></a>
+                <a href="#" class="mobileport"></a>
+            </div>
+                                    <div class="header-buttons">
+                <div class="price">$22</div>
+                <a href="http://themeforest.net/item/taurus-responsive-bootstrap3-admin-template/6097032?ref=aqvatarius&license=regular&open_purchase_for_item_id=6097032&purchasable=source" class="button-purchase" target="_blank" onclick="ga('send', 'event', 'button', 'click', 'buy_taurus')">Buy it now</a>
+                <a id="remove" href="http://aqvatarius.com/themes/taurus/html/" class="button-remove">Remove frame</a>
+            </div>
+        </div>
+        <iframe id="frame" src="http://aqvatarius.com/themes/taurus/html/" frameborder="0" width="100%"></iframe>        
+
+                
+        <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-36783416-1', 'auto');
+        ga('send', 'pageview');            
+        </script>                
+    </body>
+</html>

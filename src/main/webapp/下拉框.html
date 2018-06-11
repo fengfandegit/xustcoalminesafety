@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="assets/js/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.ul1{
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<ul>
+			<li class="li1">
+				<p>第一列</p>
+				<ul class="ul1">
+					<li>1231213</li>
+					<li>111</li>
+					<li>2222</li>
+				</ul>
+			</li>
+			<li class="li1">
+				<p>第二列</p>
+				<ul class="ul1">
+					<li>3333</li>
+					<li>4444</li>
+					<li>5555</li>
+				</ul>
+			</li>
+			<li class="li1">
+				<p>第三列</p>
+				<ul class="ul1">
+					<li>666</li>
+					<li>777</li>
+					<li>888</li>
+				</ul>
+			</li>
+			<li class="li1">
+				<p>第四列</p>
+				<ul class="ul1">
+					<li>9999</li>
+				</ul>
+			</li>
+		</ul>
+		
+		<select>
+				<option value="请选择">请选择</option>
+				<option value="瓦斯传感器">瓦斯传感器</option>
+				<option value="温度传感器">温度传感器</option>
+				<option value="流量传感器">流量传感器</option>
+				<option value="负压传感器">负压传感器</option>
+			</select>
+		<script type="text/javascript">
+			$("p").attr("a",true);
+			$("p").click(function(){
+					$("p").each(function(ele){
+						$(ele).attr("a",true);
+					})
+					if($(this).attr("a")=="true"){//kai
+						$(this).parent().find("ul").show();
+						$(this).attr("a",false);
+					}else{
+						
+						$(this).parent().find("ul").hide();
+						$(this).attr("a",true);
+					}
+				
+			})
+			$(".header li").click(function(){
+				$(this).css("border-bottom","3px");
+				$(this).css("border-bottom-color","red");
+				$(this).css("border-bottom-style","solid");
+			})
+		</script>
+	</body>
+</html>

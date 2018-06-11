@@ -1,0 +1,14 @@
+{
+	"awardList": [
+					{
+						"awardId": 10001,
+						"awardName": "流量券",
+						"awardImage": "vote/webapp/image/1.jpg"
+					}, 
+					{
+						"awardId": 10002,
+						"awardName": "优惠券",
+						"awardImage": "11111"
+					}
+				]
+}

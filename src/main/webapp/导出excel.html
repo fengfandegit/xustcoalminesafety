@@ -1,0 +1,211 @@
+<!DOCTYPE html> 
+<html> 
+<head lang="en"> 
+ <meta charset="UTF-8"> 
+ <title>html 表格导出</title> 
+ <script src="js/echarts.js" type="text/javascript" charset="utf-8"></script>
+ <script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+ <script language="JavaScript" type="text/javascript"> 
+   
+   
+		  var idTmr; 
+		 //获取当前浏览器类型 
+		  function getExplorer() { 
+		   var explorer = window.navigator.userAgent ; 
+		   //ie 
+		   if (explorer.indexOf("MSIE") >= 0) { 
+		    return 'ie'; 
+		   } 
+		   //firefox 
+		   else if (explorer.indexOf("Firefox") >= 0) { 
+		    return 'Firefox'; 
+		   } 
+		   //Chrome 
+		   else if(explorer.indexOf("Chrome") >= 0){ 
+		    return 'Chrome'; 
+		   } 
+		   //Opera 
+		   else if(explorer.indexOf("Opera") >= 0){ 
+		    return 'Opera'; 
+		   } 
+		   //Safari 
+		   else if(explorer.indexOf("Safari") >= 0){ 
+		    return 'Safari'; 
+		   } 
+		  } 
+		    
+		 //获取到类型需要判断当前浏览器需要调用的方法，目前项目中火狐，谷歌，360没有问题 
+		  //win10自带的IE无法导出 
+		  function exportExcel(tableid) { //整个表格拷贝到excel中
+			  /* if(getExplorer()=='ie') 
+			   { 
+			    var curTbl = document.getElementById(tableid); 
+			     //创建AX对象excel
+			    var oXL = new ActiveXObject("Excel.Application"); 
+			   //获取workbook对象
+			    var oWB = oXL.Workbooks.Add(); 
+			     //激活当前sheet
+			    var xlsheet = oWB.Worksheets(1);
+			   //把表格中的内容移到TextRange中
+			    var sel = document.body.createTextRange(); 
+			    sel.moveToElementText(curTbl); 
+			    //全选TextRange中的内容
+			    sel.select(); 
+			   //复制TextRange中的内容
+			    sel.execCommand("Copy");
+			    //粘贴到活动的excel中
+			    xlsheet.Paste(); 
+			    //设置excel可见属性
+			    oXL.Visible = true; 
+			  
+			    try { 
+			     var fname = oXL.Application.GetSaveAsFilename("Excel.xls", "Excel Spreadsheets (*.xls), *.xls"); 
+			    } catch (e) { 
+			     print("Nested catch caught " + e); 
+			    } finally { 
+			     oWB.SaveAs(fname); 
+			     oWB.Close(savechanges = false); 
+			     oXL.Quit(); 
+			     oXL = null; 
+			     idTmr = window.setInterval("Cleanup();", 1); 
+			    } 
+			  
+			   } 
+			   else 
+			   { //如果不是ie浏览器
+			    tableToExcel(tableid) 
+			   } */
+		  		tableToExcel(tableid); 
+		  }
+		  function Cleanup() { 
+			   window.clearInterval(idTmr); 
+			   CollectGarbage(); 
+		  } 
+		    
+		 //判断浏览器后调用的方法，把table的id传入即可 
+		  var tableToExcel = (function() { 
+		   var uri = 'data:application/vnd.ms-excel;base64,', 
+		    template = '<html><head><meta charset="UTF-8"></head><body><table>{table}</table></body></html>', 
+		    base64 = function(s) { 
+		    	return window.btoa(unescape(encodeURIComponent(s))) 
+		    },
+		    format = function(s, c) { 
+		      	return s.replace(/{(\w+)}/g, 
+		        function(m, p) {
+		        	return c[p]; 
+		        }) 
+		    }
+		   	return function(table, name) { 
+		    	if (!table.nodeType){//判断table的节点类型
+		    		table = document.getElementById(table);//table就是传入的tableid==tableExcel
+		    	}
+		    	var ctx = {
+		    		worksheet: name || 'Worksheet', 
+		    		table: table.innerHTML
+		    	}
+		    	window.location.href = uri + base64(format(template, ctx)); 
+		   } 
+		  })() 
+  
+ </script> 
+</head> 
+<body> 
+  
+<div > 
+   
+ <button type="button" onclick="exportExcel('tableExcel')">导出Excel</button> 
+</div> 
+<div id="myDiv"> 
+<table id="tableExcel" width="100%" border="1" cellspacing="0" cellpadding="0"> 
+ <tr> 
+  <td colspan="5" align="center">html 表格导出道Excel</td> 
+ </tr> 
+ <tr> 
+    
+  <td>列标题</td> 
+ </tr> 
+ <tr> 
+  <td>aaa</td> 
+  <td>bbb</td> 
+  <td><img src="assets/images/gif-12-1.png"/></td> 
+  <td>ddd</td> 
+  <td>eee</td> 
+ </tr> 
+ <tr> 
+  <td>AAA</td> 
+  <td>BBB</td> 
+  <td>CCC</td> 
+  <td>DDD</td> 
+  <td>EEE</td> 
+ </tr> 
+ <tr> 
+  <td>FFF</td> 
+  <td>GGG</td> 
+  <td>HHH</td> 
+  <td>III</td> 
+  <td>JJJ</td> 
+ </tr> 
+</table> 
+</div> 
+<div id="div1" style="width: 600px;height:400px;"></div>
+<script type="text/javascript">
+	
+    
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('div1'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: 'ECharts 入门示例'
+            },
+            tooltip: {},
+            legend: {
+                data:['销量']
+            },
+            xAxis: {
+                data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+            },
+            yAxis: {},
+            toolbox: {
+			　　show: true,
+			　　feature: {
+			　　　　saveAsImage: {
+			　　　　show:true,
+			　　　　excludeComponents :['toolbox'],
+			　　　　pixelRatio: 2
+			　　　　}
+			　　}
+			},
+            series: [{
+                name: '销量',
+                type: 'bar',
+                data: [5, 20, 36, 10, 10, 20]
+            }]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+        function getFullCanvasDataURL(divId){
+		//将第一个画布作为基准。
+		    var baseCanvas = $("#"+divId).find("canvas").first()[0];
+		    if(!baseCanvas){
+		        return false;
+		    };
+		    var width = baseCanvas.width;
+		    var height = baseCanvas.height;
+		    var ctx = baseCanvas.getContext("2d");
+		    //遍历，将后续的画布添加到在第一个上
+		    $("#"+divId).find("canvas").each(function(i,canvasObj){
+		        if(i>0){
+		            var canvasTmp = $(canvasObj)[0];
+		            ctx.drawImage(canvasTmp,0,0,width,height);
+		        }
+		    });
+		    //获取base64位的url
+		    return baseCanvas.toDataURL();
+		}
+        getFullCanvasDataURL("div1");
+</script>
+</body> 
+</html>

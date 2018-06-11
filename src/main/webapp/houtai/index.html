@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"> 
+		<title></title>
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/common.css" />
+		<link rel="stylesheet" type="text/css" href="css/z-style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/activity-management.css"/>
+		<link rel="stylesheet" type="text/css" href="css/y-quanpingtai.css"/>
+		<link rel="stylesheet" type="text/css" href="css/brand-upload.css"/>
+		<link rel="stylesheet" type="text/css" href="css/L-award.css"/>
+		<link rel="stylesheet" type="text/css" href="css/L-person.css"/>
+		<link rel="stylesheet" type="text/css" href="css/p-statistics.css"/>
+		<style type="text/css">
+			
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="row head">
+				<div class="col-md-11 col-lg-11 welcome" >
+					欢迎进入VOTE
+				</div>
+				<div class="col-md-1 col-lg-1 back">
+					<a href="#">
+						退出
+					</a>
+				</div>
+			</div>
+			<div class="row section">
+				<div class="col-md-2 col-lg-2 left">
+					<div class="menu clearfix">
+						<span>菜单</span>
+						<img src="image/add.png" id="menu" />
+					</div>
+					<ul class="manage" id="left_block">
+						<li class="level1">
+							<a href="#">
+								<img src="image/add.png"/>
+								<span>活动管理</span>
+							</a>
+							<ul class="level2">
+								<li>
+									<a href="#">
+										<img src="image/arrows.png"/>
+										<span class="p-span1">活动管理</span>
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li class="level1">
+							<a href="#">
+								<img src="image/add.png"/>
+								<span>品牌管理</span>
+							</a>
+							<ul class="level2">
+								<li>
+									<a href="#">
+										<img src="image/arrows.png"/>
+										<span class="p-span1">全平台管理</span>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<img src="image/arrows.png"/>
+										<span class="p-span1">品牌上传管理</span>
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li class="level1">
+							<a href="#">
+								<img src="image/add.png"/>
+								<span>抽奖管理</span>
+							</a>
+							<ul class="level2">
+								<li>
+									<a href="#">
+										<img src="image/arrows.png"/>
+										<span id="w-price" class="p-span1">奖项管理</span>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<img src="image/arrows.png"/>
+										<span class="p-span1">中奖详情</span>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<img src="image/arrows.png"/>
+										<span class="p-span1">个人信息</span>
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li class="level1">
+							<a href="#">
+								<img src="image/add.png"/>
+								<span>数据统计</span>
+							</a>
+							<ul class="level2">
+								<li>
+									<a href="#">
+										<img src="image/arrows.png"/>
+										<span class="p-span1">统计管理</span>
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+				<div class="col-md-10 col-lg-10 right" id="right_block">
+					<div class="w-a">
+						<div class="row description">
+							<span class="col-md-12 col-lg-12">VOTE管理中心 - 活动管理</span>
+						</div>
+						<div class="row activity-starttime">
+							<span class="col-lg-3">开始时间：</span>
+							<input class="col-lg-4" type="date" name="activity_start"/>
+							<span class="col-lg-5"></span>
+						</div>
+						<div class="row activity-endtime">
+							<span class="col-lg-3">结束时间：</span>
+							<input class="col-lg-4" type="date" name="activity_end"/>
+							<span class="col-lg-5"></span>
+						</div>
+						<div class="row activity-developer-information">
+							<span class="col-lg-3">开发者信息：</span>
+							<input class="col-lg-4" type="text" name="activity_dev_info"/>
+							<span class="col-lg-5"></span>
+						</div>
+						<div class="row activity-name">
+							<span class="col-lg-3">活动名称：</span>
+							<input class="col-lg-4" type="text" name="activity_name"/>
+							<span class="col-lg-5"></span>
+						</div>
+						<div class="row activity-introduce">
+							<span class="col-lg-3">活动介绍：</span>
+							<textarea class="col-lg-4" rows="8" cols="5" name="activity_info"></textarea>
+							<span class="col-lg-5"></span>
+						</div>
+						<div class="row activity-vote-detail">
+							<span class="col-lg-3">投票详情：</span>
+							<input class="col-lg-4" type="text" name="vote_info"/>
+							<span class="col-lg-5"></span>
+						</div>
+						<div class="row">
+							<span class="col-md-5 col-lg-5"></span>
+							<button class="col-md-2 col-lg-2" onclick="javascript:sq()">确定</button>
+							<span class="col-md-5 col-lg-5"></span>
+						</div>
+
+					</div>
+					
+					
+					<div class="w-a">
+						
+						<div class="y-right">
+						<div class="y-mcenter">
+								VOTE管理中心&nbsp;-&nbsp;全平台管理
+						</div>
+						<form class="y-form">
+							<img src="image/ss.png" class="y-ss" />
+							<input type="text" placeholder="品牌名称" class="y-name"/>
+							<span class="y-type">分类</span>
+							<select class="y-select" id="select">
+								<option value="游戏">游戏</option>
+								<option value="影视">影视</option>
+								<option value="音乐">音乐</option>
+								<option value="购物">购物</option>
+								<option value="旅行出行">旅行出行</option>
+								<option value="美食健康">美食健康</option>
+								<option value="教育">教育</option>
+								<option value="社交">社交</option>
+								<option value="阅读">阅读</option>
+								<option value="工具助手">工具助手</option>
+							</select>
+							<!--<span class="y-keyword">关键字</span>
+							<input type="text" class="y-text" />
+							<input type="submit" value="搜索" class="y-submit"/>-->
+							<input type="button" value="上传品牌" class="y-btn">
+						</form>
+						<table class="table  table-bordered y-table">
+							<thead>
+								<tr>
+									<th>序号</th>
+									<th>LOGO</th>
+									<th>名称</th>
+									<th>票数</th>
+									<th>编辑</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1</td>
+									<td><img src="image/hlddz.png"/></td>
+									<td>欢乐斗地主</td>
+									<td>26</td>
+									<td>删除</td>
+								</tr>
+								<tr>
+									<td>2</td>
+									<td><img src="image/kxxxl.png"/></td>
+									<td>开心消消乐</td>
+									<td>7</td>
+									<td>删除</td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td><img src="image/mhls.png"/></td>
+									<td>猫和老鼠</td>
+									<td>38</td>
+									<td>删除</td>
+								</tr>
+								<tr>
+									<td>4</td>
+									<td><img src="image/mlr.png"/></td>
+									<td>梦旅人</td>
+									<td>3</td>
+									<td>删除</td>
+								</tr>
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+							</tbody>
+						</table>
+						<div class="y-ym">
+							<span>
+								总共
+								<span id="total">53</span>
+								个记录分为
+								<span id="page">4</span>
+								页当前第
+								<span id="order">1</span>
+								页,每页
+								<input type="text"value="15" class="num"/>
+								|
+								<input type="button" value="第一页" id="fpage"/>
+								<input type="button" value="上一页" id="upage"/>
+								<input type="button" value="下一页" id="dpage"/>
+								<input type="button" value="最末页" id="lpage"/>
+							</span>
+						</div>
+						<div class="y-foot">
+							<span>共执行2个查询，用时0.010605秒，Gzip 已启用，内存占用3.139MB</span><br />
+							<span>版权所有@2005-2012最新模板zuixinmoban.com 提供技术支持！</span>
+						</div>
+					</div>
+
+					
+					
+					
+					<div class="hide">
+						
+						
+					</div>
+		    <input type="button" value="生成Excel表格" id="input1"/>
+            </div>
+					
+					
+					<div class="w-a">
+						
+						<div class="row description">
+							<span class="col-md-12 col-lg-12">VOTE管理中心 - 品牌上传管理</span>
+						</div>
+						<div class="row">
+							<div class="col-md-7 col-lg-7">
+								<div class="row APP-1">
+									<span class="col-md-3 col-lg-3">APP名称：</span>
+							        <input type="text" class="col-md-4 col-lg-4" name="brandName"/>
+							        <div class="col-md-5 col-lg-5">
+							        	<form action="">
+											<select id="brandType">
+												<option value="shop">购物</option>
+												<option value="read">阅读</option>
+												<option value="food">美食</option>
+												<option value="TV">影视</option>
+												<option value="music">音乐</option>
+												<option value="teach">教育</option>
+												<option value="chat">社交</option>
+												<option value="trip">旅行</option>
+												<option value="game">游戏</option>
+												<option value="tool">工具</option>
+											</select>
+										</form>
+	                                </div>
+								</div>
+								<div class="row APP-2">
+									<span class="col-md-3 col-lg-3">APP介绍：</span>
+									<textarea class="col-md-9 col-lg-9" rows="8" cols="10" name="brandInfo"></textarea>
+								</div>
+							</div>
+							<div class="col-md-5 col-lg-5 APP-logo">
+								<div class="row">
+									<div class="col-md-12 col-lg-12">
+										<span>logo上传：</span>
+									</div>
+								</div>
+								<div class="row">
+									<div id="localImag" class="col-md-12 col-lg-12">
+	                                <img id="preview"  width="150" height="150" style="display: block; width: 150px; height: 180px;">
+	                                </div>
+								</div>
+								<div class="row">
+									<input type="file" id="doc" name="logoPhoto">
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12 col-lg-12 APP-show-span"><span>APP展示:</span></div>
+						</div>
+						<div class="row">
+							<div id="localImag1" class="col-md-3 col-lg-3">
+								<img id="brandPhoto1"  width="150" height="150" style="display: block; width: 150px; height: 180px;">
+							</div>
+							<div id="localImag2" class="col-md-3 col-lg-3">
+								<img id="brandPhoto2"  width="150" height="150" style="display: block; width: 150px; height: 180px;">
+							</div>
+							<div id="localImag3" class="col-md-3 col-lg-3">
+								<img id="brandPhoto3"  width="150" height="150" style="display: block; width: 150px; height: 180px;">
+							</div>
+							<div id="localImag4" class="col-md-3 col-lg-3">
+								<img id="brandPhoto4"  width="150" height="150" style="display: block; width: 150px; height: 180px;">
+							</div>
+						</div>
+						<div class="row appBtn">
+							<input class="col-md-3 col-lg-3" type="file" id="info1" name="infoPhoto1">
+							<input class="col-md-3 col-lg-3" type="file" id="info2" name="infoPhoto2">
+							<input class="col-md-3 col-lg-3" type="file" id="info3" name="infoPhoto3">
+							<input class="col-md-3 col-lg-3" type="file" id="info4" name="infoPhoto4">
+						</div>
+						<div class="row">
+							<span class="col-md-5 col-lg-5"></span>
+							<button class="col-md-2 col-lg-2" onclick="javascript:sq()">确定</button>
+							<span class="col-md-5 col-lg-5"></span>
+						</div>
+
+					</div>
+					
+					
+					<div class="w-a">
+						<div id="w-price">
+							<h1>VOTE管理中心-奖项管理</h1>
+						</div>
+						<table class="table table-hover table-striped reward" style="text-align: center;" >
+							<thead>
+								<tr>
+									<td>奖项</td>
+								<td>图标上传</td>
+									<td>奖项设定</td>
+								</tr>
+							</thead>
+							<tbody id="w-tbody">
+								<tr>
+									<td>奖项一</td>
+									<td><!--<img src="image/kxxxl.png"/>--></td>
+									<td></td>
+								</tr>
+								<tr>
+									<td>奖项二</td>
+									<td></td>
+									<td></td>
+								</tr>
+								<!--<tr>
+									<td>奖项三</td>
+									<td></td>
+									<td></td>
+								</tr>
+								<tr>
+									<td>奖项四</td>
+									<td></td>
+									<td></td>
+								</tr>
+								<tr>
+									<td>奖项五</td>
+									<td></td>
+									<td></td>
+								</tr>
+								<tr>
+									<td>奖项六</td>
+									<td></td>
+									<td></td>
+								</tr>
+								<tr>
+									<td>奖项七</td>
+									<td></td>
+									<td></td>
+								</tr>
+								<tr>
+									<td>奖项八</td>
+									<td></td>
+									<td></td>
+								</tr>
+								<tr>
+									<td>奖项九</td>
+									<td></td>
+									<td></td>
+								</tr>
+								<tr>
+									<td>奖项十</td>
+									<td></td>
+									<td></td>
+								</tr>-->
+							</tbody>
+						</table>
+					</div>
+					
+					<div class="w-a">
+						
+						<div class="col-sm-12 col-md-12 col-lg-12 L-banner">
+						VOTE管理中心&nbsp;&nbsp;&nbsp;&nbsp;—&nbsp;
+						<span class="L-bannerName">中奖详情</span>
+						</div>
+						<div class="col-sm-12 col-md-12 col-lg-12 button-group1">
+							<button class="L-time1" id="L-time11">按时间
+								<span class="L-arrow1" id="L-arrow11"><img src="image/uparrow.jpg"></span>
+								<span class="L-arrow2" id="L-arrow22"><img src="image/downarrow.jpg"></span>
+							</button>
+							<input type="text" value="" class="L-Num" placeholder="请输入手机号">
+							<button class="L-but1">搜索</button>
+							<select class="select1" id="select11">
+								<option value="1G流量券">1G流量券</option>
+								<option value="500M流量券">500M流量券</option>
+								<option value="150M流量券">150M流量券</option>
+								<option value="70M流量券">70M流量券</option>
+								<option value="30M流量券">30M流量券</option>
+								<option value="10M流量券">10M流量券</option>
+								<option value="谢谢参与">谢谢参与</option>
+								<option value="谢谢参与">谢谢参与</option>
+								<option value="谢谢参与">谢谢参与</option>
+								<option value="谢谢参与">谢谢参与</option>
+							</select>
+							<input type="text" value="" class="L-KV" placeholder="请输入关键字">
+							<button class="L-but2">搜索</button>
+						</div>
+						
+						<table class="table table-bordered" id="table12">
+							<thead>
+								<tr>
+									<td>序号</td>
+									<td>姓名</td>
+									<td>手机号</td>
+									<td>身份证号</td>
+									<td>奖项</td>
+									<td>是否领取</td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1</td>
+									<td>张三</td>
+									<td>18792789790</td>
+									<td>376898199611300274</td>
+									<td>50M流量券</td>
+									<td>是</td>
+								</tr>
+								
+								
+								<tr>
+									<td class="recode" colspan="6" style="padding-left:480px;">
+										<p class="L-p1">当前总共<span class="L-span1" id="L-span1"></span>条记录
+										当前第<span class="L-span2" id="L-span2">1</span>页 ,每页
+										<input type="text" class="L-input1">条&nbsp;&nbsp;&nbsp;|
+										<button type="button" class="L-span3" id="L-span3">第一页</button>
+										<button type="button" class="L-span4" id="L-span4">上一页</button>
+										<button type="button" class="L-span5" id="L-span5">下一页</button>
+										<button type="button" class="L-span6" id="L-span6">最后一页</button>
+									</td>
+								</tr>
+							</p>
+							</tbody>
+						</table>
+						
+						<div class="col-sm-12 col-md-12 col-lg-12 btn-excel">
+							<button class="excel" id="excel2" >导出excel</button>
+						</div>
+
+					</div>
+					
+					<div class="w-a">
+						<div class="col-sm-12 col-md-12 col-lg-12 L-banner">
+						VOTE管理中心&nbsp;&nbsp;&nbsp;&nbsp;—&nbsp;
+						<span class="L-bannerName">个人信息</span>
+						</div>
+						<div class="col-sm-12 col-md-12 col-lg-12 button-group1">
+							<input type="text" value="" class="L-Num" id="L-Num11" placeholder="请输入手机号">
+							<button class="L-but1" id="L-Btn1">搜索</button>
+							<!--<input type="text" value="" class="L-KV" placeholder="请输入关键字">
+							<button class="L-but2">搜索</button>-->
+						</div>
+						
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<td>序号</td>
+									<td>姓名</td>
+									<td>手机号</td>
+									<td>身份证号</td>
+									<td>投票次数</td>
+									<td>投票品牌个数</td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1</td>
+									<td>张三</td>
+									<td>18792789790</td>
+									<td>376898199611300274</td>
+									<td>5</td>
+									<td>4</td>
+								</tr>
+								
+								
+								<tr>
+									<td class="recode" colspan="6" style="padding-left:400px;">
+										<p class="L-p1">当前总共<span class="L-span1">10</span>条记录
+										当前第<span class="L-span2">1</span>页 ,每页
+										<input type="text" class="L-input1">条&nbsp;&nbsp;&nbsp;|
+										<button type="button" class="L-span3">第一页</button>
+										<button type="button" class="L-span4">上一页</button>
+										<button type="button" class="L-span5">下一页</button>
+										<button type="button" class="L-span6">最后一页</button>
+									</td>
+								</tr>
+							</p>
+							</tbody>
+						</table>
+						
+							
+						<div class="col-sm-12 col-md-12 col-lg-12 btn-excel">
+							<button class="excel" id="excel1">导出excel</button>
+						</div>
+
+					</div>
+					
+					<div class="w-a">
+						<div class="p-head">VOTE管理中心<span>&emsp;-&emsp;统计管理</span></div>
+						<div class="p-mid">
+							<table class="table table-bordered p-table1">
+								<tbody>
+									<tr>
+										<td>
+											<span class="type">全部</span>
+											<span class="p-p1"></span><br>
+											<span class="p-p2"></span>
+										</td>
+										<td>
+											<span class="type">购物</span>
+										    <span class="p-p1"></span><br>
+											<span class="p-p2"></span>
+										</td>
+										<td>
+											<span class="type">阅读</span>
+											<span class="p-p1"></span><br>
+											<span class="p-p2"></span>
+										</td>
+										<td>
+											<span class="type">美食</span>
+										    <span class="p-p1"></span><br>
+											<span class="p-p2"></span>
+										</td>
+										<td>
+											<span class="type">影视</span>
+										    <span class="p-p1"></span><br>
+											<span class="p-p2"></span>
+										</td>
+										<td>
+											<span class="type">音乐</span>
+											<span class="p-p1"></span><br>
+											<span class="p-p2"></span>
+										</td>
+										<td>
+											<span class="type">教育</span>
+											<span class="p-p1"></span><br>
+											<span class="p-p2"></span>
+										</td>
+										<td>
+											<span class="type">社交</span>
+											<span class="p-p1"></span><br>
+											<span class="p-p2"></span>
+										</td>
+										<td>
+											<span class="type">旅行</span>
+											<span class="p-p1"></span><br>
+											<span class="p-p2"></span>
+										</td>
+										<td>
+											<span class="type">游戏</span>
+											<span class="p-p1"></span><br>
+											<span class="p-p2"></span>
+										</td>
+										<td>
+											<span class="type">工具</span>
+											<span class="p-p1"></span><br>
+											<span class="p-p2"></span>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+					    </div>
+						<div class="p-bottom">
+							<table class="table table-bordered p-table2">
+								<thead>
+								    <tr>
+								        <th>序号</th>
+								        <th>名次</th>
+								        <th>LOGO</th>
+								        <th>APP名称</th>
+								        <th>票数</th>
+								    </tr>
+								</thead>
+								<tbody id="tbmain">
+								    
+								</tbody>
+							</table>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		<script src="script/jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="script/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+		   $(function(){                       		//等待dom加载完毕
+			   	var level2 = $(".level2");        	 //获得刷新页面需要隐藏的东西(这是头部的按钮点击事件)
+			   	level2.hide();                     	//隐藏
+			   	 $("#menu").click(function(){       //给菜单按钮添加点击事件
+			   	 	if(level2.is(":visible")){      //如果元素显示
+			   	 	    $(this).attr("src","image/add.png");
+			   	    	level2.hide()
+			   	    	.siblings().children("img")
+			   	    	.attr("src","image/add.png");       
+			   	    }else{
+			   	    	$(this).attr("src","image/reduce.png");
+			   	    	level2.show()
+			   	    	.siblings().children("img")
+			   	    	.attr("src","image/reduce.png");
+			   	    }
+			   	 })
+			   	 $(".level1>a").click(function(){        //这是每项的按钮点击事件
+			   	 	if($(this).next().is(":visible"))   //若每项的子文件是可见的
+			   	 	{         
+			   	 		$(this).next().hide();
+			   	 		$(this).children("img").attr("src","image/add.png");
+				
+			   	 	}
+			   	 	else
+			   	 	{
+			   	 		$(this).next().show();
+			   	 		$(this).children("img").attr("src","image/reduce.png");
+			   	 	}
+			   	 })
+//			   	 $(".level2 a").click(function(){
+//			   	 	$(this).find("span").addClass("current")
+//			   	 	.parent().parent().siblings().find("span")
+//			   	 	.removeClass("current")
+//			   	 	.parent().parent().siblings()
+//			   	 	.parent().parent().siblings().find("span").removeClass("current");
+//			   	 })
+			   	 return false;
+		   })        	
+			
+			
+			//选项卡
+			var $aspan = $(".p-span1");//获取到所有子li
+			//alert($aspan.length);
+			$("#right_block .w-a").eq(0).show().siblings().hide();//进循环之前，先让所有右边的块都隐藏
+			for(var i=0;i<$aspan.length;i++){
+				(function(){
+					$aspan[i].index = i;
+					alert($aspan[i].index);
+					var index = $aspan[i].index;//$aspan[i]已经是dom元素了，所以下面直接用onclick
+					alert(index);
+					$aspan[i].onclick = function(){
+						alert(i);
+						$("#right_block .w-a").eq(index).show().siblings().hide();
+					}
+				})(i);
+				
+			}
+			//王珊的ajax请求
+			$("#w-price").click(function(){
+ 
+				$.ajax({
+					type:"get",
+					url:"http://192.168.1.101:8080/vote/award/findAllAward?callback=?", 
+					dataType:"jsonp",
+					jsonpCallback:"callback",
+					success:function(data){
+						//alert(data.awardList);
+						//var data1= eval("("+data+")");
+						//var ob=JSON.parse(data) ; 
+						
+						for(var i=0; i<data.awardList.length; i++)  
+					  	{  
+					  		var img1 = data.awardList[i].awardImage;
+					  		var span1 = data.awardList[i].awardName;
+					   	 	var tr = $("#w-tbody").children("tr")[i];
+					   	 	
+					   	 	$(tr.children[1]).html("<img src="+img1+"/>");
+					   	 	
+					   	 	$(tr.children[2]).html("<span>"+span1+"</span>");
+					  	}
+					  	
+					}
+				});
+			})
+			//彭翠的ajax请求
+			
+			//严晨阳的ajax请求
+			
+			//卢银银的ajax请求
+			
+			//夏园园的ajax请求
+		</script>
+	</body>
+</html>

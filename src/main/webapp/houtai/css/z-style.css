@@ -1,0 +1,89 @@
+.container{
+				width:100%;
+			}
+			.head{
+				background-color:#f5f5f5;
+				 height:66px; 
+				 line-heighst:66px;
+			}
+			.all{
+				position: fixed;
+			}
+			.welcome{
+				font-size:20px;
+			}
+			.back{
+				text-align:center;
+				font-size:18px;
+				color:#278296;
+			}
+			.left{
+				background-color:#f5f5f5;
+				height:700px;
+				margin-top:1px;
+				padding-left:10px;
+				padding-right:28px;
+				font-size:14px;
+			}
+			.menu{
+				padding-left:38px;
+				height:35px;
+				line-height:35px;
+			}
+			.menu span{
+				float:left;
+			}
+			.menu img{
+				float:right;
+				margin-top:11px;
+			}
+			.manage{
+				/*border:2px #c1c1c1 solid;*/
+				box-shadow:inset 1px -1px 1px #c1c1c1, inset -1px 1px 1px #c1c1c1;
+				padding:16px 0 86px 16px;
+				background-color:#fff;
+			}
+			.manage .level1{
+				margin-bottom:10px;
+			}
+			.level2 li{
+				margin-left:24px;
+				margin-top:10px;
+			}
+			.level2 span:hover{
+				color:red;
+			}
+			.manage img{
+				margin-right:6px;
+			}
+			.current{
+				color:#67dff0;
+			}
+			.right{
+				padding-left: 28px;
+				padding-right: 28px;
+			}
+			#w-price h1{
+				height: 76px;
+				line-height: 76px;
+				font-size: 23px;
+				color: #130a0a;
+			}
+			.reward{
+				font-size: 20px;
+				font-weight: normal;
+			}
+			.reward tbody tr{
+				font-size: 18px;
+			}
+			.reward tbody tr img{
+				width: 40px;
+				height: 40px;
+			}
+			tbody img{
+				width: 40px;
+				height: 40px;
+			}
+			.w_hide{
+				display: none;
+			}
