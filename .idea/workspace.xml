@@ -3,11 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="4c4c227b-0a08-4657-8706-30b7ba202ddd" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xust/controller/ReadDataController.java" afterPath="$PROJECT_DIR$/src/main/java/com/xust/controller/ReadDataController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xust/service/ReadRunService.java" afterPath="$PROJECT_DIR$/src/main/java/com/xust/service/ReadRunService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xust/utils/AverageUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/xust/utils/AverageUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xust/utils/SendNowData.java" afterPath="$PROJECT_DIR$/src/main/java/com/xust/utils/SendNowData.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/test/Main.java" afterPath="$PROJECT_DIR$/src/main/test/Main.java" />
     </list>
     <ignored path="TestTenchat.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -1238,7 +1233,7 @@
       <workItem from="1528446216958" duration="15077000" />
       <workItem from="1528524668281" duration="9579000" />
       <workItem from="1528597860923" duration="28513000" />
-      <workItem from="1528686948817" duration="6774000" />
+      <workItem from="1528686948817" duration="6909000" />
     </task>
     <servers />
   </component>
@@ -1275,7 +1270,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="280606000" />
+    <option name="totallyTimeSpent" value="280741000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="916" extended-state="6" />
