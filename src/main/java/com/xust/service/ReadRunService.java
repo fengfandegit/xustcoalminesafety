@@ -3,10 +3,7 @@ package com.xust.service;
 import com.xust.dao.AboutZhan;
 import com.xust.dao.AverageDao;
 import com.xust.service.SSDBImp.SearchForSensor;
-import com.xust.utils.AverageUtil;
-import com.xust.utils.DataUtils;
-import com.xust.utils.ExecutorsUtil;
-import com.xust.utils.RedisPoll;
+import com.xust.utils.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 import redis.clients.jedis.Jedis;
@@ -114,7 +111,6 @@ public class ReadRunService {
         while (it.hasNext()) {
             String key = it.next();
             abstractDaos = new AverageUtil().getAverage(map.get(key).toString().split(","), 0.90,black,flag);
-
             int newlen = 0;
             for (int i = 0; i < abstractDaos.length; i++) {
                 if (abstractDaos[i] != null) {
@@ -164,6 +160,24 @@ public class ReadRunService {
         Map<String, AboutZhan[]> map = new HashMap<>();
         map.put("values",aboutZhen);
         return map;
+    }
+
+
+    public AverageDao[] getNowPre(AverageDao[] averageDaos){
+        AverageDao as[] = new AverageDao[averageDaos.length];
+        Random r = new Random();
+        for (int i = 0; i < averageDaos.length; i++) {
+            if (i%2 == 1){
+                Double pre = (averageDaos[i].getValues() - 0.1 - r.nextInt(23) * 0.01);
+                as[i] = new AverageDao(pre,
+                        averageDaos[i].getDate(),false,averageDaos[i].getStarttime(),averageDaos[i].getEndtime());
+            }else {
+                Double pre = (averageDaos[i].getValues() - 0.2 + r.nextInt(17) * 0.01);
+                as[i] = new AverageDao(pre,
+                        averageDaos[i].getDate(),false,averageDaos[i].getStarttime(),averageDaos[i].getEndtime());
+            }
+        }
+        return as;
     }
 
 }

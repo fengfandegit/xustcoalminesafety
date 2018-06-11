@@ -29,8 +29,19 @@ public class ReadDataController {
                           @RequestParam("id") String id,
                           @RequestParam("starttime") String starttime,
                           @RequestParam("endtime") String endtime,
-                          @RequestParam("black")String black) {
-        Map<String, AverageDao[]> map = readRunService.getData(no, type, id, starttime, endtime,black,true);
+                          @RequestParam("black") String black) {
+        Map<String, AverageDao[]> map = readRunService.getData(no, type, id, starttime, endtime, black, true);
+        Set<String> set = map.keySet();
+        Iterator<String> it = set.iterator();
+        String prekey = "";
+        while (it.hasNext()) {
+            String key = it.next();
+            if ("1".equals(key.split("_")[1])) {
+                prekey = key;
+            }
+        }
+
+        map.put("pre" + prekey, readRunService.getNowPre(map.get(prekey)));
         MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(map);
         mappingJacksonValue.setJsonpFunction(callback);
         return mappingJacksonValue;
@@ -56,7 +67,7 @@ public class ReadDataController {
         return mappingJacksonValue;
     }
 
-    @RequestMapping(value = "/upload",consumes = "multipart/form-data",method = RequestMethod.POST)
+    @RequestMapping(value = "/upload", consumes = "multipart/form-data", method = RequestMethod.POST)
     @ResponseBody
     public String handleFileUpload(@RequestParam("file") MultipartFile file) {
         if (!file.isEmpty()) {

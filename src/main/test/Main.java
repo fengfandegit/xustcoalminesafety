@@ -30,6 +30,9 @@ public class Main {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
         String valuem = sdf.format(d);
         System.out.println(valuem);
+        for (int i = 0;i<100;i++) {
+            System.out.println((Math.random() * 699.5) + 0.5);
+        }
         /*
         String str = RedisPoll.getResource().get("1_1_1_20180329");*/
         //System.out.println(str);

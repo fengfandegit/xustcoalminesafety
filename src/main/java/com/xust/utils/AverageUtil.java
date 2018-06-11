@@ -26,6 +26,9 @@ public class AverageUtil {
                 allnum = data.length/(120*Integer.parseInt(black.substring(1,black.length())));
             }
         }
+        if (data.length<120){
+            allnum = 150;
+        }
         AverageDao[] averageDao = new AverageDao[allnum+1];
         if (data != null && data.length > allnum) {
             int baselen = data.length / allnum;

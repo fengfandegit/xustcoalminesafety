@@ -27,7 +27,6 @@ public class SendNowData extends TimerTask {
     public void run() {
         Jedis jedis = RedisPoll.getResource();
         try {
-            //while (true) {
             logger.info("test");
             Date d = new Date(System.currentTimeMillis());
             SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
@@ -66,7 +65,6 @@ public class SendNowData extends TimerTask {
 
                     }
                 }
-                // }
             }
         } catch (Exception e) {
             e.printStackTrace();
