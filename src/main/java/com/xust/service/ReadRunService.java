@@ -64,7 +64,7 @@ public class ReadRunService {
         }
         int newlen = 0;
         for (int i = 0; i < returndatas.length; i++) {
-            if (!returndatas[i].split(":")[1].equals("null")) {
+            if (returndatas[i]!=null&&!returndatas[i].split(":")[1].equals("null")) {
                 newlen++;
             }
         }

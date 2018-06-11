@@ -40,8 +40,9 @@ public class TestRedis {
         for (int i = 1; i < 3; i++) {
             for (int j = 1; j < 5; j++) {
                 for (int k = 1; k < 3; k++) {
-                    String key = i + "_" + j + "_" + k + "_" + 20180610;
-                    System.out.println(RedisPoll.getResource().get(key));
+                    String key = i + "_" + j + "_" + k + "_" + 20180611;
+                    RedisPoll.getResource().set(key,"");
+                    System.out.println();
                 }
             }
         }
@@ -135,8 +136,6 @@ public class TestRedis {
     @Test
     public void settest() {
         Jedis jedis = RedisPoll.getResource();
-        jedis.set("3", "1;2;3;4;5;6;7;8;9;0");
-        jedis.set("4", "0;9;8;7;6;5;4;3;2;1");
-        System.out.println(jedis.get("3"));
+        System.out.println(jedis.get("1_1_1_20180611"));
     }
 }
