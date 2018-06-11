@@ -47,7 +47,12 @@ public class MianController {
                             @RequestParam("password") String password,
                             @RequestParam("code") String code) {
         String flag;
-        if (code != null && !code.trim().equals("") && phonenum != null && !phonenum.trim().equals("")
+        String phone = "0";
+        //1表示注册过
+        if (userservice.checkInsert(phonenum)) {
+            phone = "1";
+            flag = "0";
+        } else if (code != null && !code.trim().equals("") && phonenum != null && !phonenum.trim().equals("")
                 && new TenMessageAPI().checkVerificationCode(code, phonenum)) {
             userservice.insertInfo(realame, password, phonenum);
             flag = "1";
@@ -55,11 +60,12 @@ public class MianController {
             flag = "0";
         }
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("flag", flag.toString());
+        jsonObject.put("flag", flag);
+        jsonObject.put("phone", phone);
         return jsonObject;
     }
 
-    public void test(String realame,String password,String phonenum){
+    public void test(String realame, String password, String phonenum) {
         userservice.insertInfo(realame, password, phonenum);
     }
 

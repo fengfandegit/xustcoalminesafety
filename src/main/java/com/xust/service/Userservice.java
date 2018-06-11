@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.UUID;
 
@@ -27,9 +28,9 @@ public class Userservice {
     public boolean checkLogin(String phonenum, String password) {
         boolean falg = false;
         try {
-            User user = userMapper.findUserByName(phonenum);
-            if (user != null) {
-                if (this.checkLoginPass(password, user)) {
+            ArrayList<User> user = userMapper.findUserByName(phonenum);
+            if (user != null&&user.size() == 1) {
+                if (this.checkLoginPass(password, user.get(0))) {
                     falg = true;
                 }
             }
@@ -38,6 +39,19 @@ public class Userservice {
         } finally {
             return falg;
         }
+    }
+
+    public boolean checkInsert(String phonenum){
+        boolean flag = false;
+        try {
+            ArrayList<User> user = userMapper.findUserByName(phonenum);
+            if (user != null&&user.size() == 1) {
+                flag = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return flag;
     }
 
     public boolean checkLoginPass(String password, User user) {
