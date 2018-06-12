@@ -127,7 +127,7 @@
 		//点击登录
 		$("#submit").click(function(){
 			$.ajax({
-				type:'POST',
+				type:'get',
 				url:url+"/application/login?phonenum="+$("#admin").val()+"&password="+$("#password").val(),
 				success:function(data){
 					
