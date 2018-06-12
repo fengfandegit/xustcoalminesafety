@@ -41,7 +41,7 @@ public class MySpringBootApplication extends WebMvcConfigurerAdapter implements 
     public static void main(String[] args) {
         SpringApplication.run(MySpringBootApplication.class, args);
         new Timer().schedule(new TenMessageAPI(), 60 * 1000, 60 * 1000);
-        //new Timer().schedule(new SendNowData(), 30 * 1000, 30 * 1000);
+        new Timer().schedule(new SendNowData(), 30 * 1000, 30 * 1000);
         PropertyConfigurator.configure(System.getProperty("user.dir") + "/config/log4j.properties");
         logger.info("test");
         //SendNowData.config();

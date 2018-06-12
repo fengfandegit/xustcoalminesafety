@@ -40,8 +40,7 @@ public class TestRedis {
         /*for (int i = 1; i < 3; i++) {
             for (int j = 1; j < 5; j++) {
                 for (int k = 1; k < 3; k++) {*/
-                    String key = 1 + "_" + 1 + "_" + 1 + "_" + 20180611;
-
+                    String key = "1_1_1_20180613";
                     System.out.println(RedisPoll.getResource().get(key));
         /*        }
             }
