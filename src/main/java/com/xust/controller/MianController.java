@@ -68,13 +68,17 @@ public class MianController {
     public void test(String realame, String password, String phonenum) {
         userservice.insertInfo(realame, password, phonenum);
     }
-
+    @ResponseBody
     @RequestMapping(value = "/login")
-    public String login(@RequestParam("phonenum") String phonenum, @RequestParam("password") String password) {
+    public JSONObject login(@RequestParam("phonenum") String phonenum, @RequestParam("password") String password) {
+        String flag = "0";
+        JSONObject jsonObject = new JSONObject();
         if (userservice.checkLogin(phonenum, password)) {
-            return "redirect:/zhuyemian.html";
+            flag = "1";
         } else {
-            return "redirect:/index.html";
+            flag = "0";
         }
+        jsonObject.put("flag",flag);
+        return jsonObject;
     }
 }

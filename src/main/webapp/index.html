@@ -130,9 +130,14 @@
 				type:'get',
 				url:url+"/application/login?phonenum="+$("#admin").val()+"&password="+$("#password").val(),
 				success:function(data){
-					
+					if(data.flag=="1"){
+						window.location.href = url+"/zhuyemian.html";
+					}else{
+						alert("登录失败！");
+					}
 				}
 			})
+			
 		})
 	</script>
 </body>
