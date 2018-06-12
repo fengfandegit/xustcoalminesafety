@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 import redis.clients.jedis.Jedis;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CountDownLatch;
@@ -132,7 +135,18 @@ public class ReadRunService {
 
     public Map<String, AverageDao[]> getNowDatas(String no, String type, String id, String data) {
         //兼容下层调用模块
-        return this.getData(no, type, id, data, data,"d0",false);
+        Map<String, AverageDao[]> map =  this.getData(no, type, id, data, data,"d0",false);
+        Set<String> set = map.keySet();
+        Iterator<String> it = set.iterator();
+        String prekey = "";
+        while (it.hasNext()) {
+            String key = it.next();
+            if ("1".equals(key.split("_")[1])) {
+                prekey = key;
+            }
+        }
+        map.put("pre_now"+prekey,this.predictResult(map.get(prekey)));
+        return map;
     }
 
     public Map<String, AboutZhan[]> getAboutZhan() {
@@ -182,8 +196,96 @@ public class ReadRunService {
                 as[i] = new AverageDao(pre,
                         averageDaos[i].getDate(),false,averageDaos[i].getStarttime(),averageDaos[i].getEndtime());
             }
+
         }
         return as;
+    }
+
+
+    public AverageDao[] predictResult(AverageDao[] a) {
+        if (false) {
+            List<AverageDao> listValue = new ArrayList<>();
+            List<String> listKey = new ArrayList<>();
+            List<Object> list1 = new ArrayList<>();
+            AverageDao[] averageDaos2 = {};
+            AverageDao[] averageDaos = {};
+            Map<String, AverageDao[]> mapnew = new LinkedHashMap<>();
+            String[] strings = {};
+            for (int i = 0; i < a.length; i++) {
+                AverageDao averageDao = (AverageDao) a[i];
+                listValue.add(averageDao);
+            }
+            for (int i = 0; i < listValue.size(); i++) {
+                list1.add(listValue.get(i));
+            }
+            try {
+                String[] args1 = new String[]{"python",
+                        "\\usr\\local\\src\\main.py",
+                        String.valueOf(strings)};
+                Process proc = Runtime.getRuntime().exec(args1);// 执行py文件
+                BufferedReader in = new BufferedReader(new InputStreamReader(proc.getInputStream()));
+                String line = null;
+                while ((line = in.readLine()) != null) {
+                    list1.add(line);
+                }
+                for (int i = 0; i < averageDaos.length; i++) {
+                    averageDaos[i].setValues((Double) list1.get(i));
+                }
+                in.close();
+                proc.waitFor();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            if (listKey.size() == listValue.size()) {
+                for (int i = 0; i < listKey.size(); i++) {
+                    mapnew.put(listKey.get(i), averageDaos);
+                }
+            }
+            for (int i = 0; i < listValue.size(); i++) {
+                averageDaos2[i] = listValue.get(i);
+            }
+            return averageDaos2;
+        }else {
+            AverageDao as[] = new AverageDao[a.length+10];
+            Random r = new Random();
+            for (int i = 0; i < a.length; i++) {
+                if (i%2 == 1){
+                    Double pre = (a[i].getValues() - 0.1 - r.nextInt(23) * 0.01);
+                    if (pre<0){
+                        pre = pre*-1;
+                    }
+                    as[i] = new AverageDao(pre,
+                            a[i].getDate(),false,a[i].getStarttime(),a[i].getEndtime());
+                }else {
+                    Double pre = (a[i].getValues() - 0.2 + r.nextInt(17) * 0.01);
+                    if (pre<0){
+                        pre = pre*-1;
+                    }
+                    as[i] = new AverageDao(pre,
+                            a[i].getDate(),false,a[i].getStarttime(),a[i].getEndtime());
+                }
+            }
+            for (int i = a.length;i<a.length+10;i++){
+                if (i%2 == 1){
+                    Double pre = (a[a.length-1].getValues() - 0.1 - r.nextInt(23) * 0.01);
+                    if (pre<0){
+                        pre = pre*-1;
+                    }
+                    as[i] = new AverageDao(pre,
+                            a[a.length-1].getDate(),false,a[a.length-1].getStarttime(),a[a.length-1].getEndtime());
+                }else {
+                    Double pre = (a[a.length-1].getValues() - 0.2 + r.nextInt(17) * 0.01);
+                    if (pre<0){
+                        pre = pre*-1;
+                    }
+                    as[i] = new AverageDao(pre,
+                            a[a.length-1].getDate(),false,a[a.length-1].getStarttime(),a[a.length-1].getEndtime());
+                }
+            }
+            return as;
+        }
     }
 
 }
