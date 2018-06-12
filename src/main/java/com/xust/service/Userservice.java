@@ -28,9 +28,9 @@ public class Userservice {
     public boolean checkLogin(String phonenum, String password) {
         boolean falg = false;
         try {
-            ArrayList<User> user = userMapper.findUserByName(phonenum);
-            if (user != null&&user.size() == 1) {
-                if (this.checkLoginPass(password, user.get(0))) {
+            User user = userMapper.findUserByName(phonenum);
+            if (user != null) {
+                if (this.checkLoginPass(password, user)) {
                     falg = true;
                 }
             }
@@ -44,8 +44,8 @@ public class Userservice {
     public boolean checkInsert(String phonenum){
         boolean flag = false;
         try {
-            ArrayList<User> user = userMapper.findUserByName(phonenum);
-            if (user != null&&user.size() == 1) {
+            User user = userMapper.findUserByName(phonenum);
+            if (user != null) {
                 flag = true;
             }
         } catch (Exception e) {

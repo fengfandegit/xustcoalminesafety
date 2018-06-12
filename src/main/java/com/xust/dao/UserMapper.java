@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public interface UserMapper {
 
     @Select("select * from users where phonenum = #{phonenum}")
-    ArrayList<User> findUserByName(@Param("phonenum") String phonenum) throws Exception;
+    User findUserByName(@Param("phonenum") String phonenum) throws Exception;
 
     @Insert("INSERT INTO users(id,phonenum,password,realname,workid,power,groupid,salt) VALUES(" +
             "#{id},#{phonenum},#{password},#{realname},#{workid},#{power},#{groupid},#{salt})")
