@@ -49,6 +49,7 @@ public class RedisPoll {
                 // 在borrow一个jedis实例时，是否提前进行validate操作；如果为true，则得到的jedis实例均是可用的；
                 config.setTestOnBorrow(true);
                 config.setTestWhileIdle(true);
+                config.setTestOnReturn(true);
                 // 表示idle object evitor两次扫描之间要sleep的毫秒数
                 config.setTimeBetweenEvictionRunsMillis(30000);
                 // 表示idle object evitor每次扫描的最多的对象数

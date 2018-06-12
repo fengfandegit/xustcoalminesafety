@@ -33,7 +33,9 @@ public class SearchForSensor implements AllSSDBSearchI {
                 concurrentHashMap.put(key, values);
             }
         }finally {
-            jedis.close();
+            if (jedis!=null) {
+                jedis.close();
+            }
         }
 
         countDownLatch.countDown();

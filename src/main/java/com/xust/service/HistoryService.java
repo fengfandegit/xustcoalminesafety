@@ -135,8 +135,9 @@ public class HistoryService {
         for (String key:map.keySet()) {
             System.out.println(key+"!!!!!!"+map.get(key));
         }
-        Jedis jedis = RedisPoll.getResource();
+        Jedis jedis = null;
         try{
+            jedis = RedisPoll.getResource();
             for (String key:map.keySet()){
                 if (jedis.exists(key) == false){
                     //写入
@@ -151,7 +152,9 @@ public class HistoryService {
         }catch (Exception e){
             e.printStackTrace();
         }finally {
-            jedis.close();
+            if (jedis!=null) {
+                jedis.close();
+            }
         }
     }
 
