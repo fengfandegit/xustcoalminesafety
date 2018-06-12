@@ -158,7 +158,7 @@
 			}
 			#shouye,#shouye1,#shouye2,#shouye3{
 				width: 50%;
-				height: 250px;
+				height: 230px;
 				float: left;
 				
 				border-radius: 10px;
@@ -642,6 +642,12 @@
 			#div2 td,#div2 th{
 				text-align: center;
 			}
+			.baojing #mychart1,.baojing #mychart2,.baojing #mychart3,.baojing #mychart4{
+				 width: 1208px;
+			    height: 200px;
+			    margin-top: 10px;
+			    float: left;
+			}
 		</style>
 		
 		
@@ -689,7 +695,7 @@
 						<ul class="system">
 							<li><a href="#" ><span class="p-span1">实时数据显示</span></a></li>
 							<li><a href="#" ><span class="p-span1" id="w-lishi">历史数据显示</span></a></li>
-							<li><a href="#" ><span class="p-span1">报警信息显示</span></a></li>
+							<li><a href="#" ><span class="p-span1" id="w-baojing">报警信息显示</span></a></li>
 						</ul>
 					</li>
 					<li id="li4" class="level1">
@@ -1075,42 +1081,10 @@
 					<div class="baojing">
 						<div class="header">位置：数据显示-报警信息显示</div>
 						<div class="row1">
-							<div id="chart">
-							</div>
-							<table class="table">
-							  <thead>
-							    <tr>
-							      <th>站点</th>
-							      <th>传感器类型</th>
-							      <th>传感器编号</th>
-							      <th>时间</th>
-							      <th>数据</th>
-							    </tr>
-							  </thead>
-							  <tbody>
-							    <tr>
-							      <td>Tanmay</td>
-							      <td>Bangalore</td>
-							      <td>560001</td>
-							      <td>1023-04-05</td>
-							      <td>20909</td>
-							    </tr>
-							    <tr>
-							      <td>Sachin</td>
-							      <td>Mumbai</td>
-							      <td>400003</td>
-							      <td>1023-04-05</td>
-							      <td>20909</td>
-							    </tr>
-							    <tr>
-							      <td>Uma</td>
-							      <td>Pune</td>
-							      <td>411027</td>
-							      <td>1023-04-05</td>
-							      <td>20909</td>
-							    </tr>
-							  </tbody>
-							</table>
+							<div id="mychart1" width="300px" height="230px"></div>
+							<div id="mychart2"  width="300px" height="230px"></div>
+							<div id="mychart3"  width="300px" height="230px"></div>
+							<div id="mychart4"  width="300px" height="230px"></div>
 						</div>
 					</div>
 				</div>
@@ -1483,10 +1457,6 @@
 			
 			/*首页的js*/
 			//初始化echarts实例
-			/*$(".sy-shouye").click(function(){
-				$("#shouye-p").show();
-				$(".w-a").hide();
-			})*/
 		    var myChart = echarts.init(document.getElementById('shouye'),'dark');
 		    var myChart1 = echarts.init(document.getElementById('shouye1'),'dark');
 		    var myChart2 = echarts.init(document.getElementById('shouye2'),'dark');
@@ -1539,7 +1509,14 @@
 		                    color:'red'
 		                }
 		            },
-		            data:data
+		            data:data,
+			        markLine: {
+	                    data: [{
+	                        type: 'average',
+	                        name: '平均值'
+	                    }]
+	                }
+			          
 		        }]
 		    })
 		    setInterval(function(){
@@ -1555,8 +1532,85 @@
 		        });
 		    },2000)
 			
-			
-			
+			 function addData(shift){
+		        now = [now.getFullYear(),now.getMonth()+1,now.getDate()].join('/');        
+		        date.push(now);        
+		        data.push((Math.random()-0.5)*10+data[data.length-1]);
+		        if (shift) {
+		            console.log(data);
+		            date.shift();
+		            data.shift();
+		        }
+		        now = new Date(+new Date(now)+oneDay);        
+		    }
+		
+		    for (var i = 0; i < day; i++) {
+		        addData();
+		    }
+		    //设置图标配置项
+		    myChart3.setOption({
+		    	//设置全局背景色
+				backgroundColor: 'rgba(0,0,0,0.1)',
+		        title:{
+		            text:'30天内数据实时更新'
+		        },
+		        xAxis:{
+		            type:"category",
+		            boundaryGap:false,
+		            data:date
+		        },
+		        yAxis:{
+		            boundaryGap:[0,'100%'],
+		            type:'value'
+		        },
+		        
+		        series:[{
+		            name:'成交',
+		            type:'line',
+		            smooth:true, //数据光滑过度
+		            symbol:'none', //下一个数据点
+		            stack:'a',
+		            areaStyle:{
+		                normal:{
+		                    color:'blue'
+		                }
+		            },
+		            data:data,
+		            markLine: {
+	                    data: [{
+	                        type: 'average',
+	                        name: '平均值'
+	                    }]
+	                }
+		        }]
+		    })
+		    setInterval(function(){
+		        addData(true);
+		        myChart3.setOption({
+		            xAxis:{
+		                data:date
+		            },
+		            series:[{
+		                name:'成交',
+		                data:data
+		            }]
+		        });
+		    },2000)
+			function addData(shift){
+		        now = [now.getFullYear(),now.getMonth()+1,now.getDate()].join('/');        
+		        date.push(now);        
+		        data.push((Math.random()-0.5)*10+data[data.length-1]);
+		        if (shift) {
+		            console.log(data);
+		            date.shift();
+		            data.shift();
+		        }
+		        now = new Date(+new Date(now)+oneDay);        
+		    }
+		
+		    for (var i = 0; i < day; i++) {
+		        addData();
+		    }
 			
 			
 			
@@ -1564,7 +1618,7 @@
 			$("#w-can").click(function(){
 				$.ajax({
 					type:"post",
-					url:"http://192.168.43.178:8081/setting/param?callback=?",
+					url:"http://123.207.72.201:8081/setting/param?callback=?",
 					async:true,
 					dataType:"jsonp",
 					jsonpCallback:"callback",
@@ -1593,7 +1647,7 @@
 				//alert(typeof $(form_control[0]).val());
 				$.ajax({
 					type:"post",
-					url:"http://192.168.43.178:8081/setting/param3?callback=?",
+					url:"http://123.207.72.201:8081/setting/param3?callback=?",
 					data:{
 						"id":"0d46ecf2-315f-4b54-8f54-d7c1f88783ec",
 						"name":$(form_control[0]).val(),
@@ -1626,7 +1680,7 @@
 			$("#w-chuan").click(function(){
 				$.ajax({
 					type:"post",
-					url:"http://192.168.43.178:8081/sensor/info?callback=?",
+					url:"http://123.207.72.201:8081/sensor/info?callback=?",
 					async:true,
 					dataType:"jsonp",
 					jsonpCallback:"callback",
@@ -1751,10 +1805,10 @@
 					a[4].innerHTML = td_danwei;
 					$(this).parent().html("<input type='button' value='修改'  class='btn btn-primary btn-sm'/>");
 					//发起ajax
-					var url = "http://192.168.43.178:8081/sensor/info1?callback=?";
+					var url = "http://123.207.72.201:8081/sensor/info1?callback=?";
 				    $.ajax({
 				      url:url,
-				      type:"post",
+				      type:"get",
 				      data:{
 				         "num":parseInt(td_num),
 				         "name":td_name,
@@ -1790,8 +1844,8 @@
 			
 			$("#w-fen").click(function(){
 				$.ajax({
-					type:"post",
-					url:"http://192.168.43.178:8081/substation/info?callback=?",
+					type:"get",
+					url:"http://123.207.72.201:8081/substation/info?callback=?",
 					async:true,
 					dataType:'jsonp',
 					jsonpCallback:"callback",
@@ -1901,10 +1955,10 @@
 					a[2].innerHTML = td_xinghao;
 					$(this).parent().html("<input type='button' value='修改'  class='btn btn-primary btn-sm'/>");
 					//发起ajax请求
-					var url = "http://192.168.43.178:8081/substation/info1?callback=?";
+					var url = "http://123.207.72.201:8081/substation/info1?callback=?";
 				    $.ajax({
 				      url:url,
-				      type:"post",
+				      type:"get",
 				      data:{
 				         "num":parseInt(td_num),
 				         "position1":td_name,
@@ -1937,8 +1991,8 @@
 			 * */
 			$("#w-zuankong").click(function(){
 				$.ajax({
-					type:"post",
-					url:"http://192.168.43.178:8081/judge/info?callback=?",
+					type:"get",
+					url:"http://123.207.72.201:8081/judge/info?callback=?",
 					async:true,
 					dataType:"jsonp",
 					jsonpCallback:"callback",
@@ -1956,8 +2010,8 @@
 			//点击保存
 			$(".zuankong .btn-primary").click(function(){
 				$.ajax({
-					type:"post",
-					url:"http://192.168.43.178:8081/judge/info1?callback=?",
+					type:"get",
+					url:"http://123.207.72.201:8081/judge/info1?callback=?",
 					async:true,
 					data:{
 						"id":"f139b3ce-c00c-4d8a-xf2e-7s5d2298537d98",
@@ -1981,8 +2035,8 @@
 			 * */
 			$("#w-jiliang").click(function(){
 				$.ajax({
-					type:"post",
-					url:"http://192.168.43.178:8081/judge/info?callback=?",
+					type:"get",
+					url:"http://123.207.72.201:8081/judge/info?callback=?",
 					async:true,
 					dataType:"jsonp",
 					jsonpCallback:"callback",
@@ -1997,8 +2051,8 @@
 			//点击保存
 			$(".choucaijiliang .btn-primary").click(function(){
 				$.ajax({
-					type:"post",
-					url:"http://192.168.43.178:8081/judge/info1?callback=?",
+					type:"get",
+					url:"http://123.207.72.201:8081/judge/info1?callback=?",
 					async:true,
 					data:{
 						"id":"f139b3ce-c00c-4d8a-xf2e-7s5d2298537d98",
@@ -2020,8 +2074,8 @@
 			 * */
 			$("#w-tiaokong").click(function(){
 				$.ajax({
-					type:"post",
-					url:"http://192.168.43.178:8081/judge/info?callback=?",
+					type:"get",
+					url:"http://123.207.72.201:8081/judge/info?callback=?",
 					async:true,
 					dataType:'jsonp',
 					jaonpCallback:"callback",
@@ -2258,7 +2312,7 @@
         	 var time4 = [];
         	 var num4 = [];
         	 //点击查询
-			/*$(".chaxunjilu .btn-warning").click(function(){
+			$(".chaxunjilu .btn-warning").click(function(){
 				$(".chaxunjilu .table").css("display","block");
 				var no = '0-16通道分站';
 				if($(".shishishuju .fz").val()=='0-16通道分站'){
@@ -2383,7 +2437,7 @@
 							})
 					}
 				});
-			})*/
+			})
 			//点击导出excel按钮
 			var idTmr; 
 			 //获取当前浏览器类型 
@@ -2503,7 +2557,6 @@
 							var str = "<tr><td>"+data.values[i].id+"</td><td>"+data.values[i].panqu+"</td><td>"+data.values[i].choucainame+"</td><td>"+data.values[i].installaction+"</td><td>"+data.values[i].mixnum+"</td><td>"+data.values[i].jueya+"</td><td>"+data.values[i].fuya+"</td><td>"+data.values[i].wendu+"</td><td>"+data.values[i].chunliuliang+"</td><td>"+data.values[i].sunliulangleiji+"</td><td>"+data.values[i].riliuliangleiji+"</td><td>"+data.values[i].chunliuliangshilieji+"</td><td>"+data.values[i].chunliuliangrileiji+"</td><td>"+data.values[i].chunliuliangyueleiji+"</td></tr>"
 							$("#div2 tbody").append(str);
 						}
-						
 					}
 				});
 			})
@@ -2962,10 +3015,6 @@
 			})
 			
 			
-			
-			
-			
-			
 			/*历史数据相关js*/
 			var chart5 = echarts.init(document.getElementById("fenxi1"),'dark');
 			var chart6 = echarts.init(document.getElementById("fenxi2"),'dark');
@@ -3323,87 +3372,228 @@
 			
 			
 			
-			
-			
-			
-			
-			
 			/*报警信息显示相关js*/
 			//初始化图标标签
-			var mychart = echarts.init(document.getElementById("chart"),'dark');
-			//var mychart2 = echarts.init(document.getElementById("chart"),'dark');
-			var options = {
-				//设置全局背景色
-				backgroundColor: 'rgba(0,0,0,0.1)',
-				//定义一个标题
-				title:{
-					text:"报警信息曲线图"
-				},
-				legend:{
-					data:['瓦斯浓度','瓦斯流量','管道温度','管道负压']
-				},
-				xAxis:{
-					data:['10','30','90','100','179','678','677']
-				},
-				yAxis:{
-					
-				},
-				tooltip:{//图标悬浮的提示内容
-					show:true,
-					formatter:'系列名：{a}<br />类目：{b}<br />数值：{c}'
-				},
-				//name=legend.data才能显示图例
-				series:[{
-					name:"瓦斯浓度",
-					type:'line',
-					data:['34','677','344','90','78','67','199']
-				},{
-					name:"瓦斯流量",
-					type:"line",
-					data:['900','300','500','100','67','899','455']
-				},{
-					name:"管道温度",
-					type:"line",
-					data:['80','30','90','100','67','766','145']
-				},{
-					name:"管道负压",
-					type:"line",
-					data:['200','80','200','800','670','100','355']
-				}]
-			};
+			$("#w-baojing").click(function(){
+				var mychart1 = echarts.init(document.getElementById("mychart1"),'dark');
+				var mychart2 = echarts.init(document.getElementById("mychart2"),'dark');
+				var mychart3 = echarts.init(document.getElementById("mychart3"),'dark');
+				var mychart4 = echarts.init(document.getElementById("mychart4"),'dark');
+					var myoptions1 = {
+						//设置全局背景色
+						backgroundColor: 'rgba(0,0,0,0.1)',
+						
+						//定义一个标题
+						title:{
+							text:"瓦斯浓度图"
+						},
+						legend:{
+							data:['瓦斯浓度']
+						},
+						xAxis:{
+							data:[]
+						},
+						yAxis:{
+							 axisLabel:{show:true},//y轴文字
+					        axisLine: {show: true},//y轴线是否显示
+					    },
+					    tooltip : {//鼠标移入折点显示悬浮框
+					       show:true,
+							formatter:'系列名：{a}<br />时间：{b}<br />数值：{c}'
+						},
+						
+						//name=legend.data才能显示图例
+						series:[{
+							name:"瓦斯浓度",
+							type:'line',
+							data:[],
+							areaStyle: {normal: {//设置线下面部分颜色渐变
+					            color: new echarts.graphic.LinearGradient(
+					                0, 0, 0, 1,
+					                [
+					                    {offset: 0, color: '#3e4abb'},
+					                    {offset: 0.5, color: '#222f77'},
+					                    {offset: 1, color: '#182250'}
+					                ]
+					            )
+					        }},
+					        
+					        symbol: 'emptyCircle',     //设定为空心点
+					        
+					        itemStyle:{
+					            normal:{
+					                color:'#595de4',//折点颜色
+					                lineStyle:{
+					                    color:'#595de4',//折线颜色
+					                    width:'2'
+					                }
+					            }
+					        }
+						}]
+					};
+					mychart1.setOption(myoptions1);
+					var myoptions2 = {
+						//设置全局背景色
+						backgroundColor: 'rgba(0,0,0,0.1)',
+						
+						//定义一个标题
+						title:{
+							text:"瓦斯流量图"
+						},
+						legend:{
+							data:['瓦斯流量']
+						},
+						xAxis:{
+							data:[]
+						},
+						yAxis:{
+							 axisLabel:{show:true},//y轴文字
+					        axisLine: {show: true},//y轴线是否显示
+					    },
+					    tooltip : {//鼠标移入折点显示悬浮框
+					       show:true,
+							formatter:'系列名：{a}<br />时间：{b}<br />数值：{c}'
+						},
+						//name=legend.data才能显示图例
+						series:[{
+							name:"瓦斯流量",
+							type:'line',
+							data:[],
+							areaStyle: {normal: {//设置线下面部分颜色渐变
+					            color: new echarts.graphic.LinearGradient(
+					                0, 0, 0, 1,
+					                [
+					                    {offset: 0, color: '#3e4abb'},
+					                    {offset: 0.5, color: '#222f77'},
+					                    {offset: 1, color: '#182250'}
+					                ]
+					            )
+					        }},
+					        
+					        symbol: 'emptyCircle',     //设定为空心点
+					        
+					        itemStyle:{
+					            normal:{
+					                color:'#595de4',//折点颜色
+					                lineStyle:{
+					                    color:'#595de4',//折线颜色
+					                    width:'2'
+					                }
+					            }
+					        }
+						}]
+					};
+					mychart2.setOption(myoptions2);
+					var myoptions3 = {
+						//设置全局背景色
+						backgroundColor: 'rgba(0,0,0,0.1)',
+						
+						//定义一个标题
+						title:{
+							text:"管道温度图"
+						},
+						legend:{
+							data:['管道温度']
+						},
+						xAxis:{
+							data:[]
+						},
+						yAxis:{
+							 axisLabel:{show:true},//y轴文字
+					        axisLine: {show: true},//y轴线是否显示
+					    },
+					    tooltip : {//鼠标移入折点显示悬浮框
+					       show:true,
+							formatter:'系列名：{a}<br />时间：{b}<br />数值：{c}'
+						},
+						//name=legend.data才能显示图例
+						series:[{
+							name:"管道温度",
+							type:'line',
+							data:[],
+							areaStyle: {normal: {//设置线下面部分颜色渐变
+					            color: new echarts.graphic.LinearGradient(
+					                0, 0, 0, 1,
+					                [
+					                    {offset: 0, color: '#3e4abb'},
+					                    {offset: 0.5, color: '#222f77'},
+					                    {offset: 1, color: '#182250'}
+					                ]
+					            )
+					        }},
+					        
+					        symbol: 'emptyCircle',     //设定为空心点
+					        
+					        itemStyle:{
+					            normal:{
+					                color:'#595de4',//折点颜色
+					                lineStyle:{
+					                    color:'#595de4',//折线颜色
+					                    width:'2'
+					                }
+					            }
+					        }
+						}]
+					};
+					mychart3.setOption(myoptions3);
+					var myoptions4 = {
+						//设置全局背景色
+						backgroundColor: 'rgba(0,0,0,0.1)',
+						
+						//定义一个标题
+						title:{
+							text:"管道负压图"
+						},
+						legend:{
+							data:['管道负压']
+						},
+						xAxis:{
+							data:[]
+						},
+						yAxis:{
+							 axisLabel:{show:true},//y轴文字
+					        axisLine: {show: true},//y轴线是否显示
+					    },
+					    tooltip : {//鼠标移入折点显示悬浮框
+					       show:true,
+							formatter:'系列名：{a}<br />时间：{b}<br />数值：{c}'
+						},
+						//name=legend.data才能显示图例
+						series:[{
+							name:"管道负压",
+							type:'line',
+							data:[],
+							areaStyle: {normal: {//设置线下面部分颜色渐变
+					            color: new echarts.graphic.LinearGradient(
+					                0, 0, 0, 1,
+					                [
+					                    {offset: 0, color: '#3e4abb'},
+					                    {offset: 0.5, color: '#222f77'},
+					                    {offset: 1, color: '#182250'}
+					                ]
+					            )
+					        }},
+					        
+					        symbol: 'emptyCircle',     //设定为空心点
+					        
+					        itemStyle:{
+					            normal:{
+					                color:'#595de4',//折点颜色
+					                lineStyle:{
+					                    color:'#595de4',//折线颜色
+					                    width:'2'
+					                }
+					            }
+					        }
+						}]
+					};
+					mychart4.setOption(myoptions4);
+					})
 			
 			
-			mychart.setOption(options);
 			
 			
 			
-			/*钻孔施工信息相关JS*/
-			$.ajax({
-				type:"get",
-				url:"",
-				async:true,
-				data:{
-					
-				},
-				dataType:'json',
-				success:function(){
-					
-				}
-			});
-			
-			/*抽采计量数据相关JS*/
-			$.ajax({
-				type:"get",
-				url:"",
-				async:true,
-				data:{
-					
-				},
-				dataType:'json',
-				success:function(){
-					
-				}
-			});
 			
 			
 			

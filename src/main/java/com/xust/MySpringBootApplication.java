@@ -54,7 +54,7 @@ public class MySpringBootApplication extends WebMvcConfigurerAdapter implements 
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("forward:/zhuce.html");
+        registry.addViewController("/").setViewName("forward:/index.html");
         registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
         super.addViewControllers(registry);
     }

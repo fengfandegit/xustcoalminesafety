@@ -159,7 +159,7 @@
 		$("#fasong").click(function(){
 			$.ajax({
 				type:"get",
-				url:"http://192.168.43.130:8081/application/message?model=0&phonenum="+$("#num").val(),
+				url:"http://123.207.72.201:8081/application/message?model=0&phonenum="+$("#num").val(),
 				success:function(data){
 					$("#yanzheng").blur(function(){
 						if($("#yanzheng").val()==data){
@@ -199,15 +199,15 @@
 		$("#submit").click(function(){
 			$.ajax({
 				type:"get",
-				url:"http://192.168.43.130:8081/application/checkinsert?realname="+$("#realname").val()+"&phonenum="+$("#num").val()+"&password="+$("#password").val()+"&code="+$("#yanzheng").val(),
+				url:"http://123.207.72.201:8081/application/checkinsert?realname="+$("#realname").val()+"&phonenum="+$("#num").val()+"&password="+$("#password").val()+"&code="+$("#yanzheng").val(),
 				success:function(data){
 					alert(data.phone);
 					alert(data.flag);
 					if(data.phone=="1"){
 						alert("您已注册过，请登录！");
-						window.location.href = "http://192.168.43.130:8081/index.html";
+						window.location.href = "http://123.207.72.201:8081/index.html";
 					}else if(data.phone=="0"&&data.flag=="1"){
-						window.location.href = "http://192.168.43.130:8081/index.html";
+						window.location.href = "http://123.207.72.201:8081/index.html";
 					}else if(data.flag=="0"){
 						alert("验证码有误！");
 					}
