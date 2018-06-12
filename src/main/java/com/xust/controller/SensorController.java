@@ -33,7 +33,7 @@ public class SensorController {
         return mappingJacksonValue;
     }
 
-    @PostMapping(value = "/info1")
+    @GetMapping(value = "/info1")
     @ResponseBody
     public Object insertSensor(SensorPo sensorPo){
         sensorService.insertSensor(UUID.randomUUID().toString(),
@@ -47,7 +47,7 @@ public class SensorController {
         return mappingJacksonValue;
     }
 
-    @PostMapping(value = "/info2")
+    @GetMapping(value = "/info2")
     @ResponseBody
     public Object updateSensor(String callback,SensorPo sensorPo){
         sensorPo.setCallback(callback);
