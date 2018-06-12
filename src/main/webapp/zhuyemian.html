@@ -1275,9 +1275,9 @@
 							<div class="chaxun">
 								<div class="lie1">
 									<span>开始时间:</span>
-									<input type="date" class="text"/>
+									<input type="date" class="text" id="time_1"/>
 									<span>结束时间:</span>
-									<input type="date" class="text"/>
+									<input type="date" class="text" id="time_2"/>
 									<span>安装地点</span>
 									<select>
 										<option value="请选择">请选择</option>
@@ -1291,7 +1291,7 @@
 								</form>
 								
 							</div>
-							<table class="table table-bordered" id="tableExcel">
+							<table class="table table-bordered" id="tableExcel" style="display: none;">
 								  <thead>
 								    <tr>
 								      <th colspan="9">预警信息报表</th>
@@ -1449,6 +1449,7 @@
 		<script src="js/choucaixiaoguoyuce.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			var url = "http://123.207.72.201:8081";
+			//var url = "http://192.168.1.5:8081";
 			$(function(){
 				$(".level1 p").click(function(){
 					if($(this).next().is(":visible")){//若每项的子文件是可见的         

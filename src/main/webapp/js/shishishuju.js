@@ -11,7 +11,6 @@
 				$.ajax({
 					type:"get",
 					url:url+"/readdata/getzhan?callback=?",
-					async:true,
 					dataType:'jsonp',
 					jsonpCallback:"callback",
 					success:function(data){

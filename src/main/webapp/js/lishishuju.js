@@ -61,10 +61,10 @@
 				
 				//定义一个标题
 				title:{
-					text:"瓦斯浓度图"
+					text:"瓦斯流量图"
 				},
 				legend:{
-					data:['瓦斯浓度']
+					data:['瓦斯流量']
 				},
 				xAxis:{
 					data:[]
@@ -79,7 +79,7 @@
 				},
 				//name=legend.data才能显示图例
 				series:[{
-					name:"瓦斯浓度",
+					name:"瓦斯流量",
 					type:'line',
 					data:[],
 					areaStyle: {normal: {//设置线下面部分颜色渐变
@@ -113,10 +113,10 @@
 				
 				//定义一个标题
 				title:{
-					text:"瓦斯浓度图"
+					text:"管道温度图"
 				},
 				legend:{
-					data:['瓦斯浓度']
+					data:['管道温度']
 				},
 				xAxis:{
 					data:[]
@@ -131,7 +131,7 @@
 				},
 				//name=legend.data才能显示图例
 				series:[{
-					name:"瓦斯浓度",
+					name:"管道负压",
 					type:'line',
 					data:[],
 					areaStyle: {normal: {//设置线下面部分颜色渐变
@@ -231,12 +231,10 @@
 				starttime = starttime.substring(0,10);
 				var arr = starttime.split("-");
 				starttime = arr.join("");
-				alert(starttime);
 				var endtime = $("#time2").val();
 				endtime = endtime.substring(0,10);
 				var arr = endtime.split("-");
 				endtime = arr.join("");
-				alert(endtime);
 				var jiange = $(".jiange").val();
 				$.ajax({
 					type:"get",
@@ -253,7 +251,6 @@
 					dataType:"jsonp",
 					jsonpCallback:"callback",
 					success:function(res){
-						alert("成功");
 						for(var i=0;i<res.S1_1_1.length;i++){
 								var str = res.S1_1_1[i].date;
 								str1 = str.substring(0,10);

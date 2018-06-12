@@ -53,7 +53,6 @@
 					dataType:"jsonp",
 					jsonpCallback:"callback",
 					success:function(data){
-						alert(1);
 					}
 				});
 			})

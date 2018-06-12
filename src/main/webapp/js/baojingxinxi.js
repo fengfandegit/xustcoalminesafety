@@ -238,7 +238,6 @@
 							jsonpCallback:"callback",
 							success:function(res){
 								//拿到数据进行展示
-								alert("成功");
 								for(var i=0;i<res.S1_1_1.length;i++){
 									var str = res.S1_1_1[i].date;
 									str1 = str.substring(0,10);

@@ -38,7 +38,6 @@
 									var td_name = a[1].children[0].value;//位置
 									var td_xinghao = a[2].children[0].value;//类型
 									var td_id = a[3].innerHTML;//id
-									alert(td_id);
 									a[0].innerHTML = td_num;
 									a[1].innerHTML = td_name;
 									a[2].innerHTML = td_xinghao;
@@ -49,6 +48,7 @@
 								      url:url1,
 								      type:"get",
 								      data:{
+								      	"id":td_id,
 								         "num":parseInt(td_num),
 								         "position1":td_name,
 								         "type":td_xinghao,
@@ -56,7 +56,6 @@
 								      datatype:"jsonp",
 								      jsonpCallback:"callback",
 								      success:function (data) {
-								         
 								      }
 								    });
 								   

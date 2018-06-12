@@ -175,6 +175,7 @@
 			function sendemail(){
 			    var obj = $("#fasong");
 			    settime(obj);
+			    	
 			 }
 			function settime(obj) { //发送验证码倒计时
 			    if (countdown == 0) { 
@@ -201,8 +202,6 @@
 				type:"get",
 				url:url+"/application/checkinsert?realname="+$("#realname").val()+"&phonenum="+$("#num").val()+"&password="+$("#password").val()+"&code="+$("#yanzheng").val(),
 				success:function(data){
-					alert(data.phone);
-					alert(data.flag);
 					if(data.phone=="1"){
 						alert("您已注册过，请登录！");
 						window.location.href = url+"/index.html";

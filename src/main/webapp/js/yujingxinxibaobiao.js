@@ -61,10 +61,10 @@
 				
 				//定义一个标题
 				title:{
-					text:"瓦斯浓度图"
+					text:"瓦斯流量图"
 				},
 				legend:{
-					data:['瓦斯浓度']
+					data:['瓦斯流量']
 				},
 				xAxis:{
 					data:[]
@@ -79,7 +79,7 @@
 				},
 				//name=legend.data才能显示图例
 				series:[{
-					name:"瓦斯浓度",
+					name:"瓦斯流量",
 					type:'line',
 					data:[],
 					areaStyle: {normal: {//设置线下面部分颜色渐变
@@ -113,10 +113,10 @@
 				
 				//定义一个标题
 				title:{
-					text:"瓦斯浓度图"
+					text:"管道温度图"
 				},
 				legend:{
-					data:['瓦斯浓度']
+					data:['管道温度']
 				},
 				xAxis:{
 					data:[]
@@ -131,7 +131,7 @@
 				},
 				//name=legend.data才能显示图例
 				series:[{
-					name:"瓦斯浓度",
+					name:"管道温度",
 					type:'line',
 					data:[],
 					areaStyle: {normal: {//设置线下面部分颜色渐变
@@ -165,10 +165,10 @@
 				
 				//定义一个标题
 				title:{
-					text:"瓦斯浓度图"
+					text:"管道负压图"
 				},
 				legend:{
-					data:['瓦斯浓度']
+					data:['管道负压']
 				},
 				xAxis:{
 					data:[]
@@ -183,7 +183,7 @@
 				},
 				//name=legend.data才能显示图例
 				series:[{
-					name:"瓦斯浓度",
+					name:"管道负压",
 					type:'line',
 					data:[],
 					areaStyle: {normal: {//设置线下面部分颜色渐变
@@ -223,37 +223,33 @@
 			$(".chaxunjilu .btn-warning").click(function(){
 				$(".chaxunjilu .table").css("display","block");
 				var no = '0-16通道分站';
-				if($(".shishishuju .fz").val()=='0-16通道分站'){
+				if($(".chaxunjilu select").val()=='0-16通道分站'){
 					no = '1_1_1_1';
-				}else if($(".shishishuju .fz").val()=="1-4通道分站"){
+				}else if($(".chaxunjilu select").val()=="1-4通道分站"){
 					no='2_2_2_2';
 				}
-				var starttime = $("#time1").val();
+				var starttime = $("#time_1").val();
 				starttime = starttime.substring(0,10);
 				var arr = starttime.split("-");
 				starttime = arr.join("");
-				alert(starttime);
-				var endtime = $("#time2").val();
+				var endtime = $("#time_2").val();
 				endtime = endtime.substring(0,10);
 				var arr = endtime.split("-");
 				endtime = arr.join("");
-				alert(endtime);
-				var jiange = $(".jiange").val();
 				$.ajax({
 					type:"get",
-					url:"?callback=?",
-					async:true,
+					url:url+"/readdata/gethistorydata?callback=?",
 					data:{
 						"no":no,
 						"type":'1_2_3_4',
 						"id":'1_1_1_1',
 						"starttime":starttime,
 						"endtime":endtime,
-						"black":jiange
+						"black":"h1"
 					},
 					dataType:"jsonp",
 					jsonpCallback:"callback",
-					success:function(data){
+					success:function(res){
 						for(var i=0;i<res.S1_1_1.length;i++){
 								var str = res.S1_1_1[i].date;
 								str1 = str.substring(0,10);
@@ -322,7 +318,7 @@
 								},
 								series:[{
 									name:"瓦斯流量",
-									data:nums2
+									data:num2
 								}]
 							})
 							Chart3.setOption({//加载数据图表

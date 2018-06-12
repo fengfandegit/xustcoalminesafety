@@ -9,7 +9,7 @@
 					jsonpCallback:"callback",
 					success:function(data){
 						for(var i=0;i<data.length;i++){
-							var tr = "<tr><td>"+data[i].num+"</td><td>"+data[i].name+"</td><td>"+data[i].model+"</td><td><select><option value='请选择'>请选择</option><option value='瓦斯传感器'>瓦斯传感器</option><option value='温度传感器'>温度传感器</option><option value='流量传感器'>流量传感器</option><option value='负压传感器'>负压传感器</option><option value='风速传感器'>风速传感器</option></select></td><td>"+data[i].unit+"</td><td style='display: none;'>"+data[i].id+"</td><td><input type='button' value='修改'  class='btn btn-primary btn-sm'/></td><td><input type='button' value='删除' class='btn btn-danger btn-sm'/></td></tr>"
+							var tr = "<tr><td>"+data[i].num+"</td><td>"+data[i].name+"</td><td>"+data[i].model+"</td><td><select><option value="+data[i].type+">"+data[i].type+"</option><option value='瓦斯传感器'>瓦斯传感器</option><option value='温度传感器'>温度传感器</option><option value='流量传感器'>流量传感器</option><option value='负压传感器'>负压传感器</option><option value='风速传感器'>风速传感器</option></select></td><td>"+data[i].unit+"</td><td style='display: none;'>"+data[i].id+"</td><td><input type='button' value='修改'  class='btn btn-primary btn-sm'/></td><td><input type='button' value='删除' class='btn btn-danger btn-sm'/></td></tr>"
 							
 							$(".chuanganqi tbody").append(tr);
 							//$($(".chuanganqi tbody").children("tr")[i].children[4]).html(unit);
@@ -64,6 +64,8 @@
 								      datatype:"jsonp",
 								      jsonpCallback:"callback",
 								      success:function (data) {
+								      	
+								      	alert("成功");
 								      }
 								    });
 								   
@@ -126,9 +128,9 @@
 					a[4].innerHTML = td_danwei;
 					$(this).parent().html("<input type='button' value='修改'  class='btn btn-primary btn-sm'/>");
 					//发起ajax
-					var url = url+"/sensor/info1?callback=?";
+					var url1 = url+"/sensor/info1?callback=?";
 				    $.ajax({
-				      url:url,
+				      url:url1,
 				      type:"get",
 				      data:{
 				         "num":parseInt(td_num),
