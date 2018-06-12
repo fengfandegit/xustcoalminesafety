@@ -72,7 +72,7 @@ public class MianController {
     @RequestMapping(value = "/login")
     public String login(@RequestParam("phonenum") String phonenum, @RequestParam("password") String password) {
         if (userservice.checkLogin(phonenum, password)) {
-            return "redirect:/yanse.html";
+            return "redirect:/zhuyemian.html";
         } else {
             return "redirect:/index.html";
         }
