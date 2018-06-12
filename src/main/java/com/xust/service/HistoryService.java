@@ -1,5 +1,7 @@
 package com.xust.service;
 
+import com.xust.dao.AverageDao;
+import com.xust.utils.RedisPoll;
 import org.apache.log4j.Logger;
 import org.apache.poi.hssf.usermodel.HSSFDataFormat;
 import org.apache.poi.hssf.usermodel.HSSFDateUtil;
@@ -10,6 +12,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import redis.clients.jedis.Jedis;
 
 import java.io.*;
 import java.text.DecimalFormat;
@@ -25,15 +28,13 @@ import java.util.*;
 public class HistoryService {
     private static final Logger log = Logger.getLogger(HistoryService.class);
     public void insertHistoryData(MultipartFile  file){
-        try {
-            checkFile(file);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+
         //获得Workbook工作薄对象
         Workbook workbook = getWorkBook(file);
         //创建返回对象，把每行中的值作为一个数组，所有行作为一个集合返回
         List<String[]> list = new ArrayList<String[]>();
+        List<String[]> Stringlist = new ArrayList<String[]>();
+        int count = 0;
         if(workbook != null){
             for(int sheetNum = 0;sheetNum < workbook.getNumberOfSheets();sheetNum++){
                 //获得当前sheet工作表
@@ -61,16 +62,96 @@ public class HistoryService {
                     for(int cellNum = firstCellNum; cellNum < lastCellNum;cellNum++){
                         Cell cell = row.getCell(cellNum);
                         cells[cellNum] = getCellValue(cell);
+/*                        System.out.println("cells[cellNum]:"+cells[cellNum]+"cell:"+cell);*/
                     }
                     list.add(cells);
+                    Stringlist.add(cells);
                 }
             }
         }
+        List<String[]> list1 = list;
+        List<String[]> list2 = list;
+        Map<String,String> map = new LinkedHashMap<>();
+        Map<String,String> map2 = new LinkedHashMap<>();
         for (int i = 0; i < list.size(); i++) {
-/*            historyMapper.insertHistoryData(list.get(i)[0],
-                    list.get(i)[1],
-                    list.get(i)[2],
-                    list.get(i)[3]);*/
+            for (int j = 0; j < list.get(i).length; j++) {
+                System.out.println(list.get(i)[j]);
+            }
+            list2.get(i)[4] = list.get(i)[4].replaceAll("-","_");
+            list2.get(i)[4] = list2.get(i)[4].replaceAll(":","_");
+            list2.get(i)[4] = list2.get(i)[4].replaceAll(" ","_");
+            list1.get(i)[4] = Stringlist.get(i)[4].replaceAll("-","");
+            list1.get(i)[4] = list1.get(i)[4].replaceAll(":","_");
+            list1.get(i)[4] = list1.get(i)[4].replaceAll(" ","_");
+/*            map.put(list1.get(i)[0]+"_"+list1.get(i)[1]+"_"+list1.get(i)[2],
+                    list2.get(i)[4]+"/"+list2.get(i)[3]);*/
+            String a[] = list2.get(i)[4].split("_");
+            /*a[0]+""+a[1]+""+a[2];*/
+                if (map.size()==0){
+                    map2.put(list1.get(i)[0]+"_"+list1.get(i)[1]+"_"+list1.get(i)[2]+"_"+a[0]+""+a[1]+""+a[2],list2.get(i)[4]+"/"+list2.get(i)[3]);
+                }
+                if (map.size()>0){
+                    for(Map.Entry entry:map.entrySet()) {
+                    if ((list1.get(i)[0]+"_"+list1.get(i)[1]+"_"+list1.get(i)[2]+"_"+a[0]+""+a[1]+""+a[2]).equals((String) entry.getKey())){
+                        String s100 = map.get(list1.get(i)[0]+"_"+list1.get(i)[1]+"_"+list1.get(i)[2]+"_"+a[0]+""+a[1]+""+a[2]);
+                        StringBuilder stringBuilder = new StringBuilder(s100);
+                        map2.put(list1.get(i)[0]+"_"+list1.get(i)[1]+"_"+list1.get(i)[2]+"_"+a[0]+""+a[1]+""+a[2],stringBuilder.append(","+list2.get(i)[4]+"/"+list2.get(i)[3]).toString());
+                    }else{
+                            count++;
+           /*             for(Map.Entry entry1:map.entrySet()) {
+                            if ((list1.get(i)[0]+"_"+list1.get(i)[1]+"_"+list1.get(i)[2]+"_"+a[0]+""+a[1]+""+a[2]).equals(entry1.getValue())){
+
+                            }
+                        }
+                        if (i<=40)*/
+                        /*System.out.println(entry.getKey()+":"+list2.get(i)[4]+"/"+list2.get(i)[3]);*/
+ /*                       count++;
+                        if (map.size()==count){
+                            map.put(list1.get(i)[0]+"_"+list1.get(i)[1]+"_"+list1.get(i)[2],list2.get(i)[4]+"/"+list2.get(i)[3]);
+                            count=0;
+                            break;
+                        }*/
+                        /*                        map.remove(list1.get(i)[0]+"_"+list1.get(i)[1]+"_"+list1.get(i)[2]);*/
+                    }
+                }
+                    if (count == map.size()){
+                        map2.put(list1.get(i)[0]+"_"+list1.get(i)[1]+"_"+list1.get(i)[2]+"_"+a[0]+""+a[1]+""+a[2],list2.get(i)[4]+"/"+list2.get(i)[3]);
+                        count = 0;
+                    }
+                }
+            for (Map.Entry entry:map2.entrySet()
+                 ) {
+                map.put((String) entry.getKey(),(String) entry.getValue());
+                System.out.println("key:"+(String) entry.getKey()+"value:"+(String) entry.getValue());
+            }
+            for (Map.Entry entry:map2.entrySet()
+                    ) {
+                map2.remove(entry.getKey());
+                count = 0;
+            }
+            System.out.println("ok");
+        }
+        System.out.println("start:");
+        for (String key:map.keySet()) {
+            System.out.println(key+"!!!!!!"+map.get(key));
+        }
+        Jedis jedis = RedisPoll.getResource();
+        try{
+            for (String key:map.keySet()){
+                if (jedis.exists(key) == false){
+                    //写入
+                    jedis.set(key,map.get(key));
+                }else{
+                    String s = jedis.get(key);
+                    StringBuilder stringBuilder = new StringBuilder(s);
+                    jedis.set(key,stringBuilder.append(map.get(key)).toString());
+                }
+            }
+            System.out.println("OK!!!");
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            jedis.close();
         }
     }
 
@@ -81,7 +162,7 @@ public class HistoryService {
      * @param file
      * @throws IOException
      */
-    public static  void checkFile(MultipartFile file) throws IOException {
+/*    public static  void checkFile(MultipartFile file) throws IOException {
         //判断文件是否存在
         if(null == file){
             log.error("文件不存在！");
@@ -92,7 +173,7 @@ public class HistoryService {
         if(!fileName.endsWith("xls") && !fileName.endsWith("xlsx")){
             log.error(fileName + "不是excel文件");
         }
-    }
+    }*/
 
     public static  Workbook getWorkBook(MultipartFile file) {
         //获得文件名
@@ -186,4 +267,30 @@ public class HistoryService {
 
         return result;
     }
+    /**
+     * 获取历史数据
+     */
+/*    public Map<String,AverageDao[]> listHistory(String no, String type, String id, String starttime, String endtime){
+        Map<String,AverageDao[]> map = new ReadRunService().getData(no,type,id,starttime,endtime);
+    public Map<String,AverageDao[]> listHistory(String no, String type, String id, String starttime,
+                                                String endtime,String black,boolean flag){
+        Map<String,AverageDao[]> map = new ReadRunService().getData(no,type,id,starttime,endtime,black,flag);
+        return map;
+    }*/
+    public Map<String,AverageDao[]> listpreHistory(String no, String type, String id, String starttime, String endtime){
+/*        Map<String,AverageDao[]> map = new ReadRunService().getData(no,type,id,starttime,endtime);*/
+        Map<String,AverageDao[]> map = new HashMap<>();
+        return map;
+    }
+    public Map<String,AverageDao[]> listpreHistory(String no, String type, String id, String starttime,
+                                                   String endtime,String black,boolean flag){
+        Map<String,AverageDao[]> map = new ReadRunService().getData(no,type,id,starttime,endtime,black,flag);
+        System.out.println("start");
+        System.out.println("end");
+        return map;
+    }
+/*    public static void main(String[] args){
+        listpreHistory("1","1","1","20180330","20180401");
+    }*/
+
 }
