@@ -37,15 +37,15 @@ public class TestRedis {
 
         System.out.println(((int)(Math.random()*15+15)));
         System.out.println(RedisPoll.getResource().get("1_2_2_20180325"));*/
-        for (int i = 1; i < 3; i++) {
+        /*for (int i = 1; i < 3; i++) {
             for (int j = 1; j < 5; j++) {
-                for (int k = 1; k < 3; k++) {
-                    String key = i + "_" + j + "_" + k + "_" + 20180611;
-                    RedisPoll.getResource().set(key,"");
-                    System.out.println();
-                }
+                for (int k = 1; k < 3; k++) {*/
+                    String key = 1 + "_" + 1 + "_" + 1 + "_" + 20180611;
+
+                    System.out.println(RedisPoll.getResource().get(key));
+        /*        }
             }
-        }
+        }*/
     }
 
     @Test

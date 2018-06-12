@@ -62,7 +62,6 @@ public class SendNowData extends TimerTask {
                             stringBuilder = new StringBuilder(sdfn.format(dn) + "/" + value);
                         }
                         jedis.set(key, stringBuilder.toString());
-
                     }
                 }
             }
