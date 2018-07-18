@@ -21,4 +21,3 @@ public class SensorPo {
 }
 
 
-UserVo UserPo User
