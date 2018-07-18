@@ -37,8 +37,6 @@ public class SearchForSensor implements AllSSDBSearchI {
                 jedis.close();
             }
         }
-
         countDownLatch.countDown();
-
     }
 }

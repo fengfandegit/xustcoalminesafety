@@ -73,7 +73,6 @@ public class TenMessageAPI extends MessageAPI {
                     String next = it.next();
                     String[] values = PHONE_NUMS.get(next).split("_");
                     if (now_time - Long.parseLong(values[1]) > 60 * 1000) {
-                        System.out.println(next);
                         PHONE_NUMS.remove(next);
                     }
                 }
